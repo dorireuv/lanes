@@ -1,0 +1,46 @@
+package com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank;
+
+import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BankCashMoneyChangeEvent;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+public class BankClientDecoratorTest extends TestBase {
+
+  @Mock
+  private ClientEventSubscriber clientEventSubscriber;
+  private BankClientDecorator bankClientDecorator;
+
+  @Before
+  public void setUp() {
+    Bank bank = new SimpleBank();
+    bankClientDecorator = new BankClientDecorator(bank, clientEventSubscriber);
+  }
+
+  @Test
+  public void testGetCashMoney() throws Exception {
+    bankClientDecorator.getCashMoney();
+    verifyNoMoreInteractions(clientEventSubscriber);
+  }
+
+  @Test
+  public void testAddZeroCashMoneyDispatchesEvent() throws Exception {
+    bankClientDecorator.addCashMoney(0);
+    verifyNoMoreInteractions(clientEventSubscriber);
+  }
+
+  @Test
+  public void testAddNonZeroCashMoneyDoesNotDispatchEvent() throws Exception {
+    bankClientDecorator.addCashMoney(-1);
+    verify(clientEventSubscriber, times(1))
+        .onBankCashMoneyChange(any(BankCashMoneyChangeEvent.class));
+    verifyNoMoreInteractions(clientEventSubscriber);
+  }
+}

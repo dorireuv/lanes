@@ -1,0 +1,36 @@
+group 'com.dorireuv'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+idea {
+    module {
+        sourceDirs += file('src/main/generated')
+    }
+}
+
+dependencies {
+    compile project(':core')
+
+    compile group: 'com.google.auto.value', name: 'auto-value', version: '1.5'
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+
+    testCompile group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
+    testCompile group: 'com.google.truth', name: 'truth', version: '0.35'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
+}

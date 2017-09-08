@@ -1,0 +1,11 @@
+.gradle/
+.idea/
+app/out/
+app/src/main/generated/
+app/src/test/generated_tests/
+core/out/
+core/src/main/generated/
+core/src/test/generated_tests/
+gradle/
+gradlew
+gradlew.bat

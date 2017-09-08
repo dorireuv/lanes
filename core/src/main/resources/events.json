@@ -1,0 +1,78 @@
+[
+  {
+    "text": "Space-Fleet suffer damages !!!",
+    "effect": -0.1
+  },
+  {
+    "text": "Space-Fleet suffer damages !!!",
+    "effect": -0.2
+  },
+  {
+    "text": "Communication to fleet lost !!!",
+    "effect": -0.2
+  },
+  {
+    "text": "Sabotage in energy sources !!!",
+    "effect": -0.3
+  },
+  {
+    "text": "Uncontrol Atomic reaction in main base !!!",
+    "effect": -0.5
+  },
+  {
+    "text": "New energy sources discovered !!!",
+    "effect": 0.3
+  },
+  {
+    "text": "Sales increase by 25% !!!",
+    "effect": 0.2
+  },
+  {
+    "text": "Klington ship destroyed Federation bonus received !!!",
+    "effect": 0.2
+  },
+  {
+    "text": "Klington attack on main Base !!!",
+    "effect": -0.3
+  },
+  {
+    "text": "Increase in royalties reception !!!",
+    "effect": 0.1
+  },
+  {
+    "text": "Tax Returning !!!",
+    "effect": 0.2
+  },
+  {
+    "text": "Klington attack on the Space-Fleet !!!",
+    "effect": -0.1
+  },
+  {
+    "text": "Federation Increase in Tax Payment !!!",
+    "effect": -0.15
+  },
+  {
+    "text": "Company battle-ship destroyed !!!",
+    "effect": -0.05
+  },
+  {
+    "text": "STOCK-SALE !!!",
+    "effect": 0.05
+  },
+  {
+    "text": "New gold mine discovered !!!",
+    "effect": 0.05
+  },
+  {
+    "text": "Business ship was crushed !!!",
+    "effect": -0.05
+  },
+  {
+    "text": "Good news from trading mission !!!",
+    "effect": 0.05
+  },
+  {
+    "text": "Sales drop by 15% !!!",
+    "effect": -0.1
+  }
+]
