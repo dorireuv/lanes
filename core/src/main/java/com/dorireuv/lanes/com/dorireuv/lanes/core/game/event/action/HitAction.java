@@ -4,14 +4,14 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.HitEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.HitTool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 
 class HitAction extends ActionBase {
 
   private final Board board;
   private final Position position;
 
-  public HitAction(ClientEventSubscriber clientEventSubscriber, Board board, Position position) {
+  HitAction(ClientEventSubscriber clientEventSubscriber, Board board, Position position) {
     super(clientEventSubscriber);
     this.board = board;
     this.position = position;
@@ -19,7 +19,7 @@ class HitAction extends ActionBase {
 
   @Override
   public void doAction() {
-    board.setTool(position, new HitTool(board.getTool(position)));
+    board.getTool(position).setToolType(ToolType.HIT);
     clientEventSubscriber.onHit(new HitEvent(position));
   }
 }

@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.GoldStarTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.testng.annotations.DataProvider;
@@ -51,7 +49,7 @@ public class GoldStarBoardAssignerTest {
   @Test
   public void testAssignOnGoldStarToolRejected() {
     Position position = Position.create(5, 5);
-    Tool goldStarTool = new GoldStarTool();
+    Tool goldStarTool = Tool.newGoldStarTool();
     board.setTool(position, goldStarTool);
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
@@ -71,7 +69,7 @@ public class GoldStarBoardAssignerTest {
   @Test(dataProvider = "assignNearAnotherGoldStarPositions")
   public void testAssignNearAnotherGoldStarRejected(
       String side, Position goldStar1Position, Position goldStar2Position) {
-    board.setTool(goldStar1Position, new GoldStarTool());
+    board.setTool(goldStar1Position, Tool.newGoldStarTool());
     boolean accepted = goldStarBoardAssigner.assignPosition(board, goldStar2Position);
     assertFalse(String.format("There is already gold star on %s side", side), accepted);
   }
@@ -125,7 +123,7 @@ public class GoldStarBoardAssignerTest {
   public void testAssignNearThreeOrMoreStarsRejected(
       String side, Position goldStarPosition, Position[] starsPosition) {
     for (Position starPosition : starsPosition) {
-      board.setTool(starPosition, new StarTool());
+      board.setTool(starPosition, Tool.newStarTool());
     }
     boolean accepted = goldStarBoardAssigner.assignPosition(board, goldStarPosition);
     assertFalse(String.format("There is already three stars on %s side", side), accepted);

@@ -7,7 +7,6 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BoardChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,7 +31,7 @@ public class BoardClientDecoratorTest {
   @Test
   public void testSetToolDispatchesEvent() throws Exception {
     Position position = Position.create(3, 5);
-    Tool tool = new StarTool();
+    Tool tool = Tool.newStarTool();
     boardClientDecorator.setTool(position, tool);
     verify(clientEventSubscriber, times(1)).onBoardChange(any(BoardChangeEvent.class));
     verifyNoMoreInteractions(clientEventSubscriber);

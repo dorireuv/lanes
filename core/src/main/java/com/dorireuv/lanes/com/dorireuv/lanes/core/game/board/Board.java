@@ -1,7 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
 import java.util.Map;
 
 public interface Board {
@@ -19,8 +18,4 @@ public interface Board {
   void setTool(Position position, Tool tool);
 
   Map<Position, Tool> getToolsAround(Position centerPosition);
-
-  Data[][] getBoardData();
-
-  Data getBoardData(int row, int col);
 }

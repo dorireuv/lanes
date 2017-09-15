@@ -6,7 +6,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.CreateCompanyEven
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 
@@ -17,7 +16,7 @@ class CreateCompanyAction extends ActionBase {
   private final Position position;
   private final Company company;
 
-  public CreateCompanyAction(
+  CreateCompanyAction(
       ClientEventSubscriber clientEventSubscriber,
       Player player,
       Board board,
@@ -31,8 +30,7 @@ class CreateCompanyAction extends ActionBase {
   }
 
   private void updateBoard() {
-    board.setTool(
-        position, new CompanyTool(board.getTool(position), company.getCompanyDefinition()));
+    board.getTool(position).setCompanyDefinition(company.getCompanyDefinition());
     company.incSize();
     company.incValue(Config.getCompanyHitValue());
   }

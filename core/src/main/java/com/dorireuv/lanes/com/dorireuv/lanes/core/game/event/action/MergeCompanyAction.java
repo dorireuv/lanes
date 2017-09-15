@@ -7,14 +7,15 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.CompanyTopHolderFinder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 class MergeCompanyAction extends ActionBase {
 
@@ -28,7 +29,7 @@ class MergeCompanyAction extends ActionBase {
   private int mergedCompanyTotalNumOfStocks;
   private final Map<Integer, MergeCompanyEvent.MergeInfo> mergeInfoPerPlayer;
 
-  public MergeCompanyAction(
+  MergeCompanyAction(
       ClientEventSubscriber clientEventSubscriber,
       List<Player> players,
       Board board,
@@ -106,20 +107,22 @@ class MergeCompanyAction extends ActionBase {
     for (int row = 0; row < board.getRows(); row++) {
       for (int col = 0; col < board.getCols(); col++) {
         Tool tool = board.getTool(row, col);
-        if (tool instanceof CompanyTool) {
-          CompanyTool companyTool = (CompanyTool) tool;
-          CompanyDefinition companyDefinition = companyTool.getData().getCompanyDefinition();
-          if (companyDefinition == mergedCompanyDefinition) {
-            board.setTool(
-                Position.create(row, col), new CompanyTool(tool, mergedIntoCompanyDefinition));
+        if (tool.getToolType().equals(ToolType.COMPANY)) {
+          Optional<CompanyDefinition> companyDefinition = tool.getCompanyDefinition();
+          if (companyDefinition.isPresent()) {
+            if (companyDefinition.get().equals(mergedCompanyDefinition)) {
+              board
+                  .getTool(Position.create(row, col))
+                  .setCompanyDefinition(mergedIntoCompanyDefinition);
+            }
           }
         }
       }
     }
 
     Tool oldTool = board.getTool(position);
-    if (oldTool.isEmpty()) {
-      board.setTool(position, new CompanyTool(oldTool, mergedIntoCompanyDefinition));
+    if (oldTool.getToolType().equals(ToolType.EMPTY)) {
+      board.getTool(position).setCompanyDefinition(mergedIntoCompanyDefinition);
       mergedIntoCompany.incSize();
     }
   }

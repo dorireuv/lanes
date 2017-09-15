@@ -2,14 +2,10 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.GoldStarTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.NonEmptyTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,7 +68,7 @@ public class TrapBoardAssignerTest {
 
   private void assertAssignRejected(Position trapPosition, Position[] otherStarsPosition) {
     for (Position otherStarPosition : otherStarsPosition) {
-      board.setTool(otherStarPosition, new StarTool());
+      board.setTool(otherStarPosition, Tool.newStarTool());
     }
     boolean accepted = trapBoardAssigner.assignPosition(board, trapPosition);
     assertFalse(accepted);
@@ -88,8 +84,8 @@ public class TrapBoardAssignerTest {
   @Test
   public void testAssignOnTrapAccepted() throws Exception {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(-1, 0), new StarTool());
-    board.setTool(position.move(+1, 0), new StarTool());
+    board.setTool(position.move(-1, 0), Tool.newStarTool());
+    board.setTool(position.move(+1, 0), Tool.newStarTool());
     board.getTool(position).setIsTrap(true);
     boolean accepted = trapBoardAssigner.assignPosition(board, position);
     assertTrue(accepted);
@@ -98,7 +94,7 @@ public class TrapBoardAssignerTest {
   @Test
   public void testAssignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(5, 5);
-    Tool nonEmptyTool = mock(NonEmptyTool.class);
+    Tool nonEmptyTool = Tool.newStarTool();
     board.setTool(position, nonEmptyTool);
     boolean accepted = trapBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
@@ -199,7 +195,7 @@ public class TrapBoardAssignerTest {
 
   private void assertAssignAccepted(Position trapPosition, Position[] otherStarsPosition) {
     for (Position otherStarPosition : otherStarsPosition) {
-      board.setTool(otherStarPosition, new GoldStarTool());
+      board.setTool(otherStarPosition, Tool.newGoldStarTool());
     }
     boolean accepted = trapBoardAssigner.assignPosition(board, trapPosition);
     assertTrue(accepted);

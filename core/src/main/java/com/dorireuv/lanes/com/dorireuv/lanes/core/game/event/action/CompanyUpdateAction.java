@@ -4,11 +4,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.GoldStarTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.HitTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import java.util.List;
@@ -21,7 +18,7 @@ class CompanyUpdateAction extends ActionBase {
   private final Company company;
   private final List<Player> players;
 
-  public CompanyUpdateAction(
+  CompanyUpdateAction(
       ClientEventSubscriber clientEventSubscriber,
       Board board,
       Position position,
@@ -37,16 +34,14 @@ class CompanyUpdateAction extends ActionBase {
   private void updateCompanyValue() {
     for (Map.Entry<Position, Tool> entry : board.getToolsAround(position).entrySet()) {
       Tool curTool = entry.getValue();
-      if (curTool instanceof GoldStarTool) {
+      if (curTool.getToolType().equals(ToolType.GOLD_STAR)) {
         company.incValue(Config.getCompanyGoldStarValue());
-      } else if (curTool instanceof StarTool) {
+      } else if (curTool.getToolType().equals(ToolType.STAR)) {
         company.incValue(Config.getCompanyStarValue());
-      } else if (curTool instanceof HitTool) {
+      } else if (curTool.getToolType().equals(ToolType.HIT)) {
         Position curPosition = entry.getKey();
         company.incValue(Config.getCompanyHitValue());
-        board.setTool(
-            curPosition,
-            new CompanyTool(board.getTool(curPosition), company.getCompanyDefinition()));
+        board.getTool(curPosition).setCompanyDefinition(company.getCompanyDefinition());
         company.incSize();
       }
     }

@@ -4,14 +4,14 @@ import static java.util.stream.Collectors.toMap;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.NonCompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class SingleMoveGenerator {
 
@@ -21,10 +21,10 @@ public class SingleMoveGenerator {
     this.randomWrapper = randomWrapper;
   }
 
-  public Position generate(Board board, boolean freeCompanyExist) {
+  Position generate(Board board, boolean freeCompanyExist) {
     Position candidate = randomWrapper.nextPosition(board);
     Tool tool = board.getTool(candidate);
-    if (!tool.isEmpty()) {
+    if (!tool.getToolType().equals(ToolType.EMPTY)) {
       return null;
     }
 
@@ -42,18 +42,18 @@ public class SingleMoveGenerator {
         positionToToolMap.put(position, board.getToolWithoutBoundProtection(position));
       }
 
-      Map<Position, NonCompanyTool> positionToStarMap =
+      Map<Position, Tool> positionToStarMap =
           positionToToolMap
               .entrySet()
               .stream()
-              .filter(e -> e.getValue() instanceof NonCompanyTool)
-              .collect(toMap(Map.Entry::getKey, e -> (NonCompanyTool) e.getValue()));
-      Map<Position, CompanyTool> positionToCompanyMap =
+              .filter(e -> e.getValue().getToolType().isStar())
+              .collect(toMap(Map.Entry::getKey, Entry::getValue));
+      Map<Position, Tool> positionToCompanyMap =
           positionToToolMap
               .entrySet()
               .stream()
-              .filter(e -> e.getValue() instanceof CompanyTool)
-              .collect(toMap(Map.Entry::getKey, e -> (CompanyTool) e.getValue()));
+              .filter(e -> e.getValue().getToolType().equals(ToolType.COMPANY))
+              .collect(toMap(Map.Entry::getKey, Entry::getValue));
 
       if (positionToCompanyMap.size() == 0 && positionToStarMap.size() > 0) {
         return null;

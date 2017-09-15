@@ -1,5 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
+import static com.google.common.truth.Truth8.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
@@ -7,7 +8,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class GrowCompanyActionTest {
         new GrowCompanyAction(clientEventSubscriber, board, position, company);
     growCompanyAction.doAction();
     assertEquals(company.getSize(), size + 1);
-    CompanyTool companyTool = (CompanyTool) board.getTool(position);
-    assertEquals(companyTool.getData().getCompanyDefinition(), companyDefinition);
+    Tool tool = board.getTool(position);
+    assertThat(tool.getCompanyDefinition()).hasValue(companyDefinition);
   }
 }

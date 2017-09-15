@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class SingleMoveGeneratorTest {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     when(randomWrapper.nextPosition(board)).thenReturn(position);
-    board.setTool(position, new StarTool());
+    board.setTool(position, Tool.newStarTool());
 
     SingleMoveGenerator singleMoveGenerator = new SingleMoveGenerator(randomWrapper);
     Position candidate = singleMoveGenerator.generate(board, true);
@@ -47,7 +47,7 @@ public class SingleMoveGeneratorTest {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     when(randomWrapper.nextPosition(board)).thenReturn(position);
-    board.setTool(position.move(0, 1), new StarTool());
+    board.setTool(position.move(0, 1), Tool.newStarTool());
 
     SingleMoveGenerator singleMoveGenerator = new SingleMoveGenerator(randomWrapper);
     Position candidate = singleMoveGenerator.generate(board, false);
