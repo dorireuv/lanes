@@ -8,7 +8,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
-
 import java.util.List;
 
 public class GameBuilder {

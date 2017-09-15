@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.PlayerCashMoneyChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.PlayerNetValueChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
-
 import java.util.Map;
 
 public class PlayerClientDecorator implements Player {

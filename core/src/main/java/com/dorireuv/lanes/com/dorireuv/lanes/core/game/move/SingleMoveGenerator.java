@@ -1,18 +1,17 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.move;
 
+import static java.util.stream.Collectors.toMap;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.NonCompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toMap;
 
 public class SingleMoveGenerator {
 
@@ -43,16 +42,18 @@ public class SingleMoveGenerator {
         positionToToolMap.put(position, board.getToolWithoutBoundProtection(position));
       }
 
-      Map<Position, NonCompanyTool> positionToStarMap = positionToToolMap
-          .entrySet()
-          .stream()
-          .filter(e -> e.getValue() instanceof NonCompanyTool)
-          .collect(toMap(Map.Entry::getKey, e -> (NonCompanyTool) e.getValue()));
-      Map<Position, CompanyTool> positionToCompanyMap = positionToToolMap
-          .entrySet()
-          .stream()
-          .filter(e -> e.getValue() instanceof CompanyTool)
-          .collect(toMap(Map.Entry::getKey, e -> (CompanyTool) e.getValue()));
+      Map<Position, NonCompanyTool> positionToStarMap =
+          positionToToolMap
+              .entrySet()
+              .stream()
+              .filter(e -> e.getValue() instanceof NonCompanyTool)
+              .collect(toMap(Map.Entry::getKey, e -> (NonCompanyTool) e.getValue()));
+      Map<Position, CompanyTool> positionToCompanyMap =
+          positionToToolMap
+              .entrySet()
+              .stream()
+              .filter(e -> e.getValue() instanceof CompanyTool)
+              .collect(toMap(Map.Entry::getKey, e -> (CompanyTool) e.getValue()));
 
       if (positionToCompanyMap.size() == 0 && positionToStarMap.size() > 0) {
         return null;

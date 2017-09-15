@@ -7,7 +7,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.CompanyTopHolderFinder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,5 +1,17 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.gen5.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.calls;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriberGroup;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.CompanyTopHolderChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
@@ -29,6 +41,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,27 +52,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.gen5.api.Assertions.assertThrows;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.calls;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-
 public class LanesTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ClientEventSubscriberGroup clientEventSubscriberGroup;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ClientEventSubscriberGroup clientEventSubscriberGroup;
 
   private Lanes lanes;
 
@@ -86,9 +83,7 @@ public class LanesTest {
     int numOfPlayers = players.size();
     int numOfTurns = 100;
     TurnIterator turnIterator = spy(new TurnIterator(firstPlayerIndex, numOfPlayers, numOfTurns));
-    when(turnIterator.shouldEndTurn())
-        .thenAnswer(
-            invocationOnMock -> false);
+    when(turnIterator.shouldEndTurn()).thenAnswer(invocationOnMock -> false);
 
     checkerActionExecutor = spy(new CheckerActionExecutor());
 

@@ -1,5 +1,8 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
@@ -7,9 +10,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class StarBoardAssignerTest {
   private Board board;
@@ -42,8 +42,8 @@ public class StarBoardAssignerTest {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
-        new Position[]{
-            starPosition.move(-1, -1), starPosition.move(0, -1), starPosition.move(+1, -1),
+        new Position[] {
+          starPosition.move(-1, -1), starPosition.move(0, -1), starPosition.move(+1, -1),
         });
   }
 
@@ -52,8 +52,8 @@ public class StarBoardAssignerTest {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
-        new Position[]{
-            starPosition.move(-1, +1), starPosition.move(0, +1), starPosition.move(+1, +1),
+        new Position[] {
+          starPosition.move(-1, +1), starPosition.move(0, +1), starPosition.move(+1, +1),
         });
   }
 
@@ -62,8 +62,8 @@ public class StarBoardAssignerTest {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
-        new Position[]{
-            starPosition.move(-1, -1), starPosition.move(-1, 0), starPosition.move(-1, +1),
+        new Position[] {
+          starPosition.move(-1, -1), starPosition.move(-1, 0), starPosition.move(-1, +1),
         });
   }
 
@@ -72,8 +72,8 @@ public class StarBoardAssignerTest {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
-        new Position[]{
-            starPosition.move(+1, -1), starPosition.move(+1, 0), starPosition.move(+1, +1),
+        new Position[] {
+          starPosition.move(+1, -1), starPosition.move(+1, 0), starPosition.move(+1, +1),
         });
   }
 
@@ -82,11 +82,11 @@ public class StarBoardAssignerTest {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
-        new Position[]{
-            starPosition.move(0, -1),
-            starPosition.move(0, +1),
-            starPosition.move(-1, 0),
-            starPosition.move(+1, 0),
+        new Position[] {
+          starPosition.move(0, -1),
+          starPosition.move(0, +1),
+          starPosition.move(-1, 0),
+          starPosition.move(+1, 0),
         });
   }
 

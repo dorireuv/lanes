@@ -1,5 +1,10 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
@@ -12,19 +17,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-
 public class GoldStarDisappearEventCheckerTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ActionFactory actionFactory;
-  @Mock
-  private RandomWrapper randomWrapper;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ActionFactory actionFactory;
+  @Mock private RandomWrapper randomWrapper;
 
   @Test
   public void testCheckDispatchesEventOnGoldStarDisappear() throws Exception {
@@ -44,9 +41,7 @@ public class GoldStarDisappearEventCheckerTest {
   public void testCheckDoesNothingOnNonGoldStarDisappear() throws Exception {
     Board board = new SimpleBoard();
     final Position position = Position.create(5, 5);
-    when(randomWrapper.nextPosition(board))
-        .thenAnswer(
-            invocationOnMock -> position);
+    when(randomWrapper.nextPosition(board)).thenAnswer(invocationOnMock -> position);
 
     GoldStarDisappearChecker goldStarDisappearEventChecker =
         new GoldStarDisappearChecker(actionFactory, randomWrapper, board);

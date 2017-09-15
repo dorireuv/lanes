@@ -1,7 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.player;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
-
 import java.util.HashMap;
 import java.util.Map;
 

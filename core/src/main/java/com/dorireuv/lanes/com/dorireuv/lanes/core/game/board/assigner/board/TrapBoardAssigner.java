@@ -20,8 +20,7 @@ public class TrapBoardAssigner implements BoardAssigner {
         (this.boolToInt(!board.getToolWithoutBoundProtection(position.move(-1, 0)).isEmpty())
             + this.boolToInt(!board.getToolWithoutBoundProtection(position.move(+1, 0)).isEmpty())
             + this.boolToInt(!board.getToolWithoutBoundProtection(position.move(0, +1)).isEmpty())
-            + this.boolToInt(
-            !board.getToolWithoutBoundProtection(position.move(0, -1)).isEmpty()));
+            + this.boolToInt(!board.getToolWithoutBoundProtection(position.move(0, -1)).isEmpty()));
     if (numOfStars < 2) {
       return false;
     }

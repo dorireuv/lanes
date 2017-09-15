@@ -1,5 +1,8 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
@@ -9,14 +12,10 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionGroup;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 public class BoardChecker extends CheckerBase {
 
@@ -54,7 +53,10 @@ public class BoardChecker extends CheckerBase {
         .entrySet()
         .stream()
         .filter(e -> e.getValue() instanceof CompanyTool)
-        .collect(toMap(e -> ((CompanyTool) e.getValue()).getData().getCompanyDefinition(), Map.Entry::getKey));
+        .collect(
+            toMap(
+                e -> ((CompanyTool) e.getValue()).getData().getCompanyDefinition(),
+                Map.Entry::getKey));
   }
 
   private List<Company> getMergeCompanies(
@@ -75,8 +77,7 @@ public class BoardChecker extends CheckerBase {
         getCompanyDefinitionToPositionMap();
     int numOfDifferentCompanies = companyDefinitionToPositionMap.size();
     if (numOfDifferentCompanies == 0) {
-      List<CompanyDefinition> companyDefinitions =
-          new LinkedList<>(companies.keySet());
+      List<CompanyDefinition> companyDefinitions = new LinkedList<>(companies.keySet());
       Collections.sort(companyDefinitions);
       Company firstNonEmptyCompany = null;
       for (CompanyDefinition companyDefinition : companyDefinitions) {

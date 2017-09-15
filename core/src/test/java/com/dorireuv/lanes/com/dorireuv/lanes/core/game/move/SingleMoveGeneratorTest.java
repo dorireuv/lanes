@@ -1,5 +1,9 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.move;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
@@ -11,15 +15,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.when;
-
 public class SingleMoveGeneratorTest {
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private RandomWrapper randomWrapper;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private RandomWrapper randomWrapper;
 
   @Test
   public void testGenerateReturnsNullOnStar() throws Exception {

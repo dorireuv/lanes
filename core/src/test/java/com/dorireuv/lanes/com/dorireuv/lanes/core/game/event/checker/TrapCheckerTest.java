@@ -1,5 +1,10 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
@@ -9,21 +14,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-
 public class TrapCheckerTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ActionFactory actionFactory;
-  @Mock
-  private RandomWrapper randomWrapper;
-  @Mock
-  private Tool tool;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ActionFactory actionFactory;
+  @Mock private RandomWrapper randomWrapper;
+  @Mock private Tool tool;
 
   @Test
   public void testCheckDispatchesEventOnTrap() throws Exception {

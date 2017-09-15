@@ -11,11 +11,10 @@ public class ClientEventSubscriberFactory {
     return (ClientEventSubscriberGroup)
         Proxy.newProxyInstance(
             ClientEventSubscriberGroup.class.getClassLoader(),
-            new Class[]{ClientEventSubscriberGroup.class},
+            new Class[] {ClientEventSubscriberGroup.class},
             new InvocationHandler() {
 
-              private final List<ClientEventSubscriber> clientEventSubscribers =
-                  new LinkedList<>();
+              private final List<ClientEventSubscriber> clientEventSubscribers = new LinkedList<>();
 
               private void register(ClientEventSubscriber clientEventSubscriber) {
                 clientEventSubscribers.add(clientEventSubscriber);

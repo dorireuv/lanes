@@ -23,7 +23,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
-
 import java.util.LinkedList;
 import java.util.List;
 

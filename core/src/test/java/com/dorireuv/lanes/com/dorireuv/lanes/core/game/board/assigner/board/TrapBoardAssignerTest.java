@@ -1,5 +1,9 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
@@ -9,10 +13,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 public class TrapBoardAssignerTest {
   private Board board;
@@ -29,8 +29,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
-        new Position[]{
-            trapPosition.move(0, -1),
+        new Position[] {
+          trapPosition.move(0, -1),
         });
   }
 
@@ -39,8 +39,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
-        new Position[]{
-            trapPosition.move(0, +1),
+        new Position[] {
+          trapPosition.move(0, +1),
         });
   }
 
@@ -49,8 +49,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
-        new Position[]{
-            trapPosition.move(-1, 0),
+        new Position[] {
+          trapPosition.move(-1, 0),
         });
   }
 
@@ -59,15 +59,15 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
-        new Position[]{
-            trapPosition.move(+1, 0),
+        new Position[] {
+          trapPosition.move(+1, 0),
         });
   }
 
   @Test
   public void testAssignRejectedNoStars() throws Exception {
     Position trapPosition = Position.create(5, 5);
-    assertAssignRejected(trapPosition, new Position[]{});
+    assertAssignRejected(trapPosition, new Position[] {});
   }
 
   private void assertAssignRejected(Position trapPosition, Position[] otherStarsPosition) {
@@ -109,8 +109,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(-1, 0), trapPosition.move(0, -1),
+        new Position[] {
+          trapPosition.move(-1, 0), trapPosition.move(0, -1),
         });
   }
 
@@ -119,8 +119,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(-1, 0), trapPosition.move(0, +1),
+        new Position[] {
+          trapPosition.move(-1, 0), trapPosition.move(0, +1),
         });
   }
 
@@ -129,8 +129,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(+1, 0), trapPosition.move(0, -1),
+        new Position[] {
+          trapPosition.move(+1, 0), trapPosition.move(0, -1),
         });
   }
 
@@ -139,8 +139,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(+1, 0), trapPosition.move(0, +1),
+        new Position[] {
+          trapPosition.move(+1, 0), trapPosition.move(0, +1),
         });
   }
 
@@ -149,8 +149,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(-1, 0), trapPosition.move(0, -1), trapPosition.move(+1, 0),
+        new Position[] {
+          trapPosition.move(-1, 0), trapPosition.move(0, -1), trapPosition.move(+1, 0),
         });
   }
 
@@ -159,8 +159,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(-1, 0), trapPosition.move(0, +1), trapPosition.move(+1, 0),
+        new Position[] {
+          trapPosition.move(-1, 0), trapPosition.move(0, +1), trapPosition.move(+1, 0),
         });
   }
 
@@ -169,8 +169,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(0, -1), trapPosition.move(-1, 0), trapPosition.move(0, +1),
+        new Position[] {
+          trapPosition.move(0, -1), trapPosition.move(-1, 0), trapPosition.move(0, +1),
         });
   }
 
@@ -179,8 +179,8 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(0, -1), trapPosition.move(+1, 0), trapPosition.move(0, +1),
+        new Position[] {
+          trapPosition.move(0, -1), trapPosition.move(+1, 0), trapPosition.move(0, +1),
         });
   }
 
@@ -189,11 +189,11 @@ public class TrapBoardAssignerTest {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
-        new Position[]{
-            trapPosition.move(0, -1),
-            trapPosition.move(0, +1),
-            trapPosition.move(-1, 0),
-            trapPosition.move(+1, 0),
+        new Position[] {
+          trapPosition.move(0, -1),
+          trapPosition.move(0, +1),
+          trapPosition.move(-1, 0),
+          trapPosition.move(+1, 0),
         });
   }
 

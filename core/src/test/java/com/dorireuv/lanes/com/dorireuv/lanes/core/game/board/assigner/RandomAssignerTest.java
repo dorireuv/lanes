@@ -1,5 +1,11 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.BoardAssigner;
@@ -10,22 +16,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 public class RandomAssignerTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private RandomWrapper randomWrapper;
-  @Mock
-  private BoardAssigner boardAssigner;
-  @Mock
-  private Board board;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private RandomWrapper randomWrapper;
+  @Mock private BoardAssigner boardAssigner;
+  @Mock private Board board;
 
   @Test
   public void testAssign() throws Exception {

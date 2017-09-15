@@ -1,5 +1,9 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
@@ -7,10 +11,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.NonEmptyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 public class DoublePaymentBoardAssignerTest {
   private Board board;

@@ -2,12 +2,11 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class CompanySorterTest {
 

@@ -6,7 +6,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-
 import java.util.List;
 
 public class GalacticBombChecker extends CheckerBase {

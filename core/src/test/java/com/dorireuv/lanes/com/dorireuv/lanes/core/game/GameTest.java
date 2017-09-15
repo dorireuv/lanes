@@ -8,12 +8,11 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class GameTest {
 

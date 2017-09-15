@@ -1,18 +1,17 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.EmptyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.HitTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 
 public class SimpleBoardTest {
 

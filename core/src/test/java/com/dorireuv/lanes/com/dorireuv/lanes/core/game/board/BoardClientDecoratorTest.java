@@ -1,5 +1,10 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BoardChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
@@ -11,17 +16,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-
 public class BoardClientDecoratorTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ClientEventSubscriber clientEventSubscriber;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private BoardClientDecorator boardClientDecorator;
 

@@ -46,8 +46,8 @@ public class BoardBuilder {
   private void setNumOfGoldStars() {
     numOfGoldStars =
         numOfPlayers
-            * (int)
-            (Config.getBoardAdditionalRandomNumOfGoldStars() * randomWrapper.nextDouble())
+                * (int)
+                    (Config.getBoardAdditionalRandomNumOfGoldStars() * randomWrapper.nextDouble())
             + Config.getBoardMinNumOfGoldStars();
   }
 

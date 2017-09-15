@@ -1,7 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.company;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
-
 import java.util.Collection;
 
 public class CompanyTopHolderFinder {

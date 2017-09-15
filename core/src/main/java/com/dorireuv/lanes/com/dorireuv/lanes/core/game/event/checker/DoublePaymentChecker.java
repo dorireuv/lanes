@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
-
 import java.util.List;
 
 public class DoublePaymentChecker extends CheckerBase {

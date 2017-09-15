@@ -10,12 +10,9 @@ import org.mockito.junit.MockitoRule;
 
 public class FreezeActionTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ClientEventSubscriber clientEventSubscriber;
-  @Mock
-  private TurnIterator turnIterator;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ClientEventSubscriber clientEventSubscriber;
+  @Mock private TurnIterator turnIterator;
 
   @Test
   public void testDoAction() {

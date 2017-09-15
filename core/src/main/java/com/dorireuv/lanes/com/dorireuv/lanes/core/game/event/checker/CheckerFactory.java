@@ -2,7 +2,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.Lanes;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerNetValueSorter;
-
 import java.util.LinkedList;
 
 public class CheckerFactory {

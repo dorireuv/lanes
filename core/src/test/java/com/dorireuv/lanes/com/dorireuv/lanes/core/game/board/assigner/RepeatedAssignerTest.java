@@ -1,20 +1,18 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 public class RepeatedAssignerTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private Assigner assigner;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private Assigner assigner;
 
   @Test
   public void testAssign() throws Exception {

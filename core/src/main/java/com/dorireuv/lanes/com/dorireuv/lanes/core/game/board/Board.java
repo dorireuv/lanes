@@ -2,7 +2,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
-
 import java.util.Map;
 
 public interface Board {

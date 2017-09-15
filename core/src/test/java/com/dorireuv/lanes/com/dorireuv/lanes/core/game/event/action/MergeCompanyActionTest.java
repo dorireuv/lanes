@@ -1,5 +1,9 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.CompanyTopHolderChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
@@ -10,6 +14,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,19 +24,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 public class MergeCompanyActionTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ClientEventSubscriber clientEventSubscriber;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private final CompanyDefinition mergedIntoCompanyDefinition = CompanyDefinition.create('A', "A");
   private final CompanyDefinition mergedCompanyDefinition = CompanyDefinition.create('B', "B");

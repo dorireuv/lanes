@@ -13,8 +13,8 @@ public class RepeatedAssigner implements Assigner {
   @Override
   public void assign() {
     for (int curNumOfAssignments = 0;
-         curNumOfAssignments < numOfAssignments;
-         curNumOfAssignments++) {
+        curNumOfAssignments < numOfAssignments;
+        curNumOfAssignments++) {
       assigner.assign();
     }
   }

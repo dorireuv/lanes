@@ -1,11 +1,10 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader;
 
+import java.util.LinkedList;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public abstract class JsonStringListLoader<T> implements Loader<List<T>> {
   private final String jsonString;

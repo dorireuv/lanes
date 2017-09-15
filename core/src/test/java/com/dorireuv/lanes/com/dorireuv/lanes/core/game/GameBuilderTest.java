@@ -6,11 +6,10 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class GameBuilderTest {
 

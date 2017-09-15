@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.EmptyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

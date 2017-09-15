@@ -1,10 +1,9 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.event;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 public class PredefinedEventLoaderTest {
   @Test

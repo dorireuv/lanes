@@ -2,7 +2,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
-
 import java.util.Collection;
 
 class PlayerCashMoneyInterestAction implements Action {

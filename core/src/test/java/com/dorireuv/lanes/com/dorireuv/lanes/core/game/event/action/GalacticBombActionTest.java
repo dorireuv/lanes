@@ -1,5 +1,7 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
+import static org.junit.Assert.assertEquals;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.event.GalacticBombEventDefinition;
@@ -11,14 +13,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.junit.Assert.assertEquals;
-
 public class GalacticBombActionTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ClientEventSubscriber clientEventSubscriber;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private Company company;
 

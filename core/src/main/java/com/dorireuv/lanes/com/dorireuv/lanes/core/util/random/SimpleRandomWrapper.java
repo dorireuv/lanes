@@ -2,7 +2,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.util.random;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-
 import java.util.Random;
 
 public class SimpleRandomWrapper implements RandomWrapper {

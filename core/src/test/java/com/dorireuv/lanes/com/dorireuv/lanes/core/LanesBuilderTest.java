@@ -1,11 +1,10 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
-import org.junit.Test;
-
-import java.util.Arrays;
-
 import static org.junit.gen5.api.Assertions.assertThrows;
+
+import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
+import java.util.Arrays;
+import org.junit.Test;
 
 public class LanesBuilderTest {
 
@@ -26,6 +25,8 @@ public class LanesBuilderTest {
     int maxNumOfPlayers = Config.getMaxNumOfPlayers();
     String[] playersName = new String[maxNumOfPlayers + 1];
     Arrays.fill(playersName, "P");
-    assertThrows(IllegalArgumentException.class, () -> new LanesBuilder().buildDefault(Arrays.asList(playersName), 100, 100, 100));
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> new LanesBuilder().buildDefault(Arrays.asList(playersName), 100, 100, 100));
   }
 }

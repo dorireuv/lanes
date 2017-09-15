@@ -16,7 +16,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.MovesGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-
 import java.util.Arrays;
 import java.util.List;
 

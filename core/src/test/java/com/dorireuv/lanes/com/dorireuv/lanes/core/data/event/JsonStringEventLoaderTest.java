@@ -1,23 +1,21 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.event;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.gen5.api.Assertions.assertThrows;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.IterablePair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.Pair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
 import com.google.gson.Gson;
-import org.junit.Test;
-
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.gen5.api.Assertions.assertThrows;
+import org.junit.Test;
 
 public class JsonStringEventLoaderTest {
   @Test
   public void testLoad() throws Exception {
     // create json string
-    List<GalacticBombEventDefinition> expectedGalacticBombEventDefinitionList =
-        new LinkedList<>();
+    List<GalacticBombEventDefinition> expectedGalacticBombEventDefinitionList = new LinkedList<>();
     expectedGalacticBombEventDefinitionList.add(GalacticBombEventDefinition.create("A", 0.1));
     expectedGalacticBombEventDefinitionList.add(GalacticBombEventDefinition.create("B", -0.1));
     Gson gson = new Gson();

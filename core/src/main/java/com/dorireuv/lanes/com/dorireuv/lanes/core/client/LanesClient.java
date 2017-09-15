@@ -11,7 +11,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerNetValueCalculator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerStockValueCalculator;
-
 import java.util.List;
 
 @SuppressWarnings("UnusedDeclaration")

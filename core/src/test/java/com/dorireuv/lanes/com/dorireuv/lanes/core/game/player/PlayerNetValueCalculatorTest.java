@@ -1,10 +1,10 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.player;
 
+import static org.junit.Assert.assertEquals;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class PlayerNetValueCalculatorTest {
   @Test

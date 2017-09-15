@@ -1,16 +1,15 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.company;
 
+import static org.junit.Assert.assertEquals;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.IterablePair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.Pair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
 import com.google.gson.Gson;
-import org.junit.Test;
-import org.junit.gen5.api.Assertions;
-
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import org.junit.gen5.api.Assertions;
 
 public class JsonStringCompanyLoaderTest {
   @Test

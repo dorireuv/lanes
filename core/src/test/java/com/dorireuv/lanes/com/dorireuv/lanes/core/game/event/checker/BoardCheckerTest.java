@@ -1,5 +1,14 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.calls;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
@@ -11,6 +20,10 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.Rule;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
@@ -20,26 +33,10 @@ import org.mockito.junit.MockitoRule;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.calls;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-
 class BoardCheckerTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ActionFactory actionFactory;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ActionFactory actionFactory;
 
   private final Position position = Position.create(5, 5);
   private final Position corner = Position.create(0, 0);
@@ -82,407 +79,407 @@ class BoardCheckerTest {
 
   @DataProvider(name = "hitDataProvider")
   public Object[][] hitDataProvider() {
-    return new Object[][]{
-        {
-            // ...
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                  }
-                }),
-            position,
-        },
-        {
-            // _..
-            // ...
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                  }
-                }),
-            corner,
-        },
-        {
-            // _..
-            // ...
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                  }
-                }),
-            nearCorner,
-        },
-        {
-            // +..
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, -1), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ..+
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, +1), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._.
-            // ..+
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, +1), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._.
-            // +..
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, -1), new HitTool());
-                  }
-                }),
-            position,
-        },
+    return new Object[][] {
+      {
+        // ...
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+              }
+            }),
+        position,
+      },
+      {
+        // _..
+        // ...
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+              }
+            }),
+        corner,
+      },
+      {
+        // _..
+        // ...
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+              }
+            }),
+        nearCorner,
+      },
+      {
+        // +..
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, -1), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ..+
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, +1), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._.
+        // ..+
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, +1), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._.
+        // +..
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, -1), new HitTool());
+              }
+            }),
+        position,
+      },
     };
   }
 
   @DataProvider(name = "createCompanyDataProvider")
   public Object[][] createCompanyDataProvider() {
-    return new Object[][]{
-        {
-            // ...
-            // ._+
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, +1), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // +_.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // .+.
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._.
-            // .+.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, 0), new HitTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._*
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, +1), new StarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // *_.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new StarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // .*.
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new StarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._.
-            // .*.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, 0), new StarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._&
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, +1), new GoldStarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // &_.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new GoldStarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // .&.
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new GoldStarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._.
-            // .&.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, 0), new GoldStarTool());
-                  }
-                }),
-            position,
-        },
-        {
-            // _..
-            // *..
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(corner.move(+1, 0), new StarTool());
-                  }
-                }),
-            corner,
-        },
-        {
-            // _*.
-            // ...
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(corner.move(0, +1), new StarTool());
-                  }
-                }),
-            corner,
-        },
+    return new Object[][] {
+      {
+        // ...
+        // ._+
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, +1), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // +_.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // .+.
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._.
+        // .+.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, 0), new HitTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._*
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, +1), new StarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // *_.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new StarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // .*.
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new StarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._.
+        // .*.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, 0), new StarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._&
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, +1), new GoldStarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // &_.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new GoldStarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // .&.
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new GoldStarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._.
+        // .&.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, 0), new GoldStarTool());
+              }
+            }),
+        position,
+      },
+      {
+        // _..
+        // *..
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(corner.move(+1, 0), new StarTool());
+              }
+            }),
+        corner,
+      },
+      {
+        // _*.
+        // ...
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(corner.move(0, +1), new StarTool());
+              }
+            }),
+        corner,
+      },
     };
   }
 
   @DataProvider(name = "growCompanyDataProvider")
   public Object[][] growCompanyDataProvider() {
-    return new Object[][]{
-        {
-            // ...
-            // ._A
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // A_.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // .A.
-            // ._.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._.
-            // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // .A.
-            // ._A
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // .A.
-            // A_.
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // ._A
-            // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // A_.
-            // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // ...
-            // A_A
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // .A.
-            // ._.
-            // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                    put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            position,
-        },
-        {
-            // _*.
-            // A..
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(corner.move(0, +1), new StarTool());
-                    put(corner.move(+1, 0), new CompanyTool(companyDefinitionA));
-                  }
-                }),
-            corner,
-        },
+    return new Object[][] {
+      {
+        // ...
+        // ._A
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // A_.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // .A.
+        // ._.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._.
+        // .A.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // .A.
+        // ._A
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // .A.
+        // A_.
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // ._A
+        // .A.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // A_.
+        // .A.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // ...
+        // A_A
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // .A.
+        // ._.
+        // .A.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        position,
+      },
+      {
+        // _*.
+        // A..
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(corner.move(0, +1), new StarTool());
+                put(corner.move(+1, 0), new CompanyTool(companyDefinitionA));
+              }
+            }),
+        corner,
+      },
     };
   }
 
@@ -533,58 +530,58 @@ class BoardCheckerTest {
 
   @DataProvider(name = "mergeCompanyDataProvider")
   public Object[][] mergeCompanyDataProvider() {
-    return new Object[][]{
-        {
-            // ...
-            // A.B
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionB));
-                  }
-                }),
-            position,
-            buildCompanies(2, 1),
-            companyDefinitionA,
-            new CompanyDefinition[]{companyDefinitionB},
-        },
-        {
-            // .C.
-            // A.B
-            // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionB));
-                    put(position.move(-1, 0), new CompanyTool(companyDefinitionC));
-                  }
-                }),
-            position,
-            buildCompanies(5, 10, 2),
-            companyDefinitionB,
-            new CompanyDefinition[]{companyDefinitionA, companyDefinitionC},
-        },
-        {
-            // .C.
-            // A.B
-            // .D.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                    put(position.move(0, +1), new CompanyTool(companyDefinitionB));
-                    put(position.move(-1, 0), new CompanyTool(companyDefinitionC));
-                    put(position.move(+1, 0), new CompanyTool(companyDefinitionD));
-                  }
-                }),
-            position,
-            buildCompanies(5, 10, 2, 3),
-            companyDefinitionB,
-            new CompanyDefinition[]{companyDefinitionA, companyDefinitionD, companyDefinitionC},
-        },
+    return new Object[][] {
+      {
+        // ...
+        // A.B
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), new CompanyTool(companyDefinitionB));
+              }
+            }),
+        position,
+        buildCompanies(2, 1),
+        companyDefinitionA,
+        new CompanyDefinition[] {companyDefinitionB},
+      },
+      {
+        // .C.
+        // A.B
+        // ...
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), new CompanyTool(companyDefinitionB));
+                put(position.move(-1, 0), new CompanyTool(companyDefinitionC));
+              }
+            }),
+        position,
+        buildCompanies(5, 10, 2),
+        companyDefinitionB,
+        new CompanyDefinition[] {companyDefinitionA, companyDefinitionC},
+      },
+      {
+        // .C.
+        // A.B
+        // .D.
+        buildBoard(
+            new HashMap<Position, Tool>() {
+              {
+                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), new CompanyTool(companyDefinitionB));
+                put(position.move(-1, 0), new CompanyTool(companyDefinitionC));
+                put(position.move(+1, 0), new CompanyTool(companyDefinitionD));
+              }
+            }),
+        position,
+        buildCompanies(5, 10, 2, 3),
+        companyDefinitionB,
+        new CompanyDefinition[] {companyDefinitionA, companyDefinitionD, companyDefinitionC},
+      },
     };
   }
 

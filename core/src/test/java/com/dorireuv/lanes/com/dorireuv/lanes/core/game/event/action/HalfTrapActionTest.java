@@ -1,5 +1,7 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
+import static org.junit.Assert.assertEquals;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
@@ -11,16 +13,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.junit.Assert.assertEquals;
-
 public class HalfTrapActionTest {
 
-  @Rule
-  public final MockitoRule mockitoRule = MockitoJUnit.rule();
-  @Mock
-  private ClientEventSubscriber clientEventSubscriber;
-  @Mock
-  private TurnIterator turnIterator;
+  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
+  @Mock private ClientEventSubscriber clientEventSubscriber;
+  @Mock private TurnIterator turnIterator;
 
   @Test
   public void testDoAction() {
