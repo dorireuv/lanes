@@ -3,7 +3,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BoardChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
 import java.util.Map;
 
 public class BoardClientDecorator implements Board {
@@ -44,21 +43,11 @@ public class BoardClientDecorator implements Board {
   @Override
   public void setTool(Position position, Tool tool) {
     board.setTool(position, tool);
-    clientEventSubscriber.onBoardChange(new BoardChangeEvent(position, tool.getData()));
+    clientEventSubscriber.onBoardChange(new BoardChangeEvent(position, tool));
   }
 
   @Override
   public Map<Position, Tool> getToolsAround(Position centerPosition) {
     return board.getToolsAround(centerPosition);
-  }
-
-  @Override
-  public Data[][] getBoardData() {
-    return board.getBoardData();
-  }
-
-  @Override
-  public Data getBoardData(int row, int col) {
-    return board.getBoardData(row, col);
   }
 }

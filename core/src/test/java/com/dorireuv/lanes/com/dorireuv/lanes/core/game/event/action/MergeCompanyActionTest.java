@@ -1,5 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
+import static com.google.common.truth.Truth8.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -10,7 +11,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
@@ -101,8 +102,8 @@ public class MergeCompanyActionTest {
   @Test
   public void testToolAfterMergeIsOfTheMergedIntoCompany() {
     mergeCompanies();
-    CompanyTool companyTool = (CompanyTool) board.getTool(position);
-    assertEquals(companyTool.getData().getCompanyDefinition(), mergedIntoCompanyDefinition);
+    Tool companyTool = board.getTool(position);
+    assertThat(companyTool.getCompanyDefinition()).hasValue(mergedIntoCompanyDefinition);
   }
 
   @Test
@@ -119,12 +120,12 @@ public class MergeCompanyActionTest {
   @Test
   public void testBoard() {
     Position mergedCompanyPosition = position.move(0, +1);
-    board.setTool(mergedCompanyPosition, new CompanyTool(mergedCompanyDefinition));
+    board.getTool(mergedCompanyPosition).setCompanyDefinition(mergedCompanyDefinition);
 
     mergeCompanies();
 
-    CompanyTool companyTool = (CompanyTool) board.getTool(mergedCompanyPosition);
-    assertEquals(companyTool.getData().getCompanyDefinition(), mergedIntoCompanyDefinition);
+    Tool companyTool = board.getTool(mergedCompanyPosition);
+    assertThat(companyTool.getCompanyDefinition()).hasValue(mergedIntoCompanyDefinition);
   }
 
   @Test

@@ -13,10 +13,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.GoldStarTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.HitTool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
@@ -120,7 +116,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, -1), new HitTool());
+                put(position.move(-1, -1), Tool.newHitTool());
               }
             }),
         position,
@@ -132,7 +128,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, +1), new HitTool());
+                put(position.move(-1, +1), Tool.newHitTool());
               }
             }),
         position,
@@ -144,7 +140,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, +1), new HitTool());
+                put(position.move(+1, +1), Tool.newHitTool());
               }
             }),
         position,
@@ -156,7 +152,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, -1), new HitTool());
+                put(position.move(+1, -1), Tool.newHitTool());
               }
             }),
         position,
@@ -174,7 +170,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, +1), new HitTool());
+                put(position.move(0, +1), Tool.newHitTool());
               }
             }),
         position,
@@ -186,7 +182,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new HitTool());
+                put(position.move(0, -1), Tool.newHitTool());
               }
             }),
         position,
@@ -198,7 +194,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new HitTool());
+                put(position.move(-1, 0), Tool.newHitTool());
               }
             }),
         position,
@@ -210,7 +206,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, 0), new HitTool());
+                put(position.move(+1, 0), Tool.newHitTool());
               }
             }),
         position,
@@ -222,7 +218,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, +1), new StarTool());
+                put(position.move(0, +1), Tool.newStarTool());
               }
             }),
         position,
@@ -234,7 +230,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new StarTool());
+                put(position.move(0, -1), Tool.newStarTool());
               }
             }),
         position,
@@ -246,7 +242,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new StarTool());
+                put(position.move(-1, 0), Tool.newStarTool());
               }
             }),
         position,
@@ -258,7 +254,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, 0), new StarTool());
+                put(position.move(+1, 0), Tool.newStarTool());
               }
             }),
         position,
@@ -270,7 +266,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, +1), new GoldStarTool());
+                put(position.move(0, +1), Tool.newGoldStarTool());
               }
             }),
         position,
@@ -282,7 +278,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new GoldStarTool());
+                put(position.move(0, -1), Tool.newGoldStarTool());
               }
             }),
         position,
@@ -294,7 +290,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new GoldStarTool());
+                put(position.move(-1, 0), Tool.newGoldStarTool());
               }
             }),
         position,
@@ -306,7 +302,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, 0), new GoldStarTool());
+                put(position.move(+1, 0), Tool.newGoldStarTool());
               }
             }),
         position,
@@ -318,7 +314,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(corner.move(+1, 0), new StarTool());
+                put(corner.move(+1, 0), Tool.newStarTool());
               }
             }),
         corner,
@@ -330,7 +326,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(corner.move(0, +1), new StarTool());
+                put(corner.move(0, +1), Tool.newStarTool());
               }
             }),
         corner,
@@ -348,7 +344,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -360,7 +356,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -372,7 +368,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -384,7 +380,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -396,8 +392,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -409,8 +405,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -422,8 +418,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
-                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -435,8 +431,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
+                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -448,8 +444,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                put(position.move(0, +1), new CompanyTool(companyDefinitionA));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -461,8 +457,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(-1, 0), new CompanyTool(companyDefinitionA));
-                put(position.move(+1, 0), new CompanyTool(companyDefinitionA));
+                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         position,
@@ -474,8 +470,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(corner.move(0, +1), new StarTool());
-                put(corner.move(+1, 0), new CompanyTool(companyDefinitionA));
+                put(corner.move(0, +1), Tool.newStarTool());
+                put(corner.move(+1, 0), Tool.newCompanyTool(companyDefinitionA));
               }
             }),
         corner,
@@ -506,7 +502,7 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, +1), new StarTool());
+                put(position.move(0, +1), Tool.newStarTool());
               }
             });
     Map<CompanyDefinition, Company> companies = buildCompanies();
@@ -538,8 +534,8 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                put(position.move(0, +1), new CompanyTool(companyDefinitionB));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionB));
               }
             }),
         position,
@@ -554,9 +550,9 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                put(position.move(0, +1), new CompanyTool(companyDefinitionB));
-                put(position.move(-1, 0), new CompanyTool(companyDefinitionC));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionB));
+                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinitionC));
               }
             }),
         position,
@@ -571,10 +567,10 @@ class BoardCheckerTest {
         buildBoard(
             new HashMap<Position, Tool>() {
               {
-                put(position.move(0, -1), new CompanyTool(companyDefinitionA));
-                put(position.move(0, +1), new CompanyTool(companyDefinitionB));
-                put(position.move(-1, 0), new CompanyTool(companyDefinitionC));
-                put(position.move(+1, 0), new CompanyTool(companyDefinitionD));
+                put(position.move(0, -1), Tool.newCompanyTool(companyDefinitionA));
+                put(position.move(0, +1), Tool.newCompanyTool(companyDefinitionB));
+                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinitionC));
+                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinitionD));
               }
             }),
         position,

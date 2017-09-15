@@ -6,7 +6,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.HitTool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -24,6 +24,6 @@ public class HitActionTest {
     Position position = Position.create(5, 5);
     HitAction hitAction = new HitAction(clientEventSubscriber, board, position);
     hitAction.doAction();
-    assertEquals(board.getTool(position).getClass(), HitTool.class);
+    assertEquals(board.getTool(position).getToolType(), ToolType.HIT);
   }
 }

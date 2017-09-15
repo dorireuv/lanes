@@ -1,24 +1,24 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.client.event;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 
 @SuppressWarnings("UnusedDeclaration")
 public class BoardChangeEvent implements Event {
 
   private final Position position;
-  private final Data data;
+  private final Tool tool;
 
-  public BoardChangeEvent(Position position, Data data) {
+  public BoardChangeEvent(Position position, Tool tool) {
     this.position = position;
-    this.data = data;
+    this.tool = tool;
   }
 
   public Position getPosition() {
     return position;
   }
 
-  public Data getData() {
-    return data;
+  public Tool getTool() {
+    return tool;
   }
 }

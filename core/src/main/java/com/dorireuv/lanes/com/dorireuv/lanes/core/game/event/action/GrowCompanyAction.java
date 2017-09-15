@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.GrowCompanyEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.CompanyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 
 class GrowCompanyAction extends ActionBase {
@@ -13,7 +12,7 @@ class GrowCompanyAction extends ActionBase {
   private final Company company;
   private final Position position;
 
-  public GrowCompanyAction(
+  GrowCompanyAction(
       ClientEventSubscriber clientEventSubscriber,
       Board board,
       Position position,
@@ -27,8 +26,7 @@ class GrowCompanyAction extends ActionBase {
   @Override
   public void doAction() {
     company.incSize();
-    board.setTool(
-        position, new CompanyTool(board.getTool(position), company.getCompanyDefinition()));
+    board.getTool(position).setCompanyDefinition(company.getCompanyDefinition());
     clientEventSubscriber.onGrowCompany(
         new GrowCompanyEvent(company.getCompanyDefinition(), position));
   }

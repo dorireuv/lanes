@@ -24,6 +24,8 @@ dependencies {
 
     testCompile group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
     testCompile group: 'com.google.truth', name: 'truth', version: '0.35'
+    testCompile group: 'com.google.truth.extensions', name: 'truth-java8-extension', version: '0.35'
+    testCompile group: 'com.google.truth', name: 'truth', version: '0.35'
     testCompile group: 'org.testng', name: 'testng', version: '6.8'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
     testCompile group: 'org.json', name: 'json', version: '20170516'

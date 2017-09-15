@@ -8,8 +8,8 @@ public class ToolTest {
 
   @Test
   public void testEquals() throws Exception {
-    Tool tool1 = new EmptyTool();
-    Tool tool2 = new EmptyTool();
+    Tool tool1 = new Tool();
+    Tool tool2 = new Tool();
     assertEquals(tool1, tool2);
   }
 }

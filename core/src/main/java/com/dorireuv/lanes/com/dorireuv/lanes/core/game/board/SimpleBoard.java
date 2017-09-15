@@ -1,9 +1,7 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.EmptyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.data.Data;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -13,13 +11,13 @@ public class SimpleBoard implements Board {
 
   private final int rows;
   private final int cols;
-  private final EmptyTool emptyTool;
+  private final Tool emptyTool;
   private Tool[][] board;
 
   public SimpleBoard() {
     this.rows = Config.getBoardRows();
     this.cols = Config.getBoardCols();
-    this.emptyTool = new EmptyTool();
+    this.emptyTool = new Tool();
     this.init();
   }
 
@@ -37,7 +35,7 @@ public class SimpleBoard implements Board {
     this.board = new Tool[this.getRows()][this.getCols()];
     for (int row = 0; row < this.getRows(); row++) {
       for (int col = 0; col < this.getCols(); col++) {
-        this.setTool(Position.create(row, col), new EmptyTool());
+        this.setTool(Position.create(row, col), new Tool());
       }
     }
   }
@@ -97,26 +95,11 @@ public class SimpleBoard implements Board {
   }
 
   @Override
-  public Data[][] getBoardData() {
-    int rows = getRows();
-    int cols = getCols();
-    Data boardData[][] = new Data[rows][cols];
-    for (int row = 0; row < rows; row++) {
-      for (int col = 0; col < cols; col++) {
-        boardData[row][col] = getTool(row, col).getData();
-      }
+  public boolean equals(Object other) {
+    if (!(other instanceof Board)) {
+      return false;
     }
 
-    return boardData;
-  }
-
-  @Override
-  public Data getBoardData(int row, int col) {
-    return getTool(row, col).getData();
-  }
-
-  @Override
-  public boolean equals(Object other) {
     Board otherBoard = (Board) other;
     int rows = getRows();
     int cols = getCols();

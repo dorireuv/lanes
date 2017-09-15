@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.GoldStarTool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import org.junit.Rule;
@@ -27,7 +27,7 @@ public class GoldStarDisappearEventCheckerTest {
   public void testCheckDispatchesEventOnGoldStarDisappear() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
-    board.setTool(position, new GoldStarTool());
+    board.setTool(position, Tool.newGoldStarTool());
     when(randomWrapper.nextPosition(board)).thenReturn(position);
 
     GoldStarDisappearChecker goldStarDisappearEventChecker =

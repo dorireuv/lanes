@@ -2,12 +2,10 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.NonEmptyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +38,7 @@ public class DoublePaymentBoardAssignerTest {
   @Test
   public void testAssignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(0, 0);
-    Tool nonEmptyTool = mock(NonEmptyTool.class);
+    Tool nonEmptyTool = Tool.newStarTool();
     board.setTool(position, nonEmptyTool);
     boolean accepted = doublePaymentBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
