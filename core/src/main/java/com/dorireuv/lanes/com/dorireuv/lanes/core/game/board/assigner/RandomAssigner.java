@@ -16,6 +16,7 @@ public class RandomAssigner implements Assigner {
     this.board = board;
   }
 
+  @Override
   public void assign() {
     while (!boardAssigner.assignPosition(board, randomWrapper.nextPosition(board))) ;
   }

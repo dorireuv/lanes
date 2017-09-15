@@ -68,6 +68,7 @@ public class BoardChecker extends CheckerBase {
     new CompanySorter().sort(companies);
   }
 
+  @Override
   public Action check() {
     if (isAllEmpty()) {
       return actionFactory.createHitAction();

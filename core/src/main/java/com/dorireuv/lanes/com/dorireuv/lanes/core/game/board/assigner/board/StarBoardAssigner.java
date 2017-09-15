@@ -11,6 +11,7 @@ public class StarBoardAssigner implements BoardAssigner {
     return board.getToolWithoutBoundProtection(position).getClass() == toolClass;
   }
 
+  @Override
   public boolean assignPosition(Board board, Position position) {
     if (doesToolExist(board, StarTool.class, position)) {
       return false;

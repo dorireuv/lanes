@@ -11,6 +11,7 @@ public class StarTool extends NonCompanyTool {
     this.data = new StarData();
   }
 
+  @Override
   public StarData getData() {
     return data;
   }

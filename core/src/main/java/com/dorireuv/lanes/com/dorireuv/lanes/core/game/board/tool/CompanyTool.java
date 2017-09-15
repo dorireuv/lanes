@@ -17,6 +17,7 @@ public class CompanyTool extends NonEmptyTool {
     this.data = new CompanyData(companyDefinition);
   }
 
+  @Override
   public CompanyData getData() {
     return data;
   }

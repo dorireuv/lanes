@@ -6,6 +6,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 
 public class FreezeBoardAssigner implements BoardAssigner {
 
+  @Override
   public boolean assignPosition(Board board, Position position) {
     Tool tool = board.getToolWithoutBoundProtection(position);
     if (!tool.isEmpty()) {

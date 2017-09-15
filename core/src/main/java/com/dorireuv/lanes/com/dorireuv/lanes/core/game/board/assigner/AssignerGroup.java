@@ -8,6 +8,7 @@ public class AssignerGroup implements Assigner {
     this.assigners = assigners;
   }
 
+  @Override
   public void assign() {
     for (Assigner assigner : assigners) {
       assigner.assign();

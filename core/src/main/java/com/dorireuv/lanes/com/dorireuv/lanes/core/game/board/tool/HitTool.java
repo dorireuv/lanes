@@ -16,6 +16,7 @@ public class HitTool extends NonCompanyTool {
     this.data = new HitData();
   }
 
+  @Override
   public HitData getData() {
     return data;
   }

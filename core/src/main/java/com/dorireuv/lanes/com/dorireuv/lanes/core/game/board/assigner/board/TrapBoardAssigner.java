@@ -10,6 +10,7 @@ public class TrapBoardAssigner implements BoardAssigner {
     return bool ? 1 : 0;
   }
 
+  @Override
   public boolean assignPosition(Board board, Position position) {
     Tool tool = board.getToolWithoutBoundProtection(position);
     if (!tool.isEmpty()) {

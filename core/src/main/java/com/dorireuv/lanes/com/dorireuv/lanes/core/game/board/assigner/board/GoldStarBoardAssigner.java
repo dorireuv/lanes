@@ -12,6 +12,7 @@ public class GoldStarBoardAssigner implements BoardAssigner {
     return board.getToolWithoutBoundProtection(position).getClass() == toolClass;
   }
 
+  @Override
   public boolean assignPosition(Board board, Position position) {
     int row = position.getRow();
     if (row <= 0 || row >= board.getRows() - 1) {

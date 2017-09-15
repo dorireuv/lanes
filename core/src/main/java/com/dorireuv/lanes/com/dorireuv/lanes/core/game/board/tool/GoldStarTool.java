@@ -11,6 +11,7 @@ public class GoldStarTool extends NonCompanyTool {
     this.data = new GoldStarData();
   }
 
+  @Override
   public GoldStarData getData() {
     return data;
   }

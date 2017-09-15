@@ -16,6 +16,7 @@ public class EmptyTool extends ToolBase {
     this.data = new EmptyData();
   }
 
+  @Override
   public EmptyData getData() {
     return data;
   }
