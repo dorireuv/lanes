@@ -1,12 +1,14 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.BoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.eq;
@@ -14,8 +16,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class RandomAssignerTest extends TestBase {
+public class RandomAssignerTest {
 
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private RandomWrapper randomWrapper;
   @Mock

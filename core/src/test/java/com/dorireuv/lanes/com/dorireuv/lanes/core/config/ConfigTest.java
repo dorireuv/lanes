@@ -1,10 +1,9 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.config;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ConfigTest extends TestBase {
+public class ConfigTest {
 
   @Test
   public void testCreate() throws Exception {

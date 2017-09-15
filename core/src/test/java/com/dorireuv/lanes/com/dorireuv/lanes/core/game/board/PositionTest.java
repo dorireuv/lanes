@@ -1,12 +1,11 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-public class PositionTest extends TestBase {
+public class PositionTest {
 
   @Test
   public void testMove() throws Exception {

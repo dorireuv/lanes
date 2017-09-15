@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
@@ -16,7 +15,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class GameTest extends TestBase {
+public class GameTest {
 
   private Game game;
   private Player player1;

@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
@@ -12,9 +11,12 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
+import org.junit.Rule;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -32,10 +34,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
-class BoardCheckerTest extends TestBase {
+class BoardCheckerTest {
 
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private ActionFactory actionFactory;
+
   private final Position position = Position.create(5, 5);
   private final Position corner = Position.create(0, 0);
   private final Position nearCorner = Position.create(1, 0);

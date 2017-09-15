@@ -1,19 +1,23 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.move;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-public class MovesGeneratorTest extends TestBase {
+public class MovesGeneratorTest {
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private SingleMoveGenerator singleMoveGenerator;
 

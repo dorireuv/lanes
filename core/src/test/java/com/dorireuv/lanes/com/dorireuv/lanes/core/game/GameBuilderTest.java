@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
@@ -13,7 +12,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class GameBuilderTest extends TestBase {
+public class GameBuilderTest {
 
   @Test
   public void testBuildNewDefaultGame() throws Exception {

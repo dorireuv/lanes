@@ -1,14 +1,18 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class ActionGroupTest extends TestBase {
+public class ActionGroupTest {
 
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private Action action1;
   @Mock

@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.event;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.IterablePair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.Pair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
@@ -13,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
-public class JsonStringEventLoaderTest extends TestBase {
+public class JsonStringEventLoaderTest {
   @Test
   public void testLoad() throws Exception {
     // create json string

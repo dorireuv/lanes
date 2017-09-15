@@ -1,14 +1,18 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class AssignerGroupTest extends TestBase {
+public class AssignerGroupTest {
 
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private Assigner assigner1;
   @Mock

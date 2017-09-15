@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.turn;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class TurnIteratorTest extends TestBase {
+public class TurnIteratorTest {
 
   private TurnIterator turnIterator;
 

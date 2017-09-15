@@ -30,10 +30,13 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,11 +53,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class LanesTest extends TestBase {
+public class LanesTest {
 
-  private Lanes lanes;
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private ClientEventSubscriberGroup clientEventSubscriberGroup;
+
+  private Lanes lanes;
+
   private Player player1;
   private Player player2;
   private List<CompanyDefinition> companyDefinitions;

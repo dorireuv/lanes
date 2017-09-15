@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
@@ -15,7 +14,10 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import org.junit.Before;
+import org.junit.Rule;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -26,8 +28,10 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class CompanyUpdateActionTest extends TestBase {
+public class CompanyUpdateActionTest {
 
+  @Rule
+  public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock
   private ClientEventSubscriber clientEventSubscriber;
 

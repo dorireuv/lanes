@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.company;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.IterablePair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.Pair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
@@ -13,7 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class JsonStringCompanyLoaderTest extends TestBase {
+public class JsonStringCompanyLoaderTest {
   @Test
   public void testLoad() throws Exception {
     // create json string

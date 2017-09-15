@@ -1,13 +1,12 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.player;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class PlayerNetValueSorterTest extends TestBase {
+public class PlayerNetValueSorterTest {
   @Test
   public void testSort() throws Exception {
     Player player1 = new SimplePlayer(0, "P1", 2000);

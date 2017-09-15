@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.EmptyTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.HitTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.StarTool;
@@ -15,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
-public class SimpleBoardTest extends TestBase {
+public class SimpleBoardTest {
 
   private Board board;
 

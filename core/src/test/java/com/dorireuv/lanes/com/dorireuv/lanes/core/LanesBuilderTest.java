@@ -1,18 +1,13 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import java.util.Arrays;
 
 import static org.junit.gen5.api.Assertions.assertThrows;
 
-public class LanesBuilderTest extends TestBase {
-
-  @Mock
-  private ClientEventSubscriber clientEventSubscriber;
+public class LanesBuilderTest {
 
   @Test
   public void testBuildDefault() throws Exception {

@@ -1,9 +1,8 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import org.junit.Test;
 
-public class BoardBuilderTest extends TestBase {
+public class BoardBuilderTest {
   @Test
   public void testBuild() throws Exception {
     BoardBuilder boardBuilder = new BoardBuilder();

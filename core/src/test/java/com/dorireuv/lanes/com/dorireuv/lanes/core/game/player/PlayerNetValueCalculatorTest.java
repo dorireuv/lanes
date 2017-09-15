@@ -1,13 +1,12 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.player;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PlayerNetValueCalculatorTest extends TestBase {
+public class PlayerNetValueCalculatorTest {
   @Test
   public void testCalc() throws Exception {
     Player player = new SimplePlayer(0, "P1", 0);

@@ -1,13 +1,12 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.company;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.TestBase;
 import org.junit.Test;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class PredefinedCompanyLoaderTest extends TestBase {
+public class PredefinedCompanyLoaderTest {
   @Test
   public void testLoad() throws Exception {
     PredefinedCompanyLoader predefinedCompanyLoader = new PredefinedCompanyLoader();
