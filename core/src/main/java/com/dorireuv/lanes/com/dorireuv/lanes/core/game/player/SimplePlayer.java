@@ -57,4 +57,9 @@ public class SimplePlayer implements Player {
   public void setNumOfStocks(Company company, int numOfStocks) {
     holdings.put(company, numOfStocks);
   }
+
+  @Override
+  public int getNetValue() {
+    return new PlayerNetValueCalculator(this).calc();
+  }
 }

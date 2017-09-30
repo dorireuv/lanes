@@ -9,6 +9,8 @@ public interface Board {
 
   int getCols();
 
+  int getNumOfStars();
+
   Tool getTool(Position position);
 
   Tool getTool(int row, int col);

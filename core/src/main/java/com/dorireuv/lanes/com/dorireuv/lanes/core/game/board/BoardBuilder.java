@@ -12,11 +12,10 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.Gold
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.StarBoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.TrapBoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
 
 public class BoardBuilder {
 
-  private RandomWrapper randomWrapper;
+  private final RandomWrapper randomWrapper;
   private Board board;
   private int numOfStars;
   private int numOfPlayers;
@@ -25,8 +24,12 @@ public class BoardBuilder {
   private int numOfFreezes;
   private int numOfDoublePayments;
 
-  public Board buildDefault(int numOfStars, int numOfPlayers, long randomSeed) {
-    init(numOfStars, numOfPlayers, randomSeed);
+  public BoardBuilder(RandomWrapper randomWrapper) {
+    this.randomWrapper = randomWrapper;
+  }
+
+  public Board buildDefault(int numOfStars, int numOfPlayers) {
+    init(numOfStars, numOfPlayers);
 
     setNumOfGoldStars();
     setNumOfTraps();
@@ -37,10 +40,9 @@ public class BoardBuilder {
     return board;
   }
 
-  private void init(int numOfStars, int numOfPlayers, long randomSeed) {
+  private void init(int numOfStars, int numOfPlayers) {
     this.numOfStars = numOfStars;
     this.numOfPlayers = numOfPlayers;
-    this.randomWrapper = new SimpleRandomWrapper(randomSeed);
   }
 
   private void setNumOfGoldStars() {

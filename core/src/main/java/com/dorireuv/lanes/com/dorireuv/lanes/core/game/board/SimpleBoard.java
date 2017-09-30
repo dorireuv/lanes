@@ -2,6 +2,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +12,14 @@ public class SimpleBoard implements Board {
 
   private final int rows;
   private final int cols;
+  private int numOfStars;
   private final Tool emptyTool;
   private Tool[][] board;
 
   public SimpleBoard() {
     this.rows = Config.getBoardRows();
     this.cols = Config.getBoardCols();
+    this.numOfStars = 0;
     this.emptyTool = new Tool();
     this.init();
   }
@@ -29,6 +32,11 @@ public class SimpleBoard implements Board {
   @Override
   public int getCols() {
     return cols;
+  }
+
+  @Override
+  public int getNumOfStars() {
+    return numOfStars;
   }
 
   private void init() {
@@ -65,6 +73,15 @@ public class SimpleBoard implements Board {
 
   @Override
   public void setTool(Position position, Tool tool) {
+    Tool oldTool = this.board[position.getRow()][position.getCol()];
+    if (oldTool != null) {
+      if (oldTool.getToolType().equals(ToolType.STAR)) {
+        numOfStars--;
+      }
+    }
+    if (tool.getToolType().equals(ToolType.STAR)) {
+      numOfStars++;
+    }
     this.board[position.getRow()][position.getCol()] = tool;
   }
 

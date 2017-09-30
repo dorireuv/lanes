@@ -5,11 +5,13 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.Phase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerNetValueCalculator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerStockValueCalculator;
+import com.google.common.collect.ImmutableList;
 import java.util.List;
 
 @SuppressWarnings("UnusedDeclaration")
@@ -31,6 +33,14 @@ public final class LanesClient {
   // ------------------------------------------------------------------------
   // actions
   // ------------------------------------------------------------------------
+  public void nextBoard() throws IllegalMoveException {
+    lanes.nextBoard();
+  }
+
+  public void acceptBoard() throws IllegalMoveException {
+    lanes.acceptBoard();
+  }
+
   public void startGame() throws IllegalMoveException {
     lanes.startGame();
   }
@@ -93,6 +103,10 @@ public final class LanesClient {
     return new PlayerNetValueCalculator(lanes.getGame().getPlayers().get(playerIndex)).calc();
   }
 
+  public ImmutableList<Player> getPlayers() {
+    return ImmutableList.copyOf(lanes.getGame().getPlayers());
+  }
+
   // ------------------------------------------------------------------------
   // company info
   // ------------------------------------------------------------------------
@@ -113,6 +127,10 @@ public final class LanesClient {
 
   public int getBankCashMoney() {
     return lanes.getGame().getBank().getCashMoney();
+  }
+
+  public Board getBoard() {
+    return lanes.getBoard();
   }
 
   // ------------------------------------------------------------------------

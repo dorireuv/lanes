@@ -18,4 +18,6 @@ public interface Player {
   int getNumOfStocks(Company company);
 
   void setNumOfStocks(Company company, int numOfStocks);
+
+  int getNetValue();
 }

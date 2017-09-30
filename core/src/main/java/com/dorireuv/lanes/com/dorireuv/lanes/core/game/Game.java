@@ -16,7 +16,7 @@ public class Game {
   private final List<Player> players;
   private final List<CompanyDefinition> companyDefinitions;
   private final List<GalacticBombEventDefinition> galacticBombEventDefinitions;
-  private final Board board;
+  private Board board;
   private final Bank bank;
   private final Map<CompanyDefinition, Company> companies;
 
@@ -73,6 +73,10 @@ public class Game {
 
   public Board getBoard() {
     return board;
+  }
+
+  public void setBoard(Board board) {
+    this.board = board;
   }
 
   public Bank getBank() {

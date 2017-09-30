@@ -44,7 +44,8 @@ public class LanesBuilder {
     Bank bank = new BankClientDecorator(new SimpleBank(), clientEventSubscriberGroup);
     Board board =
         new BoardClientDecorator(
-            new BoardBuilder().buildDefault(numOfStars, players.size(), randomSeed),
+            new BoardBuilder(new SimpleRandomWrapper(randomSeed))
+                .buildDefault(numOfStars, players.size()),
             clientEventSubscriberGroup);
     Game game = new GameBuilder().buildNewDefaultGame(players, board, bank);
     MovesGenerator movesGenerator =

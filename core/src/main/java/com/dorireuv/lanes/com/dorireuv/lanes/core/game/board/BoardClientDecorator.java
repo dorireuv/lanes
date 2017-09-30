@@ -26,6 +26,11 @@ public class BoardClientDecorator implements Board {
   }
 
   @Override
+  public int getNumOfStars() {
+    return board.getNumOfStars();
+  }
+
+  @Override
   public Tool getTool(Position position) {
     return board.getTool(position);
   }

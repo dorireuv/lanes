@@ -100,6 +100,7 @@ public class LanesTest {
 
   @Test
   public void testDoMoveThrowsExceptionBeforePlayerEndedTurn() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
     assertThrows(IllegalMoveException.class, () -> lanes.doMove(lanes.getMoves().get(0)));
@@ -107,6 +108,7 @@ public class LanesTest {
 
   @Test
   public void testEndTurnThrowsExceptionBeforePlayerDoMove() {
+    lanes.acceptBoard();
     lanes.startGame();
     assertThrows(IllegalMoveException.class, () -> lanes.endTurn());
   }
@@ -114,6 +116,7 @@ public class LanesTest {
   @Test
   public void testOrder() {
     InOrder inOrder = inOrder(checkerActionExecutor);
+    lanes.acceptBoard();
     lanes.startGame();
     inOrder.verify(checkerActionExecutor, calls(1)).execute(any(GoldStarDisappearChecker.class));
     inOrder.verify(checkerActionExecutor, calls(1)).execute(any(GalacticBombChecker.class));
@@ -138,6 +141,8 @@ public class LanesTest {
     lanes.getTurnIterator().setNumOfTurns(1);
 
     assertEquals(lanes.getCurrentPhase(), Phase.GAME_NOT_STARTED);
+    lanes.acceptBoard();
+    assertEquals(lanes.getCurrentPhase(), Phase.BOARD_CHOSEN);
     lanes.startGame();
     assertEquals(lanes.getCurrentPhase(), Phase.TURN_MOVE);
     lanes.doMove(lanes.getMoves().get(0));
@@ -148,6 +153,7 @@ public class LanesTest {
 
   @Test
   public void testBuy() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
 
@@ -170,6 +176,7 @@ public class LanesTest {
 
   @Test
   public void testBuyDoesNotDispatchCompanyTopHolderChangeEvent() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
 
@@ -185,6 +192,7 @@ public class LanesTest {
 
   @Test
   public void testBuyThrowsExceptionWhenNotEnoughMoney() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
 
@@ -199,6 +207,7 @@ public class LanesTest {
 
   @Test
   public void testSell() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
 
@@ -223,6 +232,7 @@ public class LanesTest {
 
   @Test
   public void testSellDoesNotDispatchCompanyTopHolderChangeEvent() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
 
@@ -240,6 +250,7 @@ public class LanesTest {
 
   @Test
   public void testSellThrowsExceptionWhenNotEnoughStocks() {
+    lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().get(0));
 

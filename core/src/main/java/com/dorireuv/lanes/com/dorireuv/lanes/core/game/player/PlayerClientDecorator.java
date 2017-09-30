@@ -57,4 +57,9 @@ public class PlayerClientDecorator implements Player {
   public void setNumOfStocks(Company company, int numOfStocks) {
     player.setNumOfStocks(company, numOfStocks);
   }
+
+  @Override
+  public int getNetValue() {
+    return player.getNetValue();
+  }
 }
