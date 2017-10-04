@@ -1,46 +1,44 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.data.company;
 
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
+import static org.junit.gen5.api.Assertions.assertThrows;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.IterablePair;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collection.iterable.Pair;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
-import com.google.gson.Gson;
-import java.util.LinkedList;
+import com.google.common.base.Joiner;
 import java.util.List;
 import org.junit.Test;
-import org.junit.gen5.api.Assertions;
 
 public class JsonStringCompanyLoaderTest {
+
   @Test
-  public void testLoad() throws Exception {
-    // create json string
-    List<CompanyDefinition> expectedCompanies = new LinkedList<>();
-    expectedCompanies.add(CompanyDefinition.create('A', "A Hello"));
-    expectedCompanies.add(CompanyDefinition.create('B', "B Hello"));
-    Gson gson = new Gson();
-    String jsonString = gson.toJson(expectedCompanies);
+  public void testLoad_validJsonString_returnsAllCompanies() throws Exception {
+    String jsonString =
+        Joiner.on('\n')
+            .join(
+                "[",
+                "  {",
+                "    \"symbol\": \"A\",",
+                "    \"name\": \"A Name\"",
+                "  },",
+                "  {",
+                "    \"symbol\": \"B\",",
+                "    \"name\": \"B Name\"",
+                "  },",
+                "]");
 
-    // load json string
     JsonStringCompanyLoader companyLoader = new JsonStringCompanyLoader(jsonString);
-    List<CompanyDefinition> actualCompanies = companyLoader.load();
+    List<CompanyDefinition> companyDefinitions = companyLoader.load();
 
-    // compare
-    assertEquals(expectedCompanies.size(), actualCompanies.size());
-    IterablePair<CompanyDefinition, CompanyDefinition> companyPairs =
-        new IterablePair<>(expectedCompanies, actualCompanies);
-    for (Pair<CompanyDefinition, CompanyDefinition> pair : companyPairs) {
-      CompanyDefinition expectedCompanyDefinition = pair.first();
-      CompanyDefinition actualCompanyDefinition = pair.second();
-      assertEquals(expectedCompanyDefinition.getSymbol(), actualCompanyDefinition.getSymbol());
-      assertEquals(expectedCompanyDefinition.getName(), actualCompanyDefinition.getName());
-    }
+    assertThat(companyDefinitions)
+        .containsExactly(
+            CompanyDefinition.create('A', "A Name"), CompanyDefinition.create('B', "B Name"))
+        .inOrder();
   }
 
   @Test
-  public void testLoadWithInvalidJsonThrowsException() throws Exception {
+  public void testLoad_invalidJsonString_throwsFailedToLoadException() {
     String invalidJsonString = "{";
     JsonStringCompanyLoader companyLoader = new JsonStringCompanyLoader(invalidJsonString);
-    Assertions.assertThrows(FailedToLoadException.class, companyLoader::load);
+    assertThrows(FailedToLoadException.class, companyLoader::load);
   }
 }
