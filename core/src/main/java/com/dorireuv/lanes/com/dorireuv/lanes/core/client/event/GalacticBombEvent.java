@@ -3,7 +3,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.client.event;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.event.GalacticBombEventDefinition;
 
-@SuppressWarnings("UnusedDeclaration")
 public class GalacticBombEvent implements Event {
 
   private final CompanyDefinition companyDefinition;

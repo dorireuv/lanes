@@ -3,7 +3,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.client.event;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 
-@SuppressWarnings("UnusedDeclaration")
 public class BoardChangeEvent implements Event {
 
   private final Position position;

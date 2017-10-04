@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import java.util.Map;
 
-@SuppressWarnings("UnusedDeclaration")
 public class MergeCompanyEvent implements Event {
 
   private final Position position;

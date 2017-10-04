@@ -3,7 +3,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.client.event;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 
-@SuppressWarnings("UnusedDeclaration")
 public class GrowCompanyEvent implements Event {
 
   private final CompanyDefinition companyDefinition;

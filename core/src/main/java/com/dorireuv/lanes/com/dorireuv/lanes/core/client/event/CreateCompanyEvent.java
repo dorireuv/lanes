@@ -2,7 +2,6 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.client.event;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 
-@SuppressWarnings("UnusedDeclaration")
 public class CreateCompanyEvent implements Event {
 
   private final CompanyDefinition companyDefinition;

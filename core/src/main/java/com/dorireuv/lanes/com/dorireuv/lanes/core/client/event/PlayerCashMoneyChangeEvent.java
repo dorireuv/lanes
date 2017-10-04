@@ -1,6 +1,5 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.client.event;
 
-@SuppressWarnings("UnusedDeclaration")
 public class PlayerCashMoneyChangeEvent implements Event {
 
   private final int playerIndex;
