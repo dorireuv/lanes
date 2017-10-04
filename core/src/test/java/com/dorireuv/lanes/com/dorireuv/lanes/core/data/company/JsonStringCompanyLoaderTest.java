@@ -3,15 +3,20 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.data.company;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
 import com.google.common.base.Joiner;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
+import org.json.JSONException;
 import org.junit.Test;
 
 public class JsonStringCompanyLoaderTest {
 
   @Test
-  public void testLoad_validJsonString_returnsAllCompanies() throws Exception {
+  public void testLoadPredefined_always_isNotEmpty() {
+    assertThat(JsonStringCompanyLoader.loadPredefined()).isNotEmpty();
+  }
+
+  @Test
+  public void testLoad_validJsonString_returnsAllCompanies() {
     String jsonString =
         Joiner.on('\n')
             .join(
@@ -26,8 +31,7 @@ public class JsonStringCompanyLoaderTest {
                 "  },",
                 "]");
 
-    JsonStringCompanyLoader companyLoader = new JsonStringCompanyLoader(jsonString);
-    List<CompanyDefinition> companyDefinitions = companyLoader.load();
+    ImmutableList<CompanyDefinition> companyDefinitions = JsonStringCompanyLoader.load(jsonString);
 
     assertThat(companyDefinitions)
         .containsExactly(
@@ -36,9 +40,8 @@ public class JsonStringCompanyLoaderTest {
   }
 
   @Test
-  public void testLoad_invalidJsonString_throwsFailedToLoadException() {
-    String invalidJsonString = "{";
-    JsonStringCompanyLoader companyLoader = new JsonStringCompanyLoader(invalidJsonString);
-    assertThrows(FailedToLoadException.class, companyLoader::load);
+  public void testLoad_invalidJsonString_throwsJSONException() {
+    String jsonString = "{";
+    assertThrows(JSONException.class, () -> JsonStringCompanyLoader.load(jsonString));
   }
 }

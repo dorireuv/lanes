@@ -3,12 +3,17 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.data.event;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.loader.FailedToLoadException;
 import com.google.common.base.Joiner;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
+import org.json.JSONException;
 import org.junit.Test;
 
 public class JsonStringEventLoaderTest {
+
+  @Test
+  public void testLoadPredefined_always_isNotEmpty() {
+    assertThat(JsonStringEventLoader.loadPredefined()).isNotEmpty();
+  }
 
   @Test
   public void testLoad_validJsonString_returnsAllEvents() throws Exception {
@@ -26,8 +31,8 @@ public class JsonStringEventLoaderTest {
                 "  },",
                 "]");
 
-    JsonStringEventLoader eventLoader = new JsonStringEventLoader(jsonString);
-    List<GalacticBombEventDefinition> galacticBombEventDefinitions = eventLoader.load();
+    ImmutableList<GalacticBombEventDefinition> galacticBombEventDefinitions =
+        JsonStringEventLoader.load(jsonString);
 
     assertThat(galacticBombEventDefinitions)
         .containsExactly(
@@ -37,9 +42,8 @@ public class JsonStringEventLoaderTest {
   }
 
   @Test
-  public void testLoad_invalidJsonString_throwsFailedToLoadException() {
-    String invalidJsonString = "{";
-    JsonStringEventLoader eventLoader = new JsonStringEventLoader(invalidJsonString);
-    assertThrows(FailedToLoadException.class, eventLoader::load);
+  public void testLoad_invalidJsonString_throwsJSONException() {
+    String jsonString = "{";
+    assertThrows(JSONException.class, () -> JsonStringEventLoader.load(jsonString));
   }
 }
