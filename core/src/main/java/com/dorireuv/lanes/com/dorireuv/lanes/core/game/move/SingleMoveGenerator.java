@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 public class SingleMoveGenerator {
 
@@ -21,11 +22,11 @@ public class SingleMoveGenerator {
     this.randomWrapper = randomWrapper;
   }
 
-  Position generate(Board board, boolean freeCompanyExist) {
+  Optional<Position> generate(Board board, boolean freeCompanyExist) {
     Position candidate = randomWrapper.nextPosition(board);
     Tool tool = board.getTool(candidate);
     if (!tool.getToolType().equals(ToolType.EMPTY)) {
-      return null;
+      return Optional.empty();
     }
 
     // check that it's not near a star/plus
@@ -56,10 +57,10 @@ public class SingleMoveGenerator {
               .collect(toMap(Map.Entry::getKey, Entry::getValue));
 
       if (positionToCompanyMap.size() == 0 && positionToStarMap.size() > 0) {
-        return null;
+        return Optional.empty();
       }
     }
 
-    return candidate;
+    return Optional.of(candidate);
   }
 }

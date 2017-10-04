@@ -102,8 +102,8 @@ public class LanesTest {
   public void testDoMoveThrowsExceptionBeforePlayerEndedTurn() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
-    assertThrows(IllegalMoveException.class, () -> lanes.doMove(lanes.getMoves().get(0)));
+    lanes.doMove(lanes.getMoves().asList().get(0));
+    assertThrows(IllegalMoveException.class, () -> lanes.doMove(lanes.getMoves().asList().get(0)));
   }
 
   @Test
@@ -121,7 +121,7 @@ public class LanesTest {
     inOrder.verify(checkerActionExecutor, calls(1)).execute(any(GoldStarDisappearChecker.class));
     inOrder.verify(checkerActionExecutor, calls(1)).execute(any(GalacticBombChecker.class));
 
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
     inOrder.verify(checkerActionExecutor, calls(1)).execute(any(BoardChecker.class));
     inOrder
         .verify(checkerActionExecutor, calls(1))
@@ -145,7 +145,7 @@ public class LanesTest {
     assertEquals(lanes.getCurrentPhase(), Phase.BOARD_CHOSEN);
     lanes.startGame();
     assertEquals(lanes.getCurrentPhase(), Phase.TURN_MOVE);
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
     assertEquals(lanes.getCurrentPhase(), Phase.TURN_TRADE);
     lanes.endTurn();
     assertEquals(lanes.getCurrentPhase(), Phase.GAME_ENDED);
@@ -155,7 +155,7 @@ public class LanesTest {
   public void testBuy() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
 
     CompanyDefinition companyDefinitionA = companyDefinitions.get(0);
     Company companyA = lanes.getGame().getCompany(companyDefinitionA);
@@ -178,7 +178,7 @@ public class LanesTest {
   public void testBuyDoesNotDispatchCompanyTopHolderChangeEvent() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
 
     CompanyDefinition companyDefinitionA = companyDefinitions.get(0);
     Company companyA = lanes.getGame().getCompany(companyDefinitionA);
@@ -194,7 +194,7 @@ public class LanesTest {
   public void testBuyThrowsExceptionWhenNotEnoughMoney() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
 
     CompanyDefinition companyDefinitionA = companyDefinitions.get(0);
     Company companyA = lanes.getGame().getCompany(companyDefinitionA);
@@ -209,7 +209,7 @@ public class LanesTest {
   public void testSell() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
 
     CompanyDefinition companyDefinitionA = companyDefinitions.get(0);
     Company companyA = lanes.getGame().getCompany(companyDefinitionA);
@@ -234,7 +234,7 @@ public class LanesTest {
   public void testSellDoesNotDispatchCompanyTopHolderChangeEvent() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
 
     CompanyDefinition companyDefinitionA = companyDefinitions.get(0);
     Company companyA = lanes.getGame().getCompany(companyDefinitionA);
@@ -252,7 +252,7 @@ public class LanesTest {
   public void testSellThrowsExceptionWhenNotEnoughStocks() {
     lanes.acceptBoard();
     lanes.startGame();
-    lanes.doMove(lanes.getMoves().get(0));
+    lanes.doMove(lanes.getMoves().asList().get(0));
 
     CompanyDefinition companyDefinitionA = companyDefinitions.get(0);
     Company companyA = lanes.getGame().getCompany(companyDefinitionA);

@@ -18,8 +18,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.MovesGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
+import com.google.common.collect.ImmutableSet;
 import java.util.Arrays;
-import java.util.List;
 
 public class Lanes {
 
@@ -32,7 +32,7 @@ public class Lanes {
   private final ActionFactory actionFactory;
   private final CheckerFactory checkerFactory;
   private final CheckerActionExecutor checkerActionExecutor;
-  private List<Position> moves;
+  private ImmutableSet<Position> moves;
   private Position currentMove;
   private Phase currentPhase;
 
@@ -116,7 +116,7 @@ public class Lanes {
     startTurn();
   }
 
-  public List<Position> getMoves() {
+  public ImmutableSet<Position> getMoves() {
     validatePhase(Phase.TURN_MOVE);
     return moves;
   }

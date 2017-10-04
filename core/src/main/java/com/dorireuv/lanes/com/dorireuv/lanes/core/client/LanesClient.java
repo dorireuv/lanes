@@ -12,6 +12,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerNetValueCalculator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerStockValueCalculator;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import java.util.List;
 
 @SuppressWarnings("UnusedDeclaration")
@@ -45,7 +46,7 @@ public final class LanesClient {
     lanes.startGame();
   }
 
-  public List<Position> getMoves() throws IllegalMoveException {
+  public ImmutableSet<Position> getMoves() throws IllegalMoveException {
     return lanes.getMoves();
   }
 

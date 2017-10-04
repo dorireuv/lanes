@@ -2,8 +2,10 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.move;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import java.util.LinkedList;
-import java.util.List;
+import com.google.common.collect.ImmutableSet;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public class MovesGenerator {
 
@@ -15,28 +17,14 @@ public class MovesGenerator {
     this.numOfMoves = numOfMoves;
   }
 
-  public List<Position> generate(Board board, boolean doesFreeCompanyExist) {
-    List<Position> positions = new LinkedList<>();
+  public ImmutableSet<Position> generate(Board board, boolean doesFreeCompanyExist) {
+    // Deterministic ordering is guaranteed since LinkedHashSet iterates in insertion order.
+    Set<Position> positions = new LinkedHashSet<>(numOfMoves);
     while (positions.size() < numOfMoves) {
-      Position candidate = singleMoveGenerator.generate(board, doesFreeCompanyExist);
-      if (candidate == null) {
-        continue;
-      }
-
-      boolean alreadyExist = false;
-      for (Position position : positions) {
-        if (candidate == position) {
-          alreadyExist = true;
-          break;
-        }
-      }
-      if (alreadyExist) {
-        continue;
-      }
-
-      positions.add(candidate);
+      Optional<Position> candidate = singleMoveGenerator.generate(board, doesFreeCompanyExist);
+      candidate.ifPresent(positions::add);
     }
 
-    return positions;
+    return ImmutableSet.copyOf(positions);
   }
 }
