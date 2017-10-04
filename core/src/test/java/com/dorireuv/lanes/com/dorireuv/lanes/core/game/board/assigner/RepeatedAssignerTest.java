@@ -15,7 +15,7 @@ public class RepeatedAssignerTest {
   @Mock private Assigner assigner;
 
   @Test
-  public void testAssign() throws Exception {
+  public void assign() throws Exception {
     int numOfAssignments = 3;
     RepeatedAssigner repeatedAssigner = new RepeatedAssigner(assigner, numOfAssignments);
     repeatedAssigner.assign();

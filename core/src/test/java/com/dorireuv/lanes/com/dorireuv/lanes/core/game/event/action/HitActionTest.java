@@ -19,7 +19,7 @@ public class HitActionTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testDoAction() throws Exception {
+  public void doAction() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     HitAction hitAction = new HitAction(clientEventSubscriber, board, position);

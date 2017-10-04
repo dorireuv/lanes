@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class PlayerNetValueCalculatorTest {
   @Test
-  public void testCalc() throws Exception {
+  public void calc() throws Exception {
     Player player = new SimplePlayer(0, "P1", 0);
     player.setCashMoney(1000);
     CompanyDefinition companyDefinition1 = CompanyDefinition.create('A', "A");

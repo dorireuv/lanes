@@ -28,7 +28,7 @@ public class GalacticBombActionTest {
   }
 
   @Test
-  public void testDoActionWithPositiveEffect() throws Exception {
+  public void doActionWithPositiveEffect() throws Exception {
     GalacticBombEventDefinition galacticBombEventDefinition =
         GalacticBombEventDefinition.create("", 0.1);
     GalacticBombAction galacticBombAction =
@@ -38,7 +38,7 @@ public class GalacticBombActionTest {
   }
 
   @Test
-  public void testDoActionWithNegativeEffect() throws Exception {
+  public void doActionWithNegativeEffect() throws Exception {
     GalacticBombEventDefinition galacticBombEventDefinition =
         GalacticBombEventDefinition.create("", -0.1);
     GalacticBombAction galacticBombAction =

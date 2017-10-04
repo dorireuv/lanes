@@ -21,14 +21,14 @@ public class FreezeBoardAssignerTest {
   }
 
   @Test
-  public void testAssignOnEmptyToolAccepted() throws Exception {
+  public void assignOnEmptyToolAccepted() throws Exception {
     Position position = Position.create(5, 5);
     boolean accepted = freezeBoardAssigner.assignPosition(board, position);
     assertTrue(accepted);
   }
 
   @Test
-  public void testAssignOnFreezeAccepted() throws Exception {
+  public void assignOnFreezeAccepted() throws Exception {
     Position position = Position.create(5, 5);
     board.getTool(position).setIsFreeze(true);
     boolean accepted = freezeBoardAssigner.assignPosition(board, position);
@@ -36,7 +36,7 @@ public class FreezeBoardAssignerTest {
   }
 
   @Test
-  public void testAssignOnNonEmptyToolRejected() throws Exception {
+  public void assignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(5, 5);
     Tool nonEmptyTool = Tool.newStarTool();
     board.setTool(position, nonEmptyTool);

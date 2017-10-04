@@ -24,7 +24,7 @@ public class BonusPaymentCheckerTest {
   @Mock private RandomWrapper randomWrapper;
 
   @Test
-  public void testCheckDispatchesEventOnBonusPayment() throws Exception {
+  public void checkDispatchesEventOnBonusPayment() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     board.setTool(position, Tool.newGoldStarTool());
@@ -38,7 +38,7 @@ public class BonusPaymentCheckerTest {
   }
 
   @Test
-  public void testCheckDoesNothingOnNonBonusPayment() throws Exception {
+  public void checkDoesNothingOnNonBonusPayment() throws Exception {
     when(randomWrapper.nextDouble()).thenReturn(1.0);
     BonusPaymentChecker bonusPaymentEventChecker =
         new BonusPaymentChecker(actionFactory, randomWrapper);

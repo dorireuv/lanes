@@ -16,7 +16,7 @@ public class ClientEventSubscriberFactoryTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testGetClientEventSubscriberGroup() throws Exception {
+  public void getClientEventSubscriberGroup() throws Exception {
     ClientEventSubscriberGroup clientEventSubscriberGroup =
         ClientEventSubscriberFactory.getClientEventSubscriberGroup();
     clientEventSubscriberGroup.register(clientEventSubscriber);

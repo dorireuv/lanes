@@ -28,19 +28,19 @@ public class BankClientDecoratorTest {
   }
 
   @Test
-  public void testGetCashMoney() throws Exception {
+  public void getCashMoney() throws Exception {
     bankClientDecorator.getCashMoney();
     verifyNoMoreInteractions(clientEventSubscriber);
   }
 
   @Test
-  public void testAddZeroCashMoneyDispatchesEvent() throws Exception {
+  public void addZeroCashMoneyDispatchesEvent() throws Exception {
     bankClientDecorator.addCashMoney(0);
     verifyNoMoreInteractions(clientEventSubscriber);
   }
 
   @Test
-  public void testAddNonZeroCashMoneyDoesNotDispatchEvent() throws Exception {
+  public void addNonZeroCashMoneyDoesNotDispatchEvent() throws Exception {
     bankClientDecorator.addCashMoney(-1);
     verify(clientEventSubscriber, times(1))
         .onBankCashMoneyChange(any(BankCashMoneyChangeEvent.class));

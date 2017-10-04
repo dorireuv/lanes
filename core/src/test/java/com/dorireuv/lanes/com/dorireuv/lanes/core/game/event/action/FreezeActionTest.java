@@ -15,7 +15,7 @@ public class FreezeActionTest {
   @Mock private TurnIterator turnIterator;
 
   @Test
-  public void testDoAction() {
+  public void doAction() {
     FreezeAction freezeAction = new FreezeAction(clientEventSubscriber, turnIterator);
     freezeAction.doAction();
   }

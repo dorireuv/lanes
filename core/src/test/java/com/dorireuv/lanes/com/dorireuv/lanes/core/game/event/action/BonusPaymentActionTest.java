@@ -18,7 +18,7 @@ public class BonusPaymentActionTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testDoAction() {
+  public void doAction() {
     int playerCashMoney = 1000;
     int bankCashMoney = 2000;
     SimpleBank bank = new SimpleBank(bankCashMoney);

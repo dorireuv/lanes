@@ -30,7 +30,7 @@ public class GameTest {
   }
 
   @Test
-  public void testDoesFreeCompanyExist() throws Exception {
+  public void doesFreeCompanyExist() throws Exception {
     List<CompanyDefinition> companyDefinitions = game.getCompanyDefinitions();
     game.getCompany(companyDefinitions.get(0)).setSize(1);
     game.getCompany(companyDefinitions.get(1)).setSize(1);
@@ -38,7 +38,7 @@ public class GameTest {
   }
 
   @Test
-  public void testDoesFreeCompanyExistReturnsFalseWhenNoCompanyAvailable() throws Exception {
+  public void doesFreeCompanyExistReturnsFalseWhenNoCompanyAvailable() throws Exception {
     for (CompanyDefinition companyDefinition : game.getCompanyDefinitions()) {
       game.getCompany(companyDefinition).setSize(1);
     }
@@ -47,7 +47,7 @@ public class GameTest {
   }
 
   @Test
-  public void testGetPlayerWithMostHoldingsInCompany() throws Exception {
+  public void getPlayerWithMostHoldingsInCompany() throws Exception {
     Company company = game.getCompany(game.getCompanyDefinitions().get(0));
     player1.setNumOfStocks(company, 1);
     player2.setNumOfStocks(company, 2);
@@ -56,8 +56,7 @@ public class GameTest {
   }
 
   @Test
-  public void testGetPlayerWithMostHoldingsInCompanyWhenNoHoldingsReturnsMinusOne()
-      throws Exception {
+  public void getPlayerWithMostHoldingsInCompanyWhenNoHoldingsReturnsMinusOne() throws Exception {
     Company company = game.getCompany(game.getCompanyDefinitions().get(0));
     int playerIndex = game.getCompanyTopHolder(company);
     Assert.assertEquals(playerIndex, -1);

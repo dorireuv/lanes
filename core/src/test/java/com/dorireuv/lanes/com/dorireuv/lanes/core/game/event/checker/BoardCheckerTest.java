@@ -480,7 +480,7 @@ class BoardCheckerTest {
   }
 
   @Test(dataProvider = "hitDataProvider")
-  public void testHit(Board board, Position position) {
+  public void hit(Board board, Position position) {
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, position, buildCompanies());
     boardChecker.check();
     verify(actionFactory, times(1)).createHitAction();
@@ -488,7 +488,7 @@ class BoardCheckerTest {
   }
 
   @Test(dataProvider = "createCompanyDataProvider")
-  public void testCreateCompany(Board board, Position position) {
+  public void createCompany(Board board, Position position) {
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, position, buildCompanies());
     boardChecker.check();
     verify(actionFactory, times(1)).createCreateCompanyAction(any(Company.class));
@@ -497,7 +497,7 @@ class BoardCheckerTest {
   }
 
   @Test
-  public void testCreateCompanyUsesFirstNonEmptyCompany() {
+  public void createCompanyUsesFirstNonEmptyCompany() {
     Board board =
         buildBoard(
             new HashMap<Position, Tool>() {
@@ -516,7 +516,7 @@ class BoardCheckerTest {
   }
 
   @Test(dataProvider = "growCompanyDataProvider")
-  public void testGrowCompany(Board board, Position position) {
+  public void growCompany(Board board, Position position) {
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, position, buildCompanies());
     boardChecker.check();
     verify(actionFactory, times(1)).createGrowCompanyAction(any(Company.class));
@@ -582,7 +582,7 @@ class BoardCheckerTest {
   }
 
   @Test(dataProvider = "mergeCompanyDataProvider")
-  public void testMergeCompany(
+  public void mergeCompany(
       Board board,
       Position position,
       Map<CompanyDefinition, Company> companies,

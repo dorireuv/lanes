@@ -20,7 +20,7 @@ public class GoldStarDisappearActionTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testDoAction() {
+  public void doAction() {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     board.setTool(position, Tool.newGoldStarTool());

@@ -22,7 +22,7 @@ public class TrapCheckerTest {
   @Mock private Tool tool;
 
   @Test
-  public void testCheckDispatchesEventOnTrap() throws Exception {
+  public void checkDispatchesEventOnTrap() throws Exception {
     when(tool.isTrap()).thenReturn(true);
     when(randomWrapper.nextDouble()).thenReturn(1.0);
     TrapChecker trapEventChecker = new TrapChecker(actionFactory, randomWrapper, tool);
@@ -31,7 +31,7 @@ public class TrapCheckerTest {
   }
 
   @Test
-  public void testCheckDispatchesEventOnHalfTrap() throws Exception {
+  public void checkDispatchesEventOnHalfTrap() throws Exception {
     when(tool.isTrap()).thenReturn(true);
     when(randomWrapper.nextDouble()).thenReturn(0.0);
     TrapChecker trapEventChecker = new TrapChecker(actionFactory, randomWrapper, tool);
@@ -41,7 +41,7 @@ public class TrapCheckerTest {
   }
 
   @Test
-  public void testCheckDoesNothingOnNonTrap() throws Exception {
+  public void checkDoesNothingOnNonTrap() throws Exception {
     when(tool.isTrap()).thenReturn(false);
     TrapChecker trapEventChecker = new TrapChecker(actionFactory, randomWrapper, tool);
     trapEventChecker.check();

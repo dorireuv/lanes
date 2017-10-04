@@ -22,7 +22,7 @@ public class GrowCompanyActionTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testDoAction() throws Exception {
+  public void doAction() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     CompanyDefinition companyDefinition = CompanyDefinition.create('A', "A");

@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ConfigTest {
 
   @Test
-  public void testCreate() throws Exception {
+  public void create() throws Exception {
     Assert.assertNotNull(Config.getSellCommission());
   }
 }

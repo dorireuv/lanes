@@ -9,19 +9,19 @@ import org.junit.Test;
 public class LanesBuilderTest {
 
   @Test
-  public void testBuildDefault() throws Exception {
+  public void buildDefault() throws Exception {
     new LanesBuilder().buildDefault(Arrays.asList("P1", "P2"), 100, 100, 100);
   }
 
   @Test
-  public void testBuildDefault_onePlayer_throwsException() throws Exception {
+  public void buildDefault_onePlayer_throwsException() throws Exception {
     assertThrows(
         IllegalArgumentException.class,
         () -> new LanesBuilder().buildDefault(Arrays.asList("P1"), 100, 100, 100));
   }
 
   @Test
-  public void testBuildDefaultTooManyPlayersThrowsException() throws Exception {
+  public void buildDefaultTooManyPlayersThrowsException() throws Exception {
     int maxNumOfPlayers = Config.getMaxNumOfPlayers();
     String[] playersName = new String[maxNumOfPlayers + 1];
     Arrays.fill(playersName, "P");

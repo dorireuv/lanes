@@ -17,7 +17,7 @@ public class DoublePaymentActionTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testDoAction() {
+  public void doAction() {
     int playerCashMoney = 1000;
     Player player = new SimplePlayer(0, "name", playerCashMoney);
 

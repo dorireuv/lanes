@@ -16,7 +16,7 @@ public class ActionGroupTest {
   @Mock private Action action2;
 
   @Test
-  public void testCheck() throws Exception {
+  public void check() throws Exception {
     ActionGroup actionGroup = new ActionGroup(action1, action2);
     actionGroup.doAction();
     verify(action1, times(1)).doAction();

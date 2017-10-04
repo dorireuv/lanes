@@ -65,7 +65,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void testPlayersHolding() throws Exception {
+  public void playersHolding() throws Exception {
     player1.setNumOfStocks(mergedIntoCompany, 100);
     player1.setNumOfStocks(mergedCompany, 200);
 
@@ -76,7 +76,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void testPlayersCashMoney() throws Exception {
+  public void playersCashMoney() throws Exception {
     mergedIntoCompany.setValue(1000);
 
     player1.setNumOfStocks(mergedCompany, 200);
@@ -89,7 +89,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void testCompaniesSize() throws Exception {
+  public void companiesSize() throws Exception {
     mergedIntoCompany.setSize(10);
     mergedCompany.setSize(5);
 
@@ -100,14 +100,14 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void testToolAfterMergeIsOfTheMergedIntoCompany() {
+  public void toolAfterMergeIsOfTheMergedIntoCompany() {
     mergeCompanies();
     Tool companyTool = board.getTool(position);
     assertThat(companyTool.getCompanyDefinition()).hasValue(mergedIntoCompanyDefinition);
   }
 
   @Test
-  public void testMergedIntoCompanyValue() {
+  public void mergedIntoCompanyValue() {
     mergedIntoCompany.setValue(1000);
     mergedCompany.setValue(1200);
 
@@ -118,7 +118,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void testBoard() {
+  public void board() {
     Position mergedCompanyPosition = position.move(0, +1);
     board.getTool(mergedCompanyPosition).setCompanyDefinition(mergedCompanyDefinition);
 
@@ -129,7 +129,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void testCompanyTopHolderChange() {
+  public void companyTopHolderChange() {
     mergedIntoCompany.setValue(1000);
 
     player1.setNumOfStocks(mergedIntoCompany, 100);
