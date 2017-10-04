@@ -29,7 +29,7 @@ public class PlayerCashMoneyInterestActionTest {
   }
 
   @Test
-  public void testCheck() throws Exception {
+  public void check() throws Exception {
     company1.setValue(600);
     company2.setValue(1200);
     player.setNumOfStocks(company1, 100);

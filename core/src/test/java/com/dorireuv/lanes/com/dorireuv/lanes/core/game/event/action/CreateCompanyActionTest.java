@@ -24,7 +24,7 @@ public class CreateCompanyActionTest {
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void testDoAction() throws Exception {
+  public void doAction() throws Exception {
     Player player = new SimplePlayer(0, "name", 6000);
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);

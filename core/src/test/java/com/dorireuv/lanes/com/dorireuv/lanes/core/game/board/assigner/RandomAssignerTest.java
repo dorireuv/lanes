@@ -24,7 +24,7 @@ public class RandomAssignerTest {
   @Mock private Board board;
 
   @Test
-  public void testAssign() throws Exception {
+  public void assign() throws Exception {
     when(boardAssigner.assignPosition(eq(board), any(Position.class))).thenReturn(true);
     RandomAssigner randomAssigner = new RandomAssigner(randomWrapper, boardAssigner, board);
     randomAssigner.assign();

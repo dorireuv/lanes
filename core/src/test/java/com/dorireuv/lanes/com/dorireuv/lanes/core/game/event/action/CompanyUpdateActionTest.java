@@ -152,7 +152,7 @@ public class CompanyUpdateActionTest {
   }
 
   @Test(dataProvider = "doActionDataProvider")
-  public void testDoAction(
+  public void doAction(
       Board board, Board expectedBoard, Position position, int sizeDiff, int valueDiff) {
     CompanyUpdateAction companyUpdateAction =
         new CompanyUpdateAction(clientEventSubscriber, board, position, company, players);
@@ -163,7 +163,7 @@ public class CompanyUpdateActionTest {
   }
 
   @Test
-  public void testMergedIntoCompanyValueAfterSplit() {
+  public void mergedIntoCompanyValueAfterSplit() {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     company.setValue(3200);

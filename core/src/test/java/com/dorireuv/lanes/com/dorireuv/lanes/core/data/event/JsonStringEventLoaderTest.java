@@ -11,12 +11,12 @@ import org.junit.Test;
 public class JsonStringEventLoaderTest {
 
   @Test
-  public void testLoadPredefined_always_isNotEmpty() {
+  public void loadPredefined_always_isNotEmpty() {
     assertThat(JsonStringEventLoader.loadPredefined()).isNotEmpty();
   }
 
   @Test
-  public void testLoad_validJsonString_returnsAllEvents() throws Exception {
+  public void load_validJsonString_returnsAllEvents() throws Exception {
     String jsonString =
         Joiner.on('\n')
             .join(
@@ -42,7 +42,7 @@ public class JsonStringEventLoaderTest {
   }
 
   @Test
-  public void testLoad_invalidJsonString_throwsJSONException() {
+  public void load_invalidJsonString_throwsJSONException() {
     String jsonString = "{";
     assertThrows(JSONException.class, () -> JsonStringEventLoader.load(jsonString));
   }

@@ -22,7 +22,7 @@ public class GoldStarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignOnEmptyToolAccepted() {
+  public void assignOnEmptyToolAccepted() {
     Position position = Position.create(5, 5);
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
     assertTrue(accepted);
@@ -41,13 +41,13 @@ public class GoldStarBoardAssignerTest {
   }
 
   @Test(dataProvider = "assignOnEmptyToolRejectedPositions")
-  public void testAssignOnEmptyToolRejected(String description, Position position) {
+  public void assignOnEmptyToolRejected(String description, Position position) {
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
     assertFalse(description + " position should be rejected", accepted);
   }
 
   @Test
-  public void testAssignOnGoldStarToolRejected() {
+  public void assignOnGoldStarToolRejected() {
     Position position = Position.create(5, 5);
     Tool goldStarTool = Tool.newGoldStarTool();
     board.setTool(position, goldStarTool);
@@ -67,7 +67,7 @@ public class GoldStarBoardAssignerTest {
   }
 
   @Test(dataProvider = "assignNearAnotherGoldStarPositions")
-  public void testAssignNearAnotherGoldStarRejected(
+  public void assignNearAnotherGoldStarRejected(
       String side, Position goldStar1Position, Position goldStar2Position) {
     board.setTool(goldStar1Position, Tool.newGoldStarTool());
     boolean accepted = goldStarBoardAssigner.assignPosition(board, goldStar2Position);
@@ -120,7 +120,7 @@ public class GoldStarBoardAssignerTest {
   }
 
   @Test(dataProvider = "assignNearThreeStarsPositions")
-  public void testAssignNearThreeOrMoreStarsRejected(
+  public void assignNearThreeOrMoreStarsRejected(
       String side, Position goldStarPosition, Position[] starsPosition) {
     for (Position starPosition : starsPosition) {
       board.setTool(starPosition, Tool.newStarTool());

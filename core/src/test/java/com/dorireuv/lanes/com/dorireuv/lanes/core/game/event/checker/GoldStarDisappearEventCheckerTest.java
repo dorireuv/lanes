@@ -24,7 +24,7 @@ public class GoldStarDisappearEventCheckerTest {
   @Mock private RandomWrapper randomWrapper;
 
   @Test
-  public void testCheckDispatchesEventOnGoldStarDisappear() throws Exception {
+  public void checkDispatchesEventOnGoldStarDisappear() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     board.setTool(position, Tool.newGoldStarTool());
@@ -38,7 +38,7 @@ public class GoldStarDisappearEventCheckerTest {
   }
 
   @Test
-  public void testCheckDoesNothingOnNonGoldStarDisappear() throws Exception {
+  public void checkDoesNothingOnNonGoldStarDisappear() throws Exception {
     Board board = new SimpleBoard();
     final Position position = Position.create(5, 5);
     when(randomWrapper.nextPosition(board)).thenAnswer(invocationOnMock -> position);

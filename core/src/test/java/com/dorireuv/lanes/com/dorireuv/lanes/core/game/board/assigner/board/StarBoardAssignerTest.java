@@ -21,14 +21,14 @@ public class StarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignOnEmptyToolAccepted() throws Exception {
+  public void assignOnEmptyToolAccepted() throws Exception {
     Position position = Position.create(5, 5);
     boolean accepted = starBoardAssigner.assignPosition(board, position);
     assertTrue(accepted);
   }
 
   @Test
-  public void testAssignOStarToolRejected() throws Exception {
+  public void assignOStarToolRejected() throws Exception {
     Position position = Position.create(5, 5);
     Tool starTool = Tool.newStarTool();
     board.setTool(position, starTool);
@@ -37,7 +37,7 @@ public class StarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignNearThreeOrMoreStarsRejectedLeft() throws Exception {
+  public void assignNearThreeOrMoreStarsRejectedLeft() throws Exception {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
@@ -47,7 +47,7 @@ public class StarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignNearThreeOrMoreStarsRejectedRight() throws Exception {
+  public void assignNearThreeOrMoreStarsRejectedRight() throws Exception {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
@@ -57,7 +57,7 @@ public class StarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignNearThreeOrMoreStarsRejectedTop() throws Exception {
+  public void assignNearThreeOrMoreStarsRejectedTop() throws Exception {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
@@ -67,7 +67,7 @@ public class StarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignNearThreeOrMoreStarsRejectedBottom() throws Exception {
+  public void assignNearThreeOrMoreStarsRejectedBottom() throws Exception {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,
@@ -77,7 +77,7 @@ public class StarBoardAssignerTest {
   }
 
   @Test
-  public void testAssignNearThreeOrMoreStarsRejectedAround() throws Exception {
+  public void assignNearThreeOrMoreStarsRejectedAround() throws Exception {
     Position starPosition = Position.create(5, 5);
     assertAssignNearThreeOrMoreStarsRejected(
         starPosition,

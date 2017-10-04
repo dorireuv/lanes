@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class BankCashMoneyInterestActionTest {
   @Test
-  public void testCheck() throws Exception {
+  public void check() throws Exception {
     SimpleBank bank = new SimpleBank(2000);
     BankCashMoneyInterestAction bankCashMoneyAction = new BankCashMoneyInterestAction(bank);
     bankCashMoneyAction.doAction();

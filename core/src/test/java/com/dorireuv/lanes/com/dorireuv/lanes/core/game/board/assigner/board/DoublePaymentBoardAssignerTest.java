@@ -21,14 +21,14 @@ public class DoublePaymentBoardAssignerTest {
   }
 
   @Test
-  public void testAssignOnEmptyToolAccepted() throws Exception {
+  public void assignOnEmptyToolAccepted() throws Exception {
     Position position = Position.create(0, 0);
     boolean accepted = doublePaymentBoardAssigner.assignPosition(board, position);
     assertTrue(accepted);
   }
 
   @Test
-  public void testAssignOnDoublePaymentAccepted() throws Exception {
+  public void assignOnDoublePaymentAccepted() throws Exception {
     Position position = Position.create(0, 0);
     board.getTool(position).setIsDoublePayment(true);
     boolean accepted = doublePaymentBoardAssigner.assignPosition(board, position);
@@ -36,7 +36,7 @@ public class DoublePaymentBoardAssignerTest {
   }
 
   @Test
-  public void testAssignOnNonEmptyToolRejected() throws Exception {
+  public void assignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(0, 0);
     Tool nonEmptyTool = Tool.newStarTool();
     board.setTool(position, nonEmptyTool);

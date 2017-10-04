@@ -36,7 +36,7 @@ public class DoublePaymentCheckerTest {
   }
 
   @Test
-  public void testCheckDispatchesEventOnDoublePayment() throws Exception {
+  public void checkDispatchesEventOnDoublePayment() throws Exception {
     when(tool.isDoublePayment()).thenReturn(true);
     DoublePaymentChecker doublePaymentEventChecker =
         new DoublePaymentChecker(actionFactory, player1, sortedPlayers, tool);
@@ -46,7 +46,7 @@ public class DoublePaymentCheckerTest {
   }
 
   @Test
-  public void testCheckDoesNothingOnPlayerWithMostValue() throws Exception {
+  public void checkDoesNothingOnPlayerWithMostValue() throws Exception {
     when(tool.isDoublePayment()).thenReturn(true);
     DoublePaymentChecker doublePaymentEventChecker =
         new DoublePaymentChecker(actionFactory, player2, sortedPlayers, tool);
@@ -56,7 +56,7 @@ public class DoublePaymentCheckerTest {
   }
 
   @Test
-  public void testCheckDoesNothingOnNonDoublePayment() throws Exception {
+  public void checkDoesNothingOnNonDoublePayment() throws Exception {
     when(tool.isDoublePayment()).thenReturn(false);
     DoublePaymentChecker doublePaymentEventChecker =
         new DoublePaymentChecker(actionFactory, player1, sortedPlayers, tool);

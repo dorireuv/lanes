@@ -20,7 +20,7 @@ public class FreezeCheckerTest {
   @Mock private Tool tool;
 
   @Test
-  public void testCheckDispatchesEventOnFreeze() throws Exception {
+  public void checkDispatchesEventOnFreeze() throws Exception {
     when(tool.isFreeze()).thenReturn(true);
     FreezeChecker freezeEventChecker = new FreezeChecker(actionFactory, tool);
     freezeEventChecker.check();
@@ -29,7 +29,7 @@ public class FreezeCheckerTest {
   }
 
   @Test
-  public void testCheckDoesNothingOnNonFreeze() throws Exception {
+  public void checkDoesNothingOnNonFreeze() throws Exception {
     when(tool.isFreeze()).thenReturn(false);
     FreezeChecker freezeEventChecker = new FreezeChecker(actionFactory, tool);
     freezeEventChecker.check();

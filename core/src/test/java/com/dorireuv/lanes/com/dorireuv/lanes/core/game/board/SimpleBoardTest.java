@@ -20,18 +20,18 @@ public class SimpleBoardTest {
   }
 
   @Test
-  public void testCreate() throws Exception {
+  public void create() throws Exception {
     assertNotNull(board);
   }
 
   @Test
-  public void testGetToolWithoutBoundProtectionWhenOutOfBoundsReturnsEmptyTool() {
+  public void getToolWithoutBoundProtectionWhenOutOfBoundsReturnsEmptyTool() {
     assertEquals(
         board.getToolWithoutBoundProtection(Position.create(-1, -1)).getToolType(), ToolType.EMPTY);
   }
 
   @Test
-  public void testGetToolWithoutBoundProtectionWhenInBoundsReturnsTool() {
+  public void getToolWithoutBoundProtectionWhenInBoundsReturnsTool() {
     Position position = Position.create(2, 1);
     Tool tool = Tool.newStarTool();
     board.setTool(position, tool);
@@ -39,7 +39,7 @@ public class SimpleBoardTest {
   }
 
   @Test
-  public void testGetToolsAround() throws Exception {
+  public void getToolsAround() throws Exception {
     Position position = Position.create(5, 5);
     Tool leftTool = new Tool();
     Tool rightTool = new Tool();

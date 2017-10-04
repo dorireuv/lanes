@@ -16,7 +16,7 @@ public class AssignerGroupTest {
   @Mock private Assigner assigner2;
 
   @Test
-  public void testAssign() throws Exception {
+  public void assign() throws Exception {
     AssignerGroup assignerGroup = new AssignerGroup(assigner1, assigner2);
     assignerGroup.assign();
     verify(assigner1, times(1)).assign();

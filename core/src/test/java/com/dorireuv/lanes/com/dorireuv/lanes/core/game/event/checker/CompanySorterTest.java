@@ -26,7 +26,7 @@ public class CompanySorterTest {
   }
 
   @Test
-  public void testSort() throws Exception {
+  public void sort() throws Exception {
     company1.setSize(1);
     company2.setSize(2);
     companySorter.sort(companies);

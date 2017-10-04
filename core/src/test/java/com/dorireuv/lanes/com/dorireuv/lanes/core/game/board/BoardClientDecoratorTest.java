@@ -29,7 +29,7 @@ public class BoardClientDecoratorTest {
   }
 
   @Test
-  public void testSetToolDispatchesEvent() throws Exception {
+  public void setToolDispatchesEvent() throws Exception {
     Position position = Position.create(3, 5);
     Tool tool = Tool.newStarTool();
     boardClientDecorator.setTool(position, tool);

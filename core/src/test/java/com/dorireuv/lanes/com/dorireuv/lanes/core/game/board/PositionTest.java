@@ -8,7 +8,7 @@ import org.junit.Test;
 public class PositionTest {
 
   @Test
-  public void testMove() throws Exception {
+  public void move() throws Exception {
     Position position = Position.create(1, 2);
     Position anotherPosition = position.move(2, 3);
     assertEquals(anotherPosition.getRow(), 3);
@@ -16,28 +16,28 @@ public class PositionTest {
   }
 
   @Test
-  public void testEqual() throws Exception {
+  public void equal() throws Exception {
     Position position1 = Position.create(1, 2);
     Position position2 = Position.create(1, 2);
     assertEquals(position1, position2);
   }
 
   @Test
-  public void testNotEqual() throws Exception {
+  public void notEqual() throws Exception {
     Position position1 = Position.create(1, 2);
     Position position2 = Position.create(2, 1);
     assertNotEquals(position1, position2);
   }
 
   @Test
-  public void testHashCodeSameForSamePositions() throws Exception {
+  public void hashCodeSameForSamePositions() throws Exception {
     Position position1 = Position.create(1, 2);
     Position position2 = Position.create(1, 2);
     assertEquals(position1.hashCode(), position2.hashCode());
   }
 
   @Test
-  public void testHashCodeDifferentForDifferentPositions() throws Exception {
+  public void hashCodeDifferentForDifferentPositions() throws Exception {
     assertNotEquals(Position.create(1, 2).hashCode(), Position.create(2, 1).hashCode());
   }
 }

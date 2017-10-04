@@ -20,12 +20,12 @@ public class TurnIteratorTest {
   }
 
   @Test
-  public void testGetCurrentTurnOnBeginningReturnsOne() {
+  public void getCurrentTurnOnBeginningReturnsOne() {
     assertEquals(turnIterator.getCurrentTurn(), 1);
   }
 
   @Test
-  public void testHasNextWhenNoTurnsLeftReturnsFalse() {
+  public void hasNextWhenNoTurnsLeftReturnsFalse() {
     assertEquals(turnIterator.getNumOfTurns(), 100);
     turnIterator.setNumOfTurns(1);
     assertEquals(turnIterator.getNumOfTurns(), 1);
@@ -33,12 +33,12 @@ public class TurnIteratorTest {
   }
 
   @Test
-  public void testGetCurrentPlayerIndexOnBeginningReturnsFirstPlayerIndex() {
+  public void getCurrentPlayerIndexOnBeginningReturnsFirstPlayerIndex() {
     assertEquals(turnIterator.getCurrentPlayerIndex(), turnIterator.getFirstPlayerIndex());
   }
 
   @Test
-  public void testNext() {
+  public void next() {
     turnIterator.next();
     assertEquals(turnIterator.getCurrentTurn(), 2);
     assertEquals(turnIterator.getCurrentPlayerIndex(), 2);
@@ -49,7 +49,7 @@ public class TurnIteratorTest {
   }
 
   @Test
-  public void testSetShouldEndTurnIsFalseAfterNext() {
+  public void setShouldEndTurnIsFalseAfterNext() {
     assertFalse(turnIterator.shouldEndTurn());
     turnIterator.setShouldEndTurn();
     assertTrue(turnIterator.shouldEndTurn());

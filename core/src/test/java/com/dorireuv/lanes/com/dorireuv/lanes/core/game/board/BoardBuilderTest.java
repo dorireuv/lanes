@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class BoardBuilderTest {
   @Test
-  public void testBuild() throws Exception {
+  public void build() throws Exception {
     BoardBuilder boardBuilder = new BoardBuilder(new SimpleRandomWrapper(0));
     int numOfStars = 100;
     int numOfPlayers = 2;
