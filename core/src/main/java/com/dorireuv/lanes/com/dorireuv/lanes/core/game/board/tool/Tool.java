@@ -87,18 +87,4 @@ public class Tool {
   public void setIsDoublePayment(boolean isDoublePayment) {
     this.isDoublePayment = isDoublePayment;
   }
-
-  @Override
-  public boolean equals(Object other) {
-    if (!(other instanceof Tool)) {
-      return false;
-    }
-
-    Tool otherTool = (Tool) other;
-    return getToolType() == otherTool.getToolType()
-        && isFreeze() == otherTool.isFreeze()
-        && isTrap() == otherTool.isTrap()
-        && isDoublePayment() == otherTool.isDoublePayment()
-        && getClass().equals(otherTool.getClass());
-  }
 }

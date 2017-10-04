@@ -110,24 +110,4 @@ public class SimpleBoard implements Board {
 
     return positionToToolMap;
   }
-
-  @Override
-  public boolean equals(Object other) {
-    if (!(other instanceof Board)) {
-      return false;
-    }
-
-    Board otherBoard = (Board) other;
-    int rows = getRows();
-    int cols = getCols();
-    for (int row = 0; row < rows; row++) {
-      for (int col = 0; col < cols; col++) {
-        if (!getTool(row, col).equals(otherBoard.getTool(row, col))) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
 }

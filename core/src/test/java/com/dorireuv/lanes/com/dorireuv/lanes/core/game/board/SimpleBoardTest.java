@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,8 @@ public class SimpleBoardTest {
 
   @Test
   public void testGetToolWithoutBoundProtectionWhenOutOfBoundsReturnsEmptyTool() {
-    assertEquals(board.getToolWithoutBoundProtection(Position.create(-1, -1)), new Tool());
+    assertEquals(
+        board.getToolWithoutBoundProtection(Position.create(-1, -1)).getToolType(), ToolType.EMPTY);
   }
 
   @Test

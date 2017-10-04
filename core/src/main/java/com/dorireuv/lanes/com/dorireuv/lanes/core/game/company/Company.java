@@ -49,12 +49,4 @@ public class Company {
   public void incValue(int amount) {
     value += amount;
   }
-
-  public int hashCode() {
-    return companyDefinition.hashCode();
-  }
-
-  public boolean equals(Object other) {
-    return companyDefinition.equals(((Company) other).getCompanyDefinition());
-  }
 }
