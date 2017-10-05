@@ -1,15 +1,13 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertThat;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 public class GoldStarBoardAssignerTest {
   private Board board;
@@ -22,110 +20,162 @@ public class GoldStarBoardAssignerTest {
   }
 
   @Test
-  public void assignOnEmptyToolAccepted() {
+  public void assignPosition_empty_accepted() {
     Position position = Position.create(5, 5);
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
-    assertTrue(accepted);
-  }
-
-  @DataProvider(name = "assignOnEmptyToolRejectedPositions")
-  public Object[][] assignOnEmptyToolRejectedPositions() {
-    return new Object[][] {
-      {"First row", Position.create(0, 5)},
-      {"Last row", Position.create(board.getRows() - 1, 5)},
-      {"First column", Position.create(5, 0)},
-      {"Second column", Position.create(5, 1)},
-      {"Last column", Position.create(5, board.getCols() - 1)},
-      {"Before last column", Position.create(5, board.getCols() - 2)},
-    };
-  }
-
-  @Test(dataProvider = "assignOnEmptyToolRejectedPositions")
-  public void assignOnEmptyToolRejected(String description, Position position) {
-    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
-    assertFalse(description + " position should be rejected", accepted);
+    assertThat(accepted).isTrue();
   }
 
   @Test
-  public void assignOnGoldStarToolRejected() {
-    Position position = Position.create(5, 5);
-    Tool goldStarTool = Tool.newGoldStarTool();
-    board.setTool(position, goldStarTool);
+  public void assignPosition_firstRow_rejected() {
+    Position position = Position.create(0, 5);
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
-    assertFalse(accepted);
+    assertThat(accepted).isFalse();
   }
 
-  @DataProvider(name = "assignNearAnotherGoldStarPositions")
-  public Object[][] assignNearAnotherGoldStarPositions() {
-    Position goldStar1Position = Position.create(5, 5);
-    return new Object[][] {
-      {"left", goldStar1Position.move(0, -1), goldStar1Position},
-      {"right", goldStar1Position.move(0, +1), goldStar1Position},
-      {"top", goldStar1Position.move(-1, 0), goldStar1Position},
-      {"bottom", goldStar1Position.move(+1, 0), goldStar1Position},
-    };
+  @Test
+  public void assignPosition_lastRow_rejected() {
+    Position position = Position.create(board.getRows() - 1, 5);
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+    assertThat(accepted).isFalse();
   }
 
-  @Test(dataProvider = "assignNearAnotherGoldStarPositions")
-  public void assignNearAnotherGoldStarRejected(
-      String side, Position goldStar1Position, Position goldStar2Position) {
-    board.setTool(goldStar1Position, Tool.newGoldStarTool());
-    boolean accepted = goldStarBoardAssigner.assignPosition(board, goldStar2Position);
-    assertFalse(String.format("There is already gold star on %s side", side), accepted);
+  @Test
+  public void assignPosition_firstColumn_rejected() {
+    Position position = Position.create(5, 0);
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+    assertThat(accepted).isFalse();
   }
 
-  @DataProvider(name = "assignNearThreeStarsPositions")
-  public Object[][] assignNearThreeStarsPositions() {
-    Position goldStarPosition = Position.create(5, 5);
-    return new Object[][] {
-      {
-        "left",
-        goldStarPosition,
-        new Position[] {
-          goldStarPosition.move(0, -1), goldStarPosition.move(-1, 0), goldStarPosition.move(0, +1),
-        },
-      },
-      {
-        "right",
-        goldStarPosition,
-        new Position[] {
-          goldStarPosition.move(0, -1), goldStarPosition.move(+1, 0), goldStarPosition.move(0, +1),
-        },
-      },
-      {
-        "top",
-        goldStarPosition,
-        new Position[] {
-          goldStarPosition.move(-1, 0), goldStarPosition.move(0, -1), goldStarPosition.move(+1, 0),
-        },
-      },
-      {
-        "bottom",
-        goldStarPosition,
-        new Position[] {
-          goldStarPosition.move(-1, 0), goldStarPosition.move(0, +1), goldStarPosition.move(+1, 0),
-        },
-      },
-      {
-        "around",
-        goldStarPosition,
-        new Position[] {
-          goldStarPosition.move(0, -1),
-          goldStarPosition.move(0, +1),
-          goldStarPosition.move(-1, 0),
-          goldStarPosition.move(+1, 0),
-        },
-      },
-    };
+  @Test
+  public void assignPosition_secondColumn_rejected() {
+    Position position = Position.create(5, 1);
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+    assertThat(accepted).isFalse();
   }
 
-  @Test(dataProvider = "assignNearThreeStarsPositions")
-  public void assignNearThreeOrMoreStarsRejected(
-      String side, Position goldStarPosition, Position[] starsPosition) {
-    for (Position starPosition : starsPosition) {
-      board.setTool(starPosition, Tool.newStarTool());
-    }
-    boolean accepted = goldStarBoardAssigner.assignPosition(board, goldStarPosition);
-    assertFalse(String.format("There is already three stars on %s side", side), accepted);
+  @Test
+  public void assignPosition_lastColumn_rejected() {
+    Position position = Position.create(5, board.getCols() - 1);
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_beforeLastColumn_rejected() {
+    Position position = Position.create(5, board.getCols() - 2);
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_onGoldStarTool_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position, Tool.newGoldStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_goldStarUp_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(-1, 0), Tool.newGoldStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_goldStarDown_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(+1, 0), Tool.newGoldStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_goldStarLeft_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(0, -1), Tool.newGoldStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_goldStarRight_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(0, +1), Tool.newGoldStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_threeStarsUp_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(-1, 0), Tool.newStarTool());
+    board.setTool(position.move(0, +1), Tool.newStarTool());
+    board.setTool(position.move(0, -1), Tool.newStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_threeStarsDown_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(+1, 0), Tool.newStarTool());
+    board.setTool(position.move(0, +1), Tool.newStarTool());
+    board.setTool(position.move(0, -1), Tool.newStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_threeStarsLeft_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(0, -1), Tool.newStarTool());
+    board.setTool(position.move(+1, 0), Tool.newStarTool());
+    board.setTool(position.move(-1, 0), Tool.newStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_threeStarsRight_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(0, +1), Tool.newStarTool());
+    board.setTool(position.move(+1, 0), Tool.newStarTool());
+    board.setTool(position.move(-1, 0), Tool.newStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
+  }
+
+  @Test
+  public void assignPosition_fourStars_rejected() {
+    Position position = Position.create(5, 5);
+    board.setTool(position.move(0, -1), Tool.newStarTool());
+    board.setTool(position.move(0, +1), Tool.newStarTool());
+    board.setTool(position.move(+1, 0), Tool.newStarTool());
+    board.setTool(position.move(-1, 0), Tool.newStarTool());
+
+    boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
+
+    assertThat(accepted).isFalse();
   }
 }
