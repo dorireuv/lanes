@@ -41,10 +41,10 @@ public class SimpleBoardTest {
   @Test
   public void getToolsAround() throws Exception {
     Position position = Position.create(5, 5);
-    Tool leftTool = new Tool();
-    Tool rightTool = new Tool();
-    Tool topTool = new Tool();
-    Tool bottomTool = new Tool();
+    Tool leftTool = Tool.newEmptyTool();
+    Tool rightTool = Tool.newEmptyTool();
+    Tool topTool = Tool.newEmptyTool();
+    Tool bottomTool = Tool.newEmptyTool();
     Position leftPosition = position.move(0, -1);
     Position rightPosition = position.move(0, +1);
     Position topPosition = position.move(-1, 0);

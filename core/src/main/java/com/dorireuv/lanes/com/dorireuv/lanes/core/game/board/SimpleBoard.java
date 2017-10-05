@@ -20,7 +20,7 @@ public class SimpleBoard implements Board {
     this.rows = Config.getBoardRows();
     this.cols = Config.getBoardCols();
     this.numOfStars = 0;
-    this.emptyTool = new Tool();
+    this.emptyTool = Tool.newEmptyTool();
     this.init();
   }
 
@@ -43,7 +43,7 @@ public class SimpleBoard implements Board {
     this.board = new Tool[this.getRows()][this.getCols()];
     for (int row = 0; row < this.getRows(); row++) {
       for (int col = 0; col < this.getCols(); col++) {
-        this.setTool(Position.create(row, col), new Tool());
+        this.setTool(Position.create(row, col), Tool.newEmptyTool());
       }
     }
   }

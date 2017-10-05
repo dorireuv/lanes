@@ -1,6 +1,7 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action;
 
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth8.assertThat;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
@@ -8,20 +9,19 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 public class CompanyUpdateActionTest {
 
@@ -34,132 +34,134 @@ public class CompanyUpdateActionTest {
   private Company company;
   private Player player1;
   private Player player2;
-  private List<Player> players;
+  private ImmutableList<Player> players;
 
   @Before
   public void setUp() {
     company = new Company(companyDefinition, size, value);
     player1 = new SimplePlayer(0, "A", 0);
     player2 = new SimplePlayer(1, "B", 0);
-    players = Arrays.asList(player1, player2);
+    players = ImmutableList.of(player1, player2);
   }
 
-  private Board buildBoard(Map<Position, Tool> positionToToolMap) {
-    Board board = new SimpleBoard();
-    for (Map.Entry<Position, Tool> entry : positionToToolMap.entrySet()) {
-      board.setTool(entry.getKey(), entry.getValue());
-    }
-    return board;
-  }
-
-  @DataProvider(name = "doActionDataProvider")
-  public Object[][] checkDataProvider() {
+  @Test
+  public void doAction1() {
+    // ...
+    // .A.
+    // ...
     final Position position = Position.create(5, 5);
-    return new Object[][] {
-      {
-        // ...
-        // .A.
-        // ...
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(position, Tool.newCompanyTool(companyDefinition));
-              }
-            }),
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(position, Tool.newCompanyTool(companyDefinition));
-              }
-            }),
-        position,
-        0,
-        0,
-      },
-      {
-        // +++    +A+
-        // +A+ => AAA
-        // +++    +A+
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(position, Tool.newCompanyTool(companyDefinition));
-                put(position.move(-1, -1), Tool.newHitTool());
-                put(position.move(-1, 0), Tool.newHitTool());
-                put(position.move(-1, +1), Tool.newHitTool());
-                put(position.move(0, -1), Tool.newHitTool());
-                put(position.move(0, +1), Tool.newHitTool());
-                put(position.move(+1, -1), Tool.newHitTool());
-                put(position.move(+1, 0), Tool.newHitTool());
-                put(position.move(+1, +1), Tool.newHitTool());
-              }
-            }),
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(position, Tool.newCompanyTool(companyDefinition));
-                put(position.move(-1, -1), Tool.newHitTool());
-                put(position.move(-1, 0), Tool.newCompanyTool(companyDefinition));
-                put(position.move(-1, +1), Tool.newHitTool());
-                put(position.move(0, -1), Tool.newCompanyTool(companyDefinition));
-                put(position.move(0, +1), Tool.newCompanyTool(companyDefinition));
-                put(position.move(+1, -1), Tool.newHitTool());
-                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinition));
-                put(position.move(+1, +1), Tool.newHitTool());
-              }
-            }),
-        position,
-        4,
-        400,
-      },
-      {
-        // +*+    +*+
-        // *A& => *A&
-        // +++    +A+
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(position, Tool.newCompanyTool(companyDefinition));
-                put(position.move(-1, -1), Tool.newHitTool());
-                put(position.move(-1, 0), Tool.newStarTool());
-                put(position.move(-1, +1), Tool.newHitTool());
-                put(position.move(0, -1), Tool.newStarTool());
-                put(position.move(0, +1), Tool.newGoldStarTool());
-                put(position.move(+1, -1), Tool.newHitTool());
-                put(position.move(+1, 0), Tool.newHitTool());
-                put(position.move(+1, +1), Tool.newHitTool());
-              }
-            }),
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(position, Tool.newCompanyTool(companyDefinition));
-                put(position.move(-1, -1), Tool.newHitTool());
-                put(position.move(-1, 0), Tool.newStarTool());
-                put(position.move(-1, +1), Tool.newHitTool());
-                put(position.move(0, -1), Tool.newStarTool());
-                put(position.move(0, +1), Tool.newGoldStarTool());
-                put(position.move(+1, -1), Tool.newHitTool());
-                put(position.move(+1, 0), Tool.newCompanyTool(companyDefinition));
-                put(position.move(+1, +1), Tool.newHitTool());
-              }
-            }),
-        position,
-        1,
-        2100,
-      },
-    };
-  }
+    Board board = buildBoard(ImmutableMap.of(position, Tool.newCompanyTool(companyDefinition)));
 
-  @Test(dataProvider = "doActionDataProvider")
-  public void doAction(
-      Board board, Board expectedBoard, Position position, int sizeDiff, int valueDiff) {
+    int sizeDiff = 0;
+    int valueDiff = 0;
+
     CompanyUpdateAction companyUpdateAction =
         new CompanyUpdateAction(clientEventSubscriber, board, position, company, players);
     companyUpdateAction.doAction();
-    assertEquals(company.getSize(), size + sizeDiff);
-    assertEquals(company.getValue(), value + valueDiff);
-    assertEquals(board, expectedBoard);
+    assertThat(company.getSize()).isEqualTo(size + sizeDiff);
+    assertThat(company.getValue()).isEqualTo(value + valueDiff);
+
+    assertThat(board.getTool(position.move(-1, -1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(-1, 0)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(-1, +1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(0, -1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(0, 0)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(0, +1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(+1, -1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(+1, 0)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(+1, -1)).getToolType()).isEqualTo(ToolType.EMPTY);
+  }
+
+  @Test
+  public void doAction2() {
+    // +++    AAA
+    // +A+ => AAA
+    // +++    AAA
+    final Position position = Position.create(5, 5);
+    Board board =
+        buildBoard(
+            ImmutableMap.<Position, Tool>builder()
+                .put(position, Tool.newCompanyTool(companyDefinition))
+                .put(position.move(-1, -1), Tool.newHitTool())
+                .put(position.move(-1, 0), Tool.newHitTool())
+                .put(position.move(-1, +1), Tool.newHitTool())
+                .put(position.move(0, -1), Tool.newHitTool())
+                .put(position.move(0, +1), Tool.newHitTool())
+                .put(position.move(+1, -1), Tool.newHitTool())
+                .put(position.move(+1, 0), Tool.newHitTool())
+                .put(position.move(+1, +1), Tool.newHitTool())
+                .build());
+
+    int sizeDiff = 8;
+    int valueDiff = 800;
+
+    CompanyUpdateAction companyUpdateAction =
+        new CompanyUpdateAction(clientEventSubscriber, board, position, company, players);
+    companyUpdateAction.doAction();
+    assertThat(company.getSize()).isEqualTo(size + sizeDiff);
+    assertThat(company.getValue()).isEqualTo(value + valueDiff);
+
+    assertThat(board.getTool(position.move(-1, -1)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(-1, 0)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(-1, +1)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(0, -1)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(0, 0)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(0, +1)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(+1, -1)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(+1, 0)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(+1, -1)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+  }
+
+  @Test
+  public void doAction3() {
+    // .*.    .*.
+    // *A& => *A&
+    // .+.    .A.
+    final Position position = Position.create(5, 5);
+    Board board =
+        buildBoard(
+            ImmutableMap.<Position, Tool>builder()
+                .put(position, Tool.newCompanyTool(companyDefinition))
+                .put(position.move(-1, -1), Tool.newEmptyTool())
+                .put(position.move(-1, 0), Tool.newStarTool())
+                .put(position.move(-1, +1), Tool.newEmptyTool())
+                .put(position.move(0, -1), Tool.newStarTool())
+                .put(position.move(0, +1), Tool.newGoldStarTool())
+                .put(position.move(+1, -1), Tool.newEmptyTool())
+                .put(position.move(+1, 0), Tool.newHitTool())
+                .put(position.move(+1, +1), Tool.newEmptyTool())
+                .build());
+
+    int sizeDiff = 1;
+    int valueDiff = 2100;
+
+    CompanyUpdateAction companyUpdateAction =
+        new CompanyUpdateAction(clientEventSubscriber, board, position, company, players);
+    companyUpdateAction.doAction();
+    assertThat(company.getSize()).isEqualTo(size + sizeDiff);
+    assertThat(company.getValue()).isEqualTo(value + valueDiff);
+
+    assertThat(board.getTool(position.move(-1, -1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(-1, 0)).getToolType()).isEqualTo(ToolType.STAR);
+    assertThat(board.getTool(position.move(-1, +1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(0, -1)).getToolType()).isEqualTo(ToolType.STAR);
+    assertThat(board.getTool(position.move(0, 0)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(0, +1)).getToolType()).isEqualTo(ToolType.GOLD_STAR);
+    assertThat(board.getTool(position.move(+1, -1)).getToolType()).isEqualTo(ToolType.EMPTY);
+    assertThat(board.getTool(position.move(+1, 0)).getCompanyDefinition())
+        .hasValue(companyDefinition);
+    assertThat(board.getTool(position.move(+1, +1)).getToolType()).isEqualTo(ToolType.EMPTY);
   }
 
   @Test
@@ -173,8 +175,16 @@ public class CompanyUpdateActionTest {
         new CompanyUpdateAction(clientEventSubscriber, board, position, company, players);
     companyUpdateAction.doAction();
 
-    assertEquals(company.getValue(), 1600);
-    assertEquals(player1.getNumOfStocks(company), 200);
-    assertEquals(player2.getNumOfStocks(company), 400);
+    assertThat(company.getValue()).isEqualTo(1600);
+    assertThat(player1.getNumOfStocks(company)).isEqualTo(200);
+    assertThat(player2.getNumOfStocks(company)).isEqualTo(400);
+  }
+
+  private static Board buildBoard(Map<Position, Tool> positionToToolMap) {
+    Board board = new SimpleBoard();
+    for (Map.Entry<Position, Tool> entry : positionToToolMap.entrySet()) {
+      board.setTool(entry.getKey(), entry.getValue());
+    }
+    return board;
   }
 }

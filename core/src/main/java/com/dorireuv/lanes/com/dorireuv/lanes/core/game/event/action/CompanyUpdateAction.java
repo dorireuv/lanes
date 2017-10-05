@@ -31,7 +31,7 @@ class CompanyUpdateAction extends ActionBase {
     this.players = players;
   }
 
-  private void updateCompanyValue() {
+  private void updateCompanyValue(Position position) {
     for (Map.Entry<Position, Tool> entry : board.getToolsAround(position).entrySet()) {
       Tool curTool = entry.getValue();
       if (curTool.getToolType().equals(ToolType.GOLD_STAR)) {
@@ -43,6 +43,7 @@ class CompanyUpdateAction extends ActionBase {
         company.incValue(Config.getCompanyHitValue());
         board.getTool(curPosition).setCompanyDefinition(company.getCompanyDefinition());
         company.incSize();
+        updateCompanyValue(curPosition);
       }
     }
   }
@@ -59,7 +60,7 @@ class CompanyUpdateAction extends ActionBase {
 
   @Override
   public void doAction() {
-    updateCompanyValue();
+    updateCompanyValue(position);
     checkForSplit();
   }
 }

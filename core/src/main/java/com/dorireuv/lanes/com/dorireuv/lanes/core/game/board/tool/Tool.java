@@ -5,26 +5,32 @@ import java.util.Optional;
 
 public class Tool {
 
-  public static Tool newHitTool() {
+  public static Tool newEmptyTool() {
     Tool tool = new Tool();
+    tool.setToolType(ToolType.EMPTY);
+    return tool;
+  }
+
+  public static Tool newHitTool() {
+    Tool tool = newEmptyTool();
     tool.setToolType(ToolType.HIT);
     return tool;
   }
 
   public static Tool newStarTool() {
-    Tool tool = new Tool();
+    Tool tool = newEmptyTool();
     tool.setToolType(ToolType.STAR);
     return tool;
   }
 
   public static Tool newGoldStarTool() {
-    Tool tool = new Tool();
+    Tool tool = newEmptyTool();
     tool.setToolType(ToolType.GOLD_STAR);
     return tool;
   }
 
   public static Tool newCompanyTool(CompanyDefinition companyDefinition) {
-    Tool tool = new Tool();
+    Tool tool = newEmptyTool();
     tool.setCompanyDefinition(companyDefinition);
     return tool;
   }
@@ -35,7 +41,7 @@ public class Tool {
   private boolean isDoublePayment;
   private Optional<CompanyDefinition> companyDefinition;
 
-  public Tool() {
+  private Tool() {
     this.setToolType(ToolType.EMPTY);
     this.clearCompanyDefinition();
     this.setIsFreeze(false);
