@@ -25,7 +25,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrappe
 import java.util.LinkedList;
 import java.util.List;
 
-@SuppressWarnings({"WeakerAccess", "UnusedReturnValue", "SameParameterValue"})
 public class LanesBuilder {
 
   public LanesClient buildDefault(

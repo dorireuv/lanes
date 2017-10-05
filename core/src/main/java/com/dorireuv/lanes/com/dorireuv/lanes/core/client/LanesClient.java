@@ -15,7 +15,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
 
-@SuppressWarnings("UnusedDeclaration")
 public final class LanesClient {
 
   private final Lanes lanes;
