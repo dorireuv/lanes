@@ -20,8 +20,8 @@ public class BankClientDecorator implements Bank {
 
   @Override
   public void addCashMoney(int amount) {
+    bank.addCashMoney(amount);
     if (amount != 0) {
-      bank.addCashMoney(amount);
       clientEventSubscriber.onBankCashMoneyChange(
           new BankCashMoneyChangeEvent(bank.getCashMoney()));
     }
