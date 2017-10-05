@@ -5,7 +5,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BankCashMoneyChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import org.junit.Before;
 import org.junit.Rule;
@@ -42,8 +41,7 @@ public class BankClientDecoratorTest {
   @Test
   public void addNonZeroCashMoneyDoesNotDispatchEvent() throws Exception {
     bankClientDecorator.addCashMoney(-1);
-    verify(clientEventSubscriber, times(1))
-        .onBankCashMoneyChange(any(BankCashMoneyChangeEvent.class));
+    verify(clientEventSubscriber, times(1)).onBankCashMoneyChange(any());
     verifyNoMoreInteractions(clientEventSubscriber);
   }
 }

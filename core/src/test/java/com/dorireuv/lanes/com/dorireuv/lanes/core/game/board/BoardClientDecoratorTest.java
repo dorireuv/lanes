@@ -5,7 +5,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BoardChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.Before;
@@ -33,7 +32,7 @@ public class BoardClientDecoratorTest {
     Position position = Position.create(3, 5);
     Tool tool = Tool.newStarTool();
     boardClientDecorator.setTool(position, tool);
-    verify(clientEventSubscriber, times(1)).onBoardChange(any(BoardChangeEvent.class));
+    verify(clientEventSubscriber, times(1)).onBoardChange(any());
     verifyNoMoreInteractions(clientEventSubscriber);
   }
 }

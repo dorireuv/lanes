@@ -7,7 +7,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.BoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import org.junit.Rule;
@@ -25,9 +24,9 @@ public class RandomAssignerTest {
 
   @Test
   public void assign() throws Exception {
-    when(boardAssigner.assignPosition(eq(board), any(Position.class))).thenReturn(true);
+    when(boardAssigner.assignPosition(eq(board), any())).thenReturn(true);
     RandomAssigner randomAssigner = new RandomAssigner(randomWrapper, boardAssigner, board);
     randomAssigner.assign();
-    verify(boardAssigner, times(1)).assignPosition(eq(board), any(Position.class));
+    verify(boardAssigner, times(1)).assignPosition(eq(board), any());
   }
 }

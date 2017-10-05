@@ -25,15 +25,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.CheckerActionExecutor;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.BankCashMoneyInterestChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.BoardChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.BonusPaymentChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.DoublePaymentChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.FreezeChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.GalacticBombChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.GoldStarDisappearChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.PlayerCashMoneyInterestChecker;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker.TrapChecker;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.MovesGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.SingleMoveGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
@@ -118,21 +109,17 @@ public class LanesTest {
     InOrder inOrder = inOrder(checkerActionExecutor);
     lanes.acceptBoard();
     lanes.startGame();
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(GoldStarDisappearChecker.class));
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(GalacticBombChecker.class));
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
 
     lanes.doMove(lanes.getMoves().asList().get(0));
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(BoardChecker.class));
-    inOrder
-        .verify(checkerActionExecutor, calls(1))
-        .execute(any(PlayerCashMoneyInterestChecker.class));
-    inOrder
-        .verify(checkerActionExecutor, calls(1))
-        .execute(any(BankCashMoneyInterestChecker.class));
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(DoublePaymentChecker.class));
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(TrapChecker.class));
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(BonusPaymentChecker.class));
-    inOrder.verify(checkerActionExecutor, calls(1)).execute(any(FreezeChecker.class));
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
+    inOrder.verify(checkerActionExecutor, calls(1)).execute(any());
     verifyNoMoreInteractions(checkerActionExecutor);
   }
 
@@ -186,8 +173,7 @@ public class LanesTest {
     player1.setCashMoney(22500);
     player1.setNumOfStocks(companyA, 1);
     lanes.buy(companyDefinitionA, 22);
-    verify(clientEventSubscriberGroup, never())
-        .onCompanyTopHolderChange(any(CompanyTopHolderChangeEvent.class));
+    verify(clientEventSubscriberGroup, never()).onCompanyTopHolderChange(any());
   }
 
   @Test
@@ -244,8 +230,7 @@ public class LanesTest {
     player2.setNumOfStocks(companyA, 100);
 
     lanes.sell(companyDefinitionA, 50);
-    verify(clientEventSubscriberGroup, never())
-        .onCompanyTopHolderChange(any(CompanyTopHolderChangeEvent.class));
+    verify(clientEventSubscriberGroup, never()).onCompanyTopHolderChange(any());
   }
 
   @Test

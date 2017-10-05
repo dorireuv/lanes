@@ -21,6 +21,6 @@ public class ClientEventSubscriberFactoryTest {
         ClientEventSubscriberFactory.getClientEventSubscriberGroup();
     clientEventSubscriberGroup.register(clientEventSubscriber);
     clientEventSubscriberGroup.onDoublePayment(new DoublePaymentEvent());
-    verify(clientEventSubscriber, times(1)).onDoublePayment(any(DoublePaymentEvent.class));
+    verify(clientEventSubscriber, times(1)).onDoublePayment(any());
   }
 }

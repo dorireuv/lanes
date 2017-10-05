@@ -491,8 +491,8 @@ class BoardCheckerTest {
   public void createCompany(Board board, Position position) {
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, position, buildCompanies());
     boardChecker.check();
-    verify(actionFactory, times(1)).createCreateCompanyAction(any(Company.class));
-    verify(actionFactory, times(1)).createCompanyUpdateAction(any(Company.class));
+    verify(actionFactory, times(1)).createCreateCompanyAction(any());
+    verify(actionFactory, times(1)).createCompanyUpdateAction(any());
     verifyZeroInteractions(actionFactory);
   }
 
@@ -519,8 +519,8 @@ class BoardCheckerTest {
   public void growCompany(Board board, Position position) {
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, position, buildCompanies());
     boardChecker.check();
-    verify(actionFactory, times(1)).createGrowCompanyAction(any(Company.class));
-    verify(actionFactory, times(1)).createCompanyUpdateAction(any(Company.class));
+    verify(actionFactory, times(1)).createGrowCompanyAction(any());
+    verify(actionFactory, times(1)).createCompanyUpdateAction(any());
     verifyZeroInteractions(actionFactory);
   }
 
