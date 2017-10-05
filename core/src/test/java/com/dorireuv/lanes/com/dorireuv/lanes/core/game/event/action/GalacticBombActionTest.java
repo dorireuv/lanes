@@ -6,29 +6,28 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.event.GalacticBombEventDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class GalacticBombActionTest {
+@ExtendWith(MockitoExtension.class)
+class GalacticBombActionTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private Company company;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     CompanyDefinition companyDefinition = CompanyDefinition.create('A', "A");
     company = new Company(companyDefinition);
     company.setValue(1000);
   }
 
   @Test
-  public void doActionWithPositiveEffect() throws Exception {
+  void doActionWithPositiveEffect() throws Exception {
     GalacticBombEventDefinition galacticBombEventDefinition =
         GalacticBombEventDefinition.create("", 0.1);
     GalacticBombAction galacticBombAction =
@@ -38,7 +37,7 @@ public class GalacticBombActionTest {
   }
 
   @Test
-  public void doActionWithNegativeEffect() throws Exception {
+  void doActionWithNegativeEffect() throws Exception {
     GalacticBombEventDefinition galacticBombEventDefinition =
         GalacticBombEventDefinition.create("", -0.1);
     GalacticBombAction galacticBombAction =

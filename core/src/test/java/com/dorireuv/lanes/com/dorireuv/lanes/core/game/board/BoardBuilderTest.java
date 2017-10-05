@@ -1,11 +1,11 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class BoardBuilderTest {
+class BoardBuilderTest {
   @Test
-  public void build() throws Exception {
+  void build() throws Exception {
     BoardBuilder boardBuilder = new BoardBuilder(new SimpleRandomWrapper(0));
     int numOfStars = 100;
     int numOfPlayers = 2;

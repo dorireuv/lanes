@@ -2,12 +2,12 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.data.company;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public final class CompanyDefinitionTest {
+final class CompanyDefinitionTest {
 
   @Test
-  public void compare_aToA_aEqualToA() {
+  void compare_aToA_aEqualToA() {
     CompanyDefinition a1 = CompanyDefinition.create('A', "A1");
     CompanyDefinition a2 = CompanyDefinition.create('A', "A2");
     int res = a1.compareTo(a2);
@@ -15,7 +15,7 @@ public final class CompanyDefinitionTest {
   }
 
   @Test
-  public void compare_aToB_aLessThanB() {
+  void compare_aToB_aLessThanB() {
     CompanyDefinition a = CompanyDefinition.create('A', "A");
     CompanyDefinition b = CompanyDefinition.create('B', "B");
     int res = a.compareTo(b);
@@ -23,7 +23,7 @@ public final class CompanyDefinitionTest {
   }
 
   @Test
-  public void compare_bToA_bGreaterThanA() {
+  void compare_bToA_bGreaterThanA() {
     CompanyDefinition a = CompanyDefinition.create('A', "A");
     CompanyDefinition b = CompanyDefinition.create('B', "B");
     int res = b.compareTo(a);

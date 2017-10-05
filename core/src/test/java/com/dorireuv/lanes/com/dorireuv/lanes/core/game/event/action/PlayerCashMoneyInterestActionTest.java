@@ -7,18 +7,18 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class PlayerCashMoneyInterestActionTest {
+class PlayerCashMoneyInterestActionTest {
 
   private Company company1;
   private Company company2;
   private PlayerCashMoneyInterestAction playerCashMoneyInterestAction;
   private Player player;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     CompanyDefinition companyDefinition1 = CompanyDefinition.create('A', "A");
     CompanyDefinition companyDefinition2 = CompanyDefinition.create('B', "B");
     company1 = new Company(companyDefinition1);
@@ -29,7 +29,7 @@ public class PlayerCashMoneyInterestActionTest {
   }
 
   @Test
-  public void check() throws Exception {
+  void check() throws Exception {
     company1.setValue(600);
     company2.setValue(1200);
     player.setNumOfStocks(company1, 100);

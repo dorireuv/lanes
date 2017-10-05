@@ -9,12 +9,12 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class GameBuilderTest {
+class GameBuilderTest {
 
   @Test
-  public void buildNewDefaultGame() throws Exception {
+  void buildNewDefaultGame() throws Exception {
     GameBuilder gameBuilder = new GameBuilder();
     Player player1 = new SimplePlayer(0, "P1", 0);
     Player player2 = new SimplePlayer(1, "P2", 0);

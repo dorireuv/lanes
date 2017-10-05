@@ -12,19 +12,18 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class CreateCompanyActionTest {
+@ExtendWith(MockitoExtension.class)
+class CreateCompanyActionTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void doAction() throws Exception {
+  void doAction() throws Exception {
     Player player = new SimplePlayer(0, "name", 6000);
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);

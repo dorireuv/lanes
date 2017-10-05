@@ -7,28 +7,27 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class BoardClientDecoratorTest {
+@ExtendWith(MockitoExtension.class)
+class BoardClientDecoratorTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private BoardClientDecorator boardClientDecorator;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     Board board = new SimpleBoard();
     boardClientDecorator = new BoardClientDecorator(board, clientEventSubscriber);
   }
 
   @Test
-  public void setToolDispatchesEvent() throws Exception {
+  void setToolDispatchesEvent() throws Exception {
     Position position = Position.create(3, 5);
     Tool tool = Tool.newStarTool();
     boardClientDecorator.setTool(position, tool);

@@ -7,20 +7,19 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class TrapActionTest {
+@ExtendWith(MockitoExtension.class)
+class TrapActionTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
   @Mock private TurnIterator turnIterator;
 
   @Test
-  public void doAction() {
+  void doAction() {
     int playerCashMoney = 1000;
     int bankCashMoney = 2000;
     SimpleBank bank = new SimpleBank(bankCashMoney);

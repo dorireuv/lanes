@@ -16,16 +16,15 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class CompanyUpdateActionTest {
+@ExtendWith(MockitoExtension.class)
+class CompanyUpdateActionTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private final CompanyDefinition companyDefinition = CompanyDefinition.create('A', "A");
@@ -36,8 +35,8 @@ public class CompanyUpdateActionTest {
   private Player player2;
   private ImmutableList<Player> players;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     company = new Company(companyDefinition, size, value);
     player1 = new SimplePlayer(0, "A", 0);
     player2 = new SimplePlayer(1, "B", 0);
@@ -45,7 +44,7 @@ public class CompanyUpdateActionTest {
   }
 
   @Test
-  public void doAction1() {
+  void doAction1() {
     // ...
     // .A.
     // ...
@@ -74,7 +73,7 @@ public class CompanyUpdateActionTest {
   }
 
   @Test
-  public void doAction2() {
+  void doAction2() {
     // +++    AAA
     // +A+ => AAA
     // +++    AAA
@@ -123,7 +122,7 @@ public class CompanyUpdateActionTest {
   }
 
   @Test
-  public void doAction3() {
+  void doAction3() {
     // .*.    .*.
     // *A& => *A&
     // .+.    .A.
@@ -165,7 +164,7 @@ public class CompanyUpdateActionTest {
   }
 
   @Test
-  public void mergedIntoCompanyValueAfterSplit() {
+  void mergedIntoCompanyValueAfterSplit() {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     company.setValue(3200);

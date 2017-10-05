@@ -17,17 +17,16 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class MergeCompanyActionTest {
+@ExtendWith(MockitoExtension.class)
+class MergeCompanyActionTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private final CompanyDefinition mergedIntoCompanyDefinition = CompanyDefinition.create('A', "A");
@@ -42,8 +41,8 @@ public class MergeCompanyActionTest {
   private Company mergedCompany;
   private Position position;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     player1 = new SimplePlayer(0, "A", 0);
     player2 = new SimplePlayer(1, "B", 0);
     List<Player> players = Arrays.asList(player1, player2);
@@ -65,7 +64,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void playersHolding() throws Exception {
+  void playersHolding() throws Exception {
     player1.setNumOfStocks(mergedIntoCompany, 100);
     player1.setNumOfStocks(mergedCompany, 200);
 
@@ -76,7 +75,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void playersCashMoney() throws Exception {
+  void playersCashMoney() throws Exception {
     mergedIntoCompany.setValue(1000);
 
     player1.setNumOfStocks(mergedCompany, 200);
@@ -89,7 +88,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void companiesSize() throws Exception {
+  void companiesSize() throws Exception {
     mergedIntoCompany.setSize(10);
     mergedCompany.setSize(5);
 
@@ -100,14 +99,14 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void toolAfterMergeIsOfTheMergedIntoCompany() {
+  void toolAfterMergeIsOfTheMergedIntoCompany() {
     mergeCompanies();
     Tool companyTool = board.getTool(position);
     assertThat(companyTool.getCompanyDefinition()).hasValue(mergedIntoCompanyDefinition);
   }
 
   @Test
-  public void mergedIntoCompanyValue() {
+  void mergedIntoCompanyValue() {
     mergedIntoCompany.setValue(1000);
     mergedCompany.setValue(1200);
 
@@ -118,7 +117,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void board() {
+  void board() {
     Position mergedCompanyPosition = position.move(0, +1);
     board.getTool(mergedCompanyPosition).setCompanyDefinition(mergedCompanyDefinition);
 
@@ -129,7 +128,7 @@ public class MergeCompanyActionTest {
   }
 
   @Test
-  public void companyTopHolderChange() {
+  void companyTopHolderChange() {
     mergedIntoCompany.setValue(1000);
 
     player1.setNumOfStocks(mergedIntoCompany, 100);

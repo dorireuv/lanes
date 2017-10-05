@@ -4,19 +4,18 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class ClientEventSubscriberFactoryTest {
+@ExtendWith(MockitoExtension.class)
+class ClientEventSubscriberFactoryTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   @Test
-  public void getClientEventSubscriberGroup() throws Exception {
+  void getClientEventSubscriberGroup() throws Exception {
     ClientEventSubscriberGroup clientEventSubscriberGroup =
         ClientEventSubscriberFactory.getClientEventSubscriberGroup();
     clientEventSubscriberGroup.register(clientEventSubscriber);

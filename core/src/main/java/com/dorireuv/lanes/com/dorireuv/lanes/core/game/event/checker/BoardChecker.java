@@ -53,7 +53,9 @@ public class BoardChecker extends CheckerBase {
         .entrySet()
         .stream()
         .filter(e -> e.getValue().getCompanyDefinition().isPresent())
-        .collect(toMap(e -> e.getValue().getCompanyDefinition().get(), Map.Entry::getKey));
+        .collect(
+            toMap(
+                e -> e.getValue().getCompanyDefinition().get(), Map.Entry::getKey, (p1, p2) -> p1));
   }
 
   private List<Company> getMergeCompanies(

@@ -6,40 +6,39 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class BankClientDecoratorTest {
+@ExtendWith(MockitoExtension.class)
+class BankClientDecoratorTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriber clientEventSubscriber;
 
   private BankClientDecorator bankClientDecorator;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     Bank bank = new SimpleBank();
     bankClientDecorator = new BankClientDecorator(bank, clientEventSubscriber);
   }
 
   @Test
-  public void getCashMoney() throws Exception {
+  void getCashMoney() throws Exception {
     bankClientDecorator.getCashMoney();
     verifyNoMoreInteractions(clientEventSubscriber);
   }
 
   @Test
-  public void addZeroCashMoneyDispatchesEvent() throws Exception {
+  void addZeroCashMoneyDispatchesEvent() throws Exception {
     bankClientDecorator.addCashMoney(0);
     verifyNoMoreInteractions(clientEventSubscriber);
   }
 
   @Test
-  public void addNonZeroCashMoneyDoesNotDispatchEvent() throws Exception {
+  void addNonZeroCashMoneyDoesNotDispatchEvent() throws Exception {
     bankClientDecorator.addCashMoney(-1);
     verify(clientEventSubscriber, times(1)).onBankCashMoneyChange(any());
     verifyNoMoreInteractions(clientEventSubscriber);

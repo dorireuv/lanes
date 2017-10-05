@@ -34,18 +34,17 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class LanesTest {
+@ExtendWith(MockitoExtension.class)
+class LanesTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ClientEventSubscriberGroup clientEventSubscriberGroup;
 
   private Lanes lanes;
@@ -55,8 +54,8 @@ public class LanesTest {
   private List<CompanyDefinition> companyDefinitions;
   private CheckerActionExecutor checkerActionExecutor;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     player1 = new SimplePlayer(0, "P1", 0);
     player2 = new SimplePlayer(1, "P2", 0);
     List<Player> players = Arrays.asList(player1, player2);
@@ -90,7 +89,7 @@ public class LanesTest {
   }
 
   @Test
-  public void doMoveThrowsExceptionBeforePlayerEndedTurn() {
+  void doMoveThrowsExceptionBeforePlayerEndedTurn() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -98,14 +97,14 @@ public class LanesTest {
   }
 
   @Test
-  public void endTurnThrowsExceptionBeforePlayerDoMove() {
+  void endTurnThrowsExceptionBeforePlayerDoMove() {
     lanes.acceptBoard();
     lanes.startGame();
     assertThrows(IllegalMoveException.class, () -> lanes.endTurn());
   }
 
   @Test
-  public void order() {
+  void order() {
     InOrder inOrder = inOrder(checkerActionExecutor);
     lanes.acceptBoard();
     lanes.startGame();
@@ -124,7 +123,7 @@ public class LanesTest {
   }
 
   @Test
-  public void phases() throws Exception {
+  void phases() throws Exception {
     lanes.getTurnIterator().setNumOfTurns(1);
 
     assertEquals(lanes.getCurrentPhase(), Phase.GAME_NOT_STARTED);
@@ -139,7 +138,7 @@ public class LanesTest {
   }
 
   @Test
-  public void buy() {
+  void buy() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -162,7 +161,7 @@ public class LanesTest {
   }
 
   @Test
-  public void buyDoesNotDispatchCompanyTopHolderChangeEvent() {
+  void buyDoesNotDispatchCompanyTopHolderChangeEvent() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -177,7 +176,7 @@ public class LanesTest {
   }
 
   @Test
-  public void buyThrowsExceptionWhenNotEnoughMoney() {
+  void buyThrowsExceptionWhenNotEnoughMoney() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -192,7 +191,7 @@ public class LanesTest {
   }
 
   @Test
-  public void sell() {
+  void sell() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -217,7 +216,7 @@ public class LanesTest {
   }
 
   @Test
-  public void sellDoesNotDispatchCompanyTopHolderChangeEvent() {
+  void sellDoesNotDispatchCompanyTopHolderChangeEvent() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -234,7 +233,7 @@ public class LanesTest {
   }
 
   @Test
-  public void sellThrowsExceptionWhenNotEnoughStocks() {
+  void sellThrowsExceptionWhenNotEnoughStocks() {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));

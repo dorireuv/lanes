@@ -7,21 +7,21 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class TrapBoardAssignerTest {
+class TrapBoardAssignerTest {
   private Board board;
   private TrapBoardAssigner trapBoardAssigner;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     board = new SimpleBoard();
     trapBoardAssigner = new TrapBoardAssigner();
   }
 
   @Test
-  public void assignRejectedOneStarLeft() throws Exception {
+  void assignRejectedOneStarLeft() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
@@ -31,7 +31,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignRejectedOneStarRight() throws Exception {
+  void assignRejectedOneStarRight() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
@@ -41,7 +41,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignRejectedOneStarTop() throws Exception {
+  void assignRejectedOneStarTop() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
@@ -51,7 +51,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignRejectedOneStarBottom() throws Exception {
+  void assignRejectedOneStarBottom() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(
         trapPosition,
@@ -61,7 +61,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignRejectedNoStars() throws Exception {
+  void assignRejectedNoStars() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignRejected(trapPosition, new Position[] {});
   }
@@ -75,14 +75,14 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAllAroundEmptyRejected() throws Exception {
+  void assignAllAroundEmptyRejected() throws Exception {
     Position position = Position.create(5, 5);
     boolean accepted = trapBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
   }
 
   @Test
-  public void assignOnTrapAccepted() throws Exception {
+  void assignOnTrapAccepted() throws Exception {
     Position position = Position.create(5, 5);
     board.setTool(position.move(-1, 0), Tool.newStarTool());
     board.setTool(position.move(+1, 0), Tool.newStarTool());
@@ -92,7 +92,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignOnNonEmptyToolRejected() throws Exception {
+  void assignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(5, 5);
     Tool nonEmptyTool = Tool.newStarTool();
     board.setTool(position, nonEmptyTool);
@@ -101,7 +101,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedTwoStarsTopLeft() throws Exception {
+  void assignAcceptedTwoStarsTopLeft() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -111,7 +111,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedTwoStarsTopRight() throws Exception {
+  void assignAcceptedTwoStarsTopRight() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -121,7 +121,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedTwoStarsBottomLeft() throws Exception {
+  void assignAcceptedTwoStarsBottomLeft() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -131,7 +131,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedTwoStarsBottomRight() throws Exception {
+  void assignAcceptedTwoStarsBottomRight() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -141,7 +141,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedThreeStarsLeft() throws Exception {
+  void assignAcceptedThreeStarsLeft() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -151,7 +151,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedThreeStarsRight() throws Exception {
+  void assignAcceptedThreeStarsRight() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -161,7 +161,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedThreeStarsTop() throws Exception {
+  void assignAcceptedThreeStarsTop() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -171,7 +171,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedThreeStarsBottom() throws Exception {
+  void assignAcceptedThreeStarsBottom() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,
@@ -181,7 +181,7 @@ public class TrapBoardAssignerTest {
   }
 
   @Test
-  public void assignAcceptedFourStars() throws Exception {
+  void assignAcceptedFourStars() throws Exception {
     Position trapPosition = Position.create(5, 5);
     assertAssignAccepted(
         trapPosition,

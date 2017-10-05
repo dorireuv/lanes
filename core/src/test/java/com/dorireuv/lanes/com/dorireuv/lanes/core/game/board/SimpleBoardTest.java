@@ -7,31 +7,31 @@ import static org.junit.Assert.assertSame;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import java.util.Map;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class SimpleBoardTest {
+class SimpleBoardTest {
 
   private Board board;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     board = new SimpleBoard();
   }
 
   @Test
-  public void create() throws Exception {
+  void create() throws Exception {
     assertNotNull(board);
   }
 
   @Test
-  public void getToolWithoutBoundProtectionWhenOutOfBoundsReturnsEmptyTool() {
+  void getToolWithoutBoundProtectionWhenOutOfBoundsReturnsEmptyTool() {
     assertEquals(
         board.getToolWithoutBoundProtection(Position.create(-1, -1)).getToolType(), ToolType.EMPTY);
   }
 
   @Test
-  public void getToolWithoutBoundProtectionWhenInBoundsReturnsTool() {
+  void getToolWithoutBoundProtectionWhenInBoundsReturnsTool() {
     Position position = Position.create(2, 1);
     Tool tool = Tool.newStarTool();
     board.setTool(position, tool);
@@ -39,7 +39,7 @@ public class SimpleBoardTest {
   }
 
   @Test
-  public void getToolsAround() throws Exception {
+  void getToolsAround() throws Exception {
     Position position = Position.create(5, 5);
     Tool leftTool = Tool.newEmptyTool();
     Tool rightTool = Tool.newEmptyTool();

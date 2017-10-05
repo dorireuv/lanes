@@ -7,20 +7,19 @@ import static org.mockito.Mockito.when;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class FreezeCheckerTest {
+@ExtendWith(MockitoExtension.class)
+class FreezeCheckerTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ActionFactory actionFactory;
   @Mock private Tool tool;
 
   @Test
-  public void checkDispatchesEventOnFreeze() throws Exception {
+  void checkDispatchesEventOnFreeze() throws Exception {
     when(tool.isFreeze()).thenReturn(true);
     FreezeChecker freezeEventChecker = new FreezeChecker(actionFactory, tool);
     freezeEventChecker.check();
@@ -29,7 +28,7 @@ public class FreezeCheckerTest {
   }
 
   @Test
-  public void checkDoesNothingOnNonFreeze() throws Exception {
+  void checkDoesNothingOnNonFreeze() throws Exception {
     when(tool.isFreeze()).thenReturn(false);
     FreezeChecker freezeEventChecker = new FreezeChecker(actionFactory, tool);
     freezeEventChecker.check();

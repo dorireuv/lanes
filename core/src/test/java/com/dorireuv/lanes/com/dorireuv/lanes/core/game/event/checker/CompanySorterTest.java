@@ -5,18 +5,18 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class CompanySorterTest {
+class CompanySorterTest {
 
   private Company company1;
   private Company company2;
   private List<Company> companies;
   private CompanySorter companySorter;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     CompanyDefinition companyDefinition1 = CompanyDefinition.create('A', "A");
     CompanyDefinition companyDefinition2 = CompanyDefinition.create('A', "A");
     company1 = new Company(companyDefinition1);
@@ -26,7 +26,7 @@ public class CompanySorterTest {
   }
 
   @Test
-  public void sort() throws Exception {
+  void sort() throws Exception {
     company1.setSize(1);
     company2.setSize(2);
     companySorter.sort(companies);

@@ -9,21 +9,20 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.google.common.collect.ImmutableSet;
 import java.util.Optional;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class MovesGeneratorTest {
+@ExtendWith(MockitoExtension.class)
+class MovesGeneratorTest {
 
   private final SimpleBoard board = new SimpleBoard();
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private SingleMoveGenerator singleMoveGenerator;
 
   @Test
-  public void generate_samePositionIsGeneratedTwice_filtersDuplicate() throws Exception {
+  void generate_samePositionIsGeneratedTwice_filtersDuplicate() throws Exception {
     when(singleMoveGenerator.generate(any(), anyBoolean()))
         .thenReturn(Optional.of(Position.create(5, 5)))
         .thenReturn(Optional.of(Position.create(5, 5)))
@@ -36,7 +35,7 @@ public class MovesGeneratorTest {
   }
 
   @Test
-  public void generate_emptyMove_filtered() throws Exception {
+  void generate_emptyMove_filtered() throws Exception {
     when(singleMoveGenerator.generate(any(), anyBoolean()))
         .thenReturn(Optional.empty())
         .thenReturn(Optional.of(Position.create(5, 5)));

@@ -11,20 +11,19 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class GoldStarDisappearEventCheckerTest {
+@ExtendWith(MockitoExtension.class)
+class GoldStarDisappearEventCheckerTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ActionFactory actionFactory;
   @Mock private RandomWrapper randomWrapper;
 
   @Test
-  public void checkDispatchesEventOnGoldStarDisappear() throws Exception {
+  void checkDispatchesEventOnGoldStarDisappear() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     board.setTool(position, Tool.newGoldStarTool());
@@ -38,7 +37,7 @@ public class GoldStarDisappearEventCheckerTest {
   }
 
   @Test
-  public void checkDoesNothingOnNonGoldStarDisappear() throws Exception {
+  void checkDoesNothingOnNonGoldStarDisappear() throws Exception {
     Board board = new SimpleBoard();
     final Position position = Position.create(5, 5);
     when(randomWrapper.nextPosition(board)).thenAnswer(invocationOnMock -> position);

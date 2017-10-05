@@ -43,6 +43,7 @@ class CompanyUpdateAction extends ActionBase {
         company.incValue(Config.getCompanyHitValue());
         board.getTool(curPosition).setCompanyDefinition(company.getCompanyDefinition());
         company.incSize();
+        // TODO(dorireuv): do we really want to do this?
         updateCompanyValue(curPosition);
       }
     }

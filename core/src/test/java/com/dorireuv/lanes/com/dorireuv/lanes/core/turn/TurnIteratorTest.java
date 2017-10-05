@@ -4,15 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class TurnIteratorTest {
+class TurnIteratorTest {
 
   private TurnIterator turnIterator;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     int firstPlayerIndex = 1;
     int numOfPlayers = 3;
     int numOfTurns = 100;
@@ -20,12 +20,12 @@ public class TurnIteratorTest {
   }
 
   @Test
-  public void getCurrentTurnOnBeginningReturnsOne() {
+  void getCurrentTurnOnBeginningReturnsOne() {
     assertEquals(turnIterator.getCurrentTurn(), 1);
   }
 
   @Test
-  public void hasNextWhenNoTurnsLeftReturnsFalse() {
+  void hasNextWhenNoTurnsLeftReturnsFalse() {
     assertEquals(turnIterator.getNumOfTurns(), 100);
     turnIterator.setNumOfTurns(1);
     assertEquals(turnIterator.getNumOfTurns(), 1);
@@ -33,12 +33,12 @@ public class TurnIteratorTest {
   }
 
   @Test
-  public void getCurrentPlayerIndexOnBeginningReturnsFirstPlayerIndex() {
+  void getCurrentPlayerIndexOnBeginningReturnsFirstPlayerIndex() {
     assertEquals(turnIterator.getCurrentPlayerIndex(), turnIterator.getFirstPlayerIndex());
   }
 
   @Test
-  public void next() {
+  void next() {
     turnIterator.next();
     assertEquals(turnIterator.getCurrentTurn(), 2);
     assertEquals(turnIterator.getCurrentPlayerIndex(), 2);
@@ -49,7 +49,7 @@ public class TurnIteratorTest {
   }
 
   @Test
-  public void setShouldEndTurnIsFalseAfterNext() {
+  void setShouldEndTurnIsFalseAfterNext() {
     assertFalse(turnIterator.shouldEndTurn());
     turnIterator.setShouldEndTurn();
     assertTrue(turnIterator.shouldEndTurn());

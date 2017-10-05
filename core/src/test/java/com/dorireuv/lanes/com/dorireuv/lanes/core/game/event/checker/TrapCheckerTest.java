@@ -8,21 +8,20 @@ import static org.mockito.Mockito.when;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class TrapCheckerTest {
+@ExtendWith(MockitoExtension.class)
+class TrapCheckerTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ActionFactory actionFactory;
   @Mock private RandomWrapper randomWrapper;
   @Mock private Tool tool;
 
   @Test
-  public void checkDispatchesEventOnTrap() throws Exception {
+  void checkDispatchesEventOnTrap() throws Exception {
     when(tool.isTrap()).thenReturn(true);
     when(randomWrapper.nextDouble()).thenReturn(1.0);
     TrapChecker trapEventChecker = new TrapChecker(actionFactory, randomWrapper, tool);
@@ -31,7 +30,7 @@ public class TrapCheckerTest {
   }
 
   @Test
-  public void checkDispatchesEventOnHalfTrap() throws Exception {
+  void checkDispatchesEventOnHalfTrap() throws Exception {
     when(tool.isTrap()).thenReturn(true);
     when(randomWrapper.nextDouble()).thenReturn(0.0);
     TrapChecker trapEventChecker = new TrapChecker(actionFactory, randomWrapper, tool);
@@ -41,7 +40,7 @@ public class TrapCheckerTest {
   }
 
   @Test
-  public void checkDoesNothingOnNonTrap() throws Exception {
+  void checkDoesNothingOnNonTrap() throws Exception {
     when(tool.isTrap()).thenReturn(false);
     TrapChecker trapEventChecker = new TrapChecker(actionFactory, randomWrapper, tool);
     trapEventChecker.check();

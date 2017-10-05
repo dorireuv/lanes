@@ -11,16 +11,15 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class DoublePaymentCheckerTest {
+@ExtendWith(MockitoExtension.class)
+class DoublePaymentCheckerTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ActionFactory actionFactory;
   @Mock private Tool tool;
 
@@ -28,15 +27,15 @@ public class DoublePaymentCheckerTest {
   private Player player2;
   private List<Player> sortedPlayers;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     player1 = new SimplePlayer(0, "A", 1000);
     player2 = new SimplePlayer(1, "A", 2000);
     sortedPlayers = Arrays.asList(player1, player2);
   }
 
   @Test
-  public void checkDispatchesEventOnDoublePayment() throws Exception {
+  void checkDispatchesEventOnDoublePayment() throws Exception {
     when(tool.isDoublePayment()).thenReturn(true);
     DoublePaymentChecker doublePaymentEventChecker =
         new DoublePaymentChecker(actionFactory, player1, sortedPlayers, tool);
@@ -46,7 +45,7 @@ public class DoublePaymentCheckerTest {
   }
 
   @Test
-  public void checkDoesNothingOnPlayerWithMostValue() throws Exception {
+  void checkDoesNothingOnPlayerWithMostValue() throws Exception {
     when(tool.isDoublePayment()).thenReturn(true);
     DoublePaymentChecker doublePaymentEventChecker =
         new DoublePaymentChecker(actionFactory, player2, sortedPlayers, tool);
@@ -56,7 +55,7 @@ public class DoublePaymentCheckerTest {
   }
 
   @Test
-  public void checkDoesNothingOnNonDoublePayment() throws Exception {
+  void checkDoesNothingOnNonDoublePayment() throws Exception {
     when(tool.isDoublePayment()).thenReturn(false);
     DoublePaymentChecker doublePaymentEventChecker =
         new DoublePaymentChecker(actionFactory, player1, sortedPlayers, tool);

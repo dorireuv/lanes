@@ -1,12 +1,11 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.config;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class ConfigTest {
+class ConfigTest {
 
   @Test
-  public void create() throws Exception {
-    Assert.assertNotNull(Config.getSellCommission());
+  void create() {
+    Config.getSellCommission();
   }
 }

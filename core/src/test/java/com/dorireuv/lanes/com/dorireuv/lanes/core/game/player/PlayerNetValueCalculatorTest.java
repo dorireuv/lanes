@@ -4,11 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class PlayerNetValueCalculatorTest {
+class PlayerNetValueCalculatorTest {
   @Test
-  public void calc() throws Exception {
+  void calc() throws Exception {
     Player player = new SimplePlayer(0, "P1", 0);
     player.setCashMoney(1000);
     CompanyDefinition companyDefinition1 = CompanyDefinition.create('A', "A");

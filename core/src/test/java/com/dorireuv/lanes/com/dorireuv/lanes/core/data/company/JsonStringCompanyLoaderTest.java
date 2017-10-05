@@ -6,17 +6,17 @@ import static org.junit.gen5.api.Assertions.assertThrows;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import org.json.JSONException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class JsonStringCompanyLoaderTest {
+class JsonStringCompanyLoaderTest {
 
   @Test
-  public void loadPredefined_always_isNotEmpty() {
+  void loadPredefined_always_isNotEmpty() {
     assertThat(JsonStringCompanyLoader.loadPredefined()).isNotEmpty();
   }
 
   @Test
-  public void load_validJsonString_returnsAllCompanies() {
+  void load_validJsonString_returnsAllCompanies() {
     String jsonString =
         Joiner.on('\n')
             .join(
@@ -40,7 +40,7 @@ public class JsonStringCompanyLoaderTest {
   }
 
   @Test
-  public void load_invalidJsonString_throwsJSONException() {
+  void load_invalidJsonString_throwsJSONException() {
     String jsonString = "{";
     assertThrows(JSONException.class, () -> JsonStringCompanyLoader.load(jsonString));
   }

@@ -11,20 +11,19 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-import org.junit.Rule;
-import org.junit.Test;
+import name.falgout.jeffrey.testing.junit5.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-public class BonusPaymentCheckerTest {
+@ExtendWith(MockitoExtension.class)
+class BonusPaymentCheckerTest {
 
-  @Rule public final MockitoRule mockitoRule = MockitoJUnit.rule();
   @Mock private ActionFactory actionFactory;
   @Mock private RandomWrapper randomWrapper;
 
   @Test
-  public void checkDispatchesEventOnBonusPayment() throws Exception {
+  void checkDispatchesEventOnBonusPayment() throws Exception {
     Board board = new SimpleBoard();
     Position position = Position.create(5, 5);
     board.setTool(position, Tool.newGoldStarTool());
@@ -38,7 +37,7 @@ public class BonusPaymentCheckerTest {
   }
 
   @Test
-  public void checkDoesNothingOnNonBonusPayment() throws Exception {
+  void checkDoesNothingOnNonBonusPayment() throws Exception {
     when(randomWrapper.nextDouble()).thenReturn(1.0);
     BonusPaymentChecker bonusPaymentEventChecker =
         new BonusPaymentChecker(actionFactory, randomWrapper);
