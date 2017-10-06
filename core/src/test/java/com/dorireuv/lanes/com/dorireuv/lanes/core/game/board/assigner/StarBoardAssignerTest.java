@@ -1,4 +1,4 @@
-package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
+package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

@@ -40,11 +40,9 @@ public class LanesBuilder {
         ClientEventSubscriberFactory.getClientEventSubscriberGroup();
     List<Player> players = createPlayers(playersName, clientEventSubscriberGroup);
     Bank bank = new BankClientDecorator(new SimpleBank(), clientEventSubscriberGroup);
-    Board board =
-        new BoardClientDecorator(
-            new BoardGenerator(new SimpleRandomWrapper(randomSeed))
-                .generate(numOfStars, players.size()),
-            clientEventSubscriberGroup);
+    BoardGenerator boardGenerator =
+        new BoardGenerator(new SimpleRandomWrapper(randomSeed), players.size(), numOfStars);
+    Board board = new BoardClientDecorator(boardGenerator.generate(), clientEventSubscriberGroup);
     Game game = new GameBuilder().buildNewDefaultGame(players, board, bank);
     MovesGenerator movesGenerator =
         new MovesGenerator(new SingleMoveGenerator(randomWrapper), Config.getNumOfMoveOptions());
@@ -53,6 +51,7 @@ public class LanesBuilder {
         new Lanes(
             game,
             randomWrapper,
+            boardGenerator,
             movesGenerator,
             clientEventSubscriberGroup,
             turnIterator,

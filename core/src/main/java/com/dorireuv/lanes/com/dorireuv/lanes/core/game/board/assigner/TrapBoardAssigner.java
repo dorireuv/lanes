@@ -1,6 +1,6 @@
-package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
+package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
@@ -12,7 +12,7 @@ public class TrapBoardAssigner implements BoardAssigner {
   }
 
   @Override
-  public boolean assignPosition(Board board, Position position) {
+  public boolean assignPosition(ImmutableBoard board, Position position) {
     Tool tool = board.getToolWithoutBoundProtection(position);
     if (!tool.getToolType().equals(ToolType.EMPTY)) {
       return false;
@@ -39,11 +39,6 @@ public class TrapBoardAssigner implements BoardAssigner {
                     .getToolWithoutBoundProtection(position.move(0, -1))
                     .getToolType()
                     .equals(ToolType.EMPTY)));
-    if (numOfStars < 2) {
-      return false;
-    }
-
-    tool.setIsTrap(true);
-    return true;
+    return numOfStars >= 2;
   }
 }

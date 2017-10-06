@@ -25,6 +25,7 @@ public class Lanes {
 
   private final Game game;
   private final RandomWrapper randomWrapper;
+  private final BoardGenerator boardGenerator;
   private final MovesGenerator movesGenerator;
   private final ClientEventSubscriberGroup clientEventSubscriberGroup;
   private final TurnIterator turnIterator;
@@ -36,15 +37,17 @@ public class Lanes {
   private Position currentMove;
   private Phase currentPhase;
 
-  public Lanes(
+  Lanes(
       Game game,
       RandomWrapper randomWrapper,
+      BoardGenerator boardGenerator,
       MovesGenerator movesGenerator,
       ClientEventSubscriberGroup clientEventSubscriberGroup,
       TurnIterator turnIterator,
       CheckerActionExecutor checkerActionExecutor) {
     this.game = game;
     this.randomWrapper = randomWrapper;
+    this.boardGenerator = boardGenerator;
     this.movesGenerator = movesGenerator;
     this.clientEventSubscriberGroup = clientEventSubscriberGroup;
     this.turnIterator = turnIterator;
@@ -99,11 +102,7 @@ public class Lanes {
   public void nextBoard() {
     validatePhase(Phase.GAME_NOT_STARTED);
     getGame()
-        .setBoard(
-            new BoardClientDecorator(
-                new BoardGenerator(randomWrapper)
-                    .generate(getBoard().getNumOfStars(), getGame().getPlayers().size()),
-                clientEventSubscriberGroup));
+        .setBoard(new BoardClientDecorator(boardGenerator.generate(), clientEventSubscriberGroup));
   }
 
   public void acceptBoard() {

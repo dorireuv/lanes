@@ -1,6 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.util.random;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 
 public interface RandomWrapper {
@@ -9,5 +9,5 @@ public interface RandomWrapper {
 
   double nextDouble();
 
-  Position nextPosition(Board board);
+  Position nextPosition(ImmutableBoard board);
 }

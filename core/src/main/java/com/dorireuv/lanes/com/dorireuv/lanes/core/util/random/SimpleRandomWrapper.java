@@ -1,6 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.util.random;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import java.util.Random;
 
@@ -23,7 +23,7 @@ public class SimpleRandomWrapper implements RandomWrapper {
   }
 
   @Override
-  public Position nextPosition(Board board) {
+  public Position nextPosition(ImmutableBoard board) {
     return Position.create(nextInt(board.getRows()), nextInt(board.getCols()));
   }
 }

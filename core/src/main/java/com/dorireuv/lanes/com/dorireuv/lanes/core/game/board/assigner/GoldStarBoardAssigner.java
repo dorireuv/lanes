@@ -1,18 +1,14 @@
-package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board;
+package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 
 public class GoldStarBoardAssigner implements BoardAssigner {
 
-  private boolean doesToolExist(Board board, ToolType toolType, Position position) {
-    return board.getToolWithoutBoundProtection(position).getToolType().equals(toolType);
-  }
-
   @Override
-  public boolean assignPosition(Board board, Position position) {
+  public boolean assignPosition(ImmutableBoard board, Position position) {
     int row = position.getRow();
     if (row <= 0 || row >= board.getRows() - 1) {
       return false;
@@ -60,13 +56,12 @@ public class GoldStarBoardAssigner implements BoardAssigner {
       return false;
     }
 
-    if (doesToolExist(board, ToolType.STAR, position.move(-1, 0))
-        && doesToolExist(board, ToolType.STAR, position.move(+1, 0))
-        && doesToolExist(board, ToolType.STAR, position.move(0, +1))) {
-      return false;
-    }
+    return !doesToolExist(board, ToolType.STAR, position.move(-1, 0))
+        || !doesToolExist(board, ToolType.STAR, position.move(+1, 0))
+        || !doesToolExist(board, ToolType.STAR, position.move(0, +1));
+  }
 
-    board.setGoldStar(position);
-    return true;
+  private boolean doesToolExist(ImmutableBoard board, ToolType toolType, Position position) {
+    return board.getToolWithoutBoundProtection(position).getToolType().equals(toolType);
   }
 }

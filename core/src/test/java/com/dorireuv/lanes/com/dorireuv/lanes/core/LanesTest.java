@@ -22,6 +22,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.GameBuilder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.CheckerActionExecutor;
@@ -81,6 +82,7 @@ class LanesTest {
         new Lanes(
             game,
             randomWrapper,
+            new BoardGenerator(randomWrapper, numOfPlayers, 100),
             movesGenerator,
             clientEventSubscriberGroup,
             turnIterator,
