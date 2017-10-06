@@ -3,8 +3,11 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.checker;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import java.util.List;
 
-class CompanySorter {
-  public void sort(List<Company> companies) {
+final class CompanySorter {
+
+  private CompanySorter() {}
+
+  static void sort(List<Company> companies) {
     companies.sort(
         (company1, company2) -> {
           if (company1.getSize() != company2.getSize()) {

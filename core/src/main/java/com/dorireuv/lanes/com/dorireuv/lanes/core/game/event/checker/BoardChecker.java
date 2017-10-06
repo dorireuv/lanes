@@ -63,7 +63,7 @@ public class BoardChecker extends CheckerBase {
   }
 
   private void sortCompaniesFromLargestToSmallest(List<Company> companies) {
-    new CompanySorter().sort(companies);
+    CompanySorter.sort(companies);
   }
 
   @Override
