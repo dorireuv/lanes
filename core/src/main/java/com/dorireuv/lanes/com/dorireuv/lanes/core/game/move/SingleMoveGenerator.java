@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toMap;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
@@ -38,18 +39,18 @@ public class SingleMoveGenerator {
               candidate.move(0, -1),
               candidate.move(0, +1));
 
-      Map<Position, Tool> positionToToolMap = new HashMap<>();
+      Map<Position, ImmutableTool> positionToToolMap = new HashMap<>();
       for (Position position : surround) {
         positionToToolMap.put(position, board.getToolWithoutBoundProtection(position));
       }
 
-      Map<Position, Tool> positionToStarMap =
+      Map<Position, ImmutableTool> positionToStarMap =
           positionToToolMap
               .entrySet()
               .stream()
               .filter(e -> e.getValue().getToolType().isStar())
               .collect(toMap(Map.Entry::getKey, Entry::getValue));
-      Map<Position, Tool> positionToCompanyMap =
+      Map<Position, ImmutableTool> positionToCompanyMap =
           positionToToolMap
               .entrySet()
               .stream()

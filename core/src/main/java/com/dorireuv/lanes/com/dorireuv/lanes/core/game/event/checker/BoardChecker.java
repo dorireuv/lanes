@@ -6,7 +6,7 @@ import static java.util.stream.Collectors.toMap;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
@@ -33,12 +33,12 @@ final class BoardChecker extends CheckerBase {
     this.companies = companies;
   }
 
-  private Map<Position, Tool> getPositionToToolMap() {
+  private Map<Position, ImmutableTool> getPositionToToolMap() {
     return board.getToolsAround(position);
   }
 
   private boolean isAllEmpty() {
-    for (Tool tool : getPositionToToolMap().values()) {
+    for (ImmutableTool tool : getPositionToToolMap().values()) {
       if (!tool.isEmpty()) {
         return false;
       }

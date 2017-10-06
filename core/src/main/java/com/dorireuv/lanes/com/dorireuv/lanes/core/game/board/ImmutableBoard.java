@@ -1,5 +1,6 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collect.Immutable2DArray;
 import com.google.auto.value.AutoValue;
@@ -9,41 +10,37 @@ import com.google.common.collect.ImmutableMap;
 @AutoValue
 public abstract class ImmutableBoard {
 
-  private static final Tool EMPTY_TOOL = Tool.newEmptyTool();
-
-  public abstract Immutable2DArray<Tool> getBoard();
+  public abstract Immutable2DArray<ImmutableTool> immutableBoard();
 
   public final int getRows() {
-    return getBoard().rows();
+    return immutableBoard().rows();
   }
 
   public final int getCols() {
-    return getBoard().cols();
+    return immutableBoard().cols();
   }
 
-  public abstract int getNumOfStars();
-
-  public final Tool getTool(Position position) {
+  public ImmutableTool getTool(Position position) {
     return getTool(position.getRow(), position.getCol());
   }
 
-  public final Tool getTool(int row, int col) {
-    return getBoard().get(row, col);
+  public ImmutableTool getTool(int row, int col) {
+    return immutableBoard().get(row, col);
   }
 
-  public Tool getToolWithoutBoundProtection(Position position) {
+  public ImmutableTool getToolWithoutBoundProtection(Position position) {
     return getToolWithoutBoundProtection(position.getRow(), position.getCol());
   }
 
-  private Tool getToolWithoutBoundProtection(int row, int col) {
+  private ImmutableTool getToolWithoutBoundProtection(int row, int col) {
     if (row < 0 || row >= getRows() || col < 0 || col >= getCols()) {
-      return EMPTY_TOOL;
+      return Tool.newEmptyTool();
     }
 
     return getTool(row, col);
   }
 
-  public ImmutableMap<Position, Tool> getToolsAround(Position centerPosition) {
+  public ImmutableMap<Position, ImmutableTool> getToolsAround(Position centerPosition) {
     ImmutableList<Position> positions =
         ImmutableList.of(
             centerPosition.move(-1, 0),
@@ -51,7 +48,7 @@ public abstract class ImmutableBoard {
             centerPosition.move(0, -1),
             centerPosition.move(0, +1));
 
-    ImmutableMap.Builder<Position, Tool> positionToToolMap = ImmutableMap.builder();
+    ImmutableMap.Builder<Position, ImmutableTool> positionToToolMap = ImmutableMap.builder();
     for (Position position : positions) {
       if (isPositionValid(position)) {
         positionToToolMap.put(position, getTool(position));
@@ -75,9 +72,7 @@ public abstract class ImmutableBoard {
   @AutoValue.Builder
   public abstract static class Builder {
 
-    public abstract Builder setBoard(Immutable2DArray<Tool> newBoard);
-
-    public abstract Builder setNumOfStars(int newNumOfStars);
+    public abstract Builder setImmutableBoard(Immutable2DArray<ImmutableTool> newBoard);
 
     public abstract ImmutableBoard build();
   }

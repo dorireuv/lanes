@@ -2,7 +2,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 
 public class GoldStarBoardAssigner implements BoardAssigner {
@@ -19,7 +19,7 @@ public class GoldStarBoardAssigner implements BoardAssigner {
       return false;
     }
 
-    Tool tool = board.getToolWithoutBoundProtection(position);
+    ImmutableTool tool = board.getToolWithoutBoundProtection(position);
     if (tool.getToolType().equals(ToolType.GOLD_STAR)) {
       return false;
     }

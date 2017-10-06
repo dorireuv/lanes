@@ -3,6 +3,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BoardChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.collect.Immutable2DArray;
 import com.google.common.collect.ImmutableMap;
@@ -23,12 +24,12 @@ public class BoardClientDecorator extends Board {
   }
 
   @Override
-  public Tool getToolWithoutBoundProtection(Position position) {
+  public ImmutableTool getToolWithoutBoundProtection(Position position) {
     return board.getToolWithoutBoundProtection(position);
   }
 
   @Override
-  public ImmutableMap<Position, Tool> getToolsAround(Position centerPosition) {
+  public ImmutableMap<Position, ImmutableTool> getToolsAround(Position centerPosition) {
     return board.getToolsAround(centerPosition);
   }
 

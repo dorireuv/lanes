@@ -4,7 +4,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
@@ -32,8 +32,8 @@ final class CompanyUpdateAction extends ActionBase {
   }
 
   private void updateCompanyValue(Position position) {
-    for (Map.Entry<Position, Tool> entry : board.getToolsAround(position).entrySet()) {
-      Tool curTool = entry.getValue();
+    for (Map.Entry<Position, ImmutableTool> entry : board.getToolsAround(position).entrySet()) {
+      ImmutableTool curTool = entry.getValue();
       if (curTool.getToolType().equals(ToolType.GOLD_STAR)) {
         company.incValue(Config.getCompanyGoldStarValue());
       } else if (curTool.getToolType().equals(ToolType.STAR)) {

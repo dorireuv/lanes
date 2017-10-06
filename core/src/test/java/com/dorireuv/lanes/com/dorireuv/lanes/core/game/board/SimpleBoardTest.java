@@ -3,7 +3,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +50,7 @@ class SimpleBoardTest {
     board.setGoldStar(topPosition);
     board.setCompany(bottomPosition, CompanyDefinition.create('A', "A"));
 
-    Map<Position, Tool> toolsAround = board.getToolsAround(position);
+    Map<Position, ImmutableTool> toolsAround = board.getToolsAround(position);
 
     assertThat(toolsAround.get(leftPosition).getToolType()).isEqualTo(ToolType.STAR);
     assertThat(toolsAround.get(rightPosition).getToolType()).isEqualTo(ToolType.HIT);

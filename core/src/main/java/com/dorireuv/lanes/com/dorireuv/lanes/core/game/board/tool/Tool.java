@@ -3,7 +3,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import java.util.Optional;
 
-public class Tool {
+public class Tool extends ImmutableTool {
 
   public static Tool newEmptyTool() {
     Tool tool = new Tool();
@@ -49,22 +49,16 @@ public class Tool {
     this.setIsDoublePayment(false);
   }
 
+  @Override
   public ToolType getToolType() {
     return toolType;
-  }
-
-  public boolean isEmpty() {
-    return getToolType().isEmpty();
-  }
-
-  public boolean isStar() {
-    return getToolType().isStar();
   }
 
   public void setToolType(ToolType toolType) {
     this.toolType = toolType;
   }
 
+  @Override
   public Optional<CompanyDefinition> getCompanyDefinition() {
     return companyDefinition;
   }
@@ -100,5 +94,12 @@ public class Tool {
 
   public void setIsDoublePayment(boolean isDoublePayment) {
     this.isDoublePayment = isDoublePayment;
+  }
+
+  public ImmutableTool immutableCopy() {
+    return ImmutableTool.builder()
+        .setToolType(toolType)
+        .setCompanyDefinition(getCompanyDefinition())
+        .build();
   }
 }
