@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -68,7 +67,7 @@ class TrapBoardAssignerTest {
 
   private void assertAssignRejected(Position trapPosition, Position[] otherStarsPosition) {
     for (Position otherStarPosition : otherStarsPosition) {
-      board.setTool(otherStarPosition, Tool.newStarTool());
+      board.setStar(otherStarPosition);
     }
     boolean accepted = trapBoardAssigner.assignPosition(board, trapPosition);
     assertFalse(accepted);
@@ -84,8 +83,8 @@ class TrapBoardAssignerTest {
   @Test
   void assignOnTrapAccepted() throws Exception {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(-1, 0), Tool.newStarTool());
-    board.setTool(position.move(+1, 0), Tool.newStarTool());
+    board.setStar(position.move(-1, 0));
+    board.setStar(position.move(+1, 0));
     board.getTool(position).setIsTrap(true);
     boolean accepted = trapBoardAssigner.assignPosition(board, position);
     assertTrue(accepted);
@@ -94,8 +93,7 @@ class TrapBoardAssignerTest {
   @Test
   void assignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(5, 5);
-    Tool nonEmptyTool = Tool.newStarTool();
-    board.setTool(position, nonEmptyTool);
+    board.setStar(position);
     boolean accepted = trapBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
   }
@@ -195,7 +193,7 @@ class TrapBoardAssignerTest {
 
   private void assertAssignAccepted(Position trapPosition, Position[] otherStarsPosition) {
     for (Position otherStarPosition : otherStarsPosition) {
-      board.setTool(otherStarPosition, Tool.newGoldStarTool());
+      board.setGoldStar(otherStarPosition);
     }
     boolean accepted = trapBoardAssigner.assignPosition(board, trapPosition);
     assertTrue(accepted);

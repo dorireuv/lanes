@@ -41,7 +41,7 @@ class CompanyUpdateAction extends ActionBase {
       } else if (curTool.getToolType().equals(ToolType.HIT)) {
         Position curPosition = entry.getKey();
         company.incValue(Config.getCompanyHitValue());
-        board.getTool(curPosition).setCompanyDefinition(company.getCompanyDefinition());
+        board.setCompany(curPosition, company.getCompanyDefinition());
         company.incSize();
         // TODO(dorireuv): do we really want to do this?
         updateCompanyValue(curPosition);

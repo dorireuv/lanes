@@ -111,9 +111,7 @@ class MergeCompanyAction extends ActionBase {
           Optional<CompanyDefinition> companyDefinition = tool.getCompanyDefinition();
           if (companyDefinition.isPresent()) {
             if (companyDefinition.get().equals(mergedCompanyDefinition)) {
-              board
-                  .getTool(Position.create(row, col))
-                  .setCompanyDefinition(mergedIntoCompanyDefinition);
+              board.setCompany(Position.create(row, col), mergedIntoCompanyDefinition);
             }
           }
         }
@@ -122,7 +120,7 @@ class MergeCompanyAction extends ActionBase {
 
     Tool oldTool = board.getTool(position);
     if (oldTool.getToolType().equals(ToolType.EMPTY)) {
-      board.getTool(position).setCompanyDefinition(mergedIntoCompanyDefinition);
+      board.setCompany(position, mergedIntoCompanyDefinition);
       mergedIntoCompany.incSize();
     }
   }

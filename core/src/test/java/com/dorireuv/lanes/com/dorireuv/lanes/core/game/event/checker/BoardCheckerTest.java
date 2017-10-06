@@ -78,92 +78,44 @@ class BoardCheckerTest {
     };
   }
 
-  private static Board buildBoard(Map<Position, Tool> positionToToolMap) {
-    Board board = new SimpleBoard();
-    for (Map.Entry<Position, Tool> entry : positionToToolMap.entrySet()) {
-      board.setTool(entry.getKey(), entry.getValue());
-    }
-    return board;
-  }
-
   private static Stream<Arguments> hitDataProvider() {
     return Stream.of(
         Arguments.of(
             // ...
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().build(), POSITION),
         Arguments.of(
             // _..
             // ...
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                  }
-                }),
-            CORNER),
+            SimpleBoard.builder().build(), CORNER),
         Arguments.of(
             // _..
             // ...
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                  }
-                }),
-            NEAR_CORNER),
+            SimpleBoard.builder().build(), NEAR_CORNER),
         Arguments.of(
 
             // +..
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, -1), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(-1, -1), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
             // ..+
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, +1), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(-1, +1), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
-
             // ...
             // ._.
             // ..+
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, +1), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(+1, +1), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
             // ...
             // ._.
             // +..
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, -1), Tool.newHitTool());
-                  }
-                }),
-            POSITION));
+            SimpleBoard.builder().put(POSITION.move(+1, -1), Tool.newHitTool()).build(), POSITION));
   }
 
   private static Stream<Arguments> createCompanyDataProvider() {
@@ -172,156 +124,76 @@ class BoardCheckerTest {
             // ...
             // ._+
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, +1), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
             // ...
             // +_.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(0, -1), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
             // .+.
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(-1, 0), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
             // ...
             // ._.
             // .+.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, 0), Tool.newHitTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(+1, 0), Tool.newHitTool()).build(), POSITION),
         Arguments.of(
             // ...
             // ._*
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, +1), Tool.newStarTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newStarTool()).build(), POSITION),
         Arguments.of(
             // ...
             // *_.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newStarTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(0, -1), Tool.newStarTool()).build(), POSITION),
         Arguments.of(
             // .*.
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newStarTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(-1, 0), Tool.newStarTool()).build(), POSITION),
         Arguments.of(
             // ...
             // ._.
             // .*.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, 0), Tool.newStarTool());
-                  }
-                }),
-            POSITION),
+            SimpleBoard.builder().put(POSITION.move(+1, 0), Tool.newStarTool()).build(), POSITION),
         Arguments.of(
             // ...
             // ._&
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, +1), Tool.newGoldStarTool());
-                  }
-                }),
+            SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newGoldStarTool()).build(),
             POSITION),
         Arguments.of(
             // ...
             // &_.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newGoldStarTool());
-                  }
-                }),
+            SimpleBoard.builder().put(POSITION.move(0, -1), Tool.newGoldStarTool()).build(),
             POSITION),
         Arguments.of(
             // .&.
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newGoldStarTool());
-                  }
-                }),
+            SimpleBoard.builder().put(POSITION.move(-1, 0), Tool.newGoldStarTool()).build(),
             POSITION),
         Arguments.of(
             // ...
             // ._.
             // .&.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, 0), Tool.newGoldStarTool());
-                  }
-                }),
+            SimpleBoard.builder().put(POSITION.move(+1, 0), Tool.newGoldStarTool()).build(),
             POSITION),
         Arguments.of(
             // _..
             // *..
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(CORNER.move(+1, 0), Tool.newStarTool());
-                  }
-                }),
-            CORNER),
+            SimpleBoard.builder().put(CORNER.move(+1, 0), Tool.newStarTool()).build(), CORNER),
         Arguments.of(
             // _*.
             // ...
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(CORNER.move(0, +1), Tool.newStarTool());
-                  }
-                }),
-            CORNER));
+            SimpleBoard.builder().put(CORNER.move(0, +1), Tool.newStarTool()).build(), CORNER));
   }
 
   private static Stream<Arguments> growCompanyDataProvider() {
@@ -330,129 +202,95 @@ class BoardCheckerTest {
             // ...
             // ._A
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // A_.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // .A.
             // ._.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // ._.
             // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // .A.
             // ._A
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // .A.
             // A_.
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // ._A
             // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // A_.
             // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // A_A
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // .A.
             // ._.
             // .A.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             POSITION),
         Arguments.of(
             // _*.
             // A..
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(CORNER.move(0, +1), Tool.newStarTool());
-                    put(CORNER.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(CORNER.move(0, +1), Tool.newStarTool())
+                .put(CORNER.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .build(),
             CORNER));
   }
 
@@ -479,13 +317,7 @@ class BoardCheckerTest {
 
   @Test
   void createCompanyUsesFirstNonEmptyCompany() {
-    Board board =
-        buildBoard(
-            new HashMap<Position, Tool>() {
-              {
-                put(POSITION.move(0, +1), Tool.newStarTool());
-              }
-            });
+    Board board = SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newStarTool()).build();
     Map<CompanyDefinition, Company> companies = buildCompanies(ImmutableList.of());
     companies.get(COMPANY_DEFINITION_A).setSize(1);
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, POSITION, companies);
@@ -513,13 +345,10 @@ class BoardCheckerTest {
             // ...
             // A.B
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B))
+                .build(),
             POSITION,
             ImmutableList.of(2, 1),
             COMPANY_DEFINITION_A,
@@ -528,14 +357,11 @@ class BoardCheckerTest {
             // .C.
             // A.B
             // ...
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B));
-                    put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_C));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B))
+                .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_C))
+                .build(),
             POSITION,
             ImmutableList.of(5, 10, 2),
             COMPANY_DEFINITION_B,
@@ -544,15 +370,12 @@ class BoardCheckerTest {
             // .C.
             // A.B
             // .D.
-            buildBoard(
-                new HashMap<Position, Tool>() {
-                  {
-                    put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A));
-                    put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B));
-                    put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_C));
-                    put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_D));
-                  }
-                }),
+            SimpleBoard.builder()
+                .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
+                .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B))
+                .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_C))
+                .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_D))
+                .build(),
             POSITION,
             ImmutableList.of(5, 10, 2, 3),
             COMPANY_DEFINITION_B,

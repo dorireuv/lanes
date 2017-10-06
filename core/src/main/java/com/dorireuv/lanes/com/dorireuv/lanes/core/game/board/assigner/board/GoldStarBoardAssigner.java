@@ -66,7 +66,7 @@ public class GoldStarBoardAssigner implements BoardAssigner {
       return false;
     }
 
-    board.setTool(position, Tool.newGoldStarTool());
+    board.setGoldStar(position);
     return true;
   }
 }

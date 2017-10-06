@@ -1,9 +1,8 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import static com.google.common.truth.Truth.assertThat;
 
+import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import java.util.Map;
@@ -21,44 +20,41 @@ class SimpleBoardTest {
 
   @Test
   void create() throws Exception {
-    assertNotNull(board);
+    assertThat(board).isNotNull();
   }
 
   @Test
   void getToolWithoutBoundProtectionWhenOutOfBoundsReturnsEmptyTool() {
-    assertEquals(
-        board.getToolWithoutBoundProtection(Position.create(-1, -1)).getToolType(), ToolType.EMPTY);
+    assertThat(board.getToolWithoutBoundProtection(Position.create(-1, -1)).getToolType())
+        .isEqualTo(ToolType.EMPTY);
   }
 
   @Test
   void getToolWithoutBoundProtectionWhenInBoundsReturnsTool() {
     Position position = Position.create(2, 1);
-    Tool tool = Tool.newStarTool();
-    board.setTool(position, tool);
-    assertSame(board.getToolWithoutBoundProtection(position), tool);
+    board.setStar(position);
+    assertThat(board.getToolWithoutBoundProtection(position).getToolType())
+        .isEqualTo(ToolType.STAR);
   }
 
   @Test
   void getToolsAround() throws Exception {
     Position position = Position.create(5, 5);
-    Tool leftTool = Tool.newEmptyTool();
-    Tool rightTool = Tool.newEmptyTool();
-    Tool topTool = Tool.newEmptyTool();
-    Tool bottomTool = Tool.newEmptyTool();
     Position leftPosition = position.move(0, -1);
     Position rightPosition = position.move(0, +1);
     Position topPosition = position.move(-1, 0);
     Position bottomPosition = position.move(+1, 0);
 
-    board.setTool(leftPosition, leftTool);
-    board.setTool(rightPosition, rightTool);
-    board.setTool(topPosition, topTool);
-    board.setTool(bottomPosition, bottomTool);
+    board.setStar(leftPosition);
+    board.setHit(rightPosition);
+    board.setGoldStar(topPosition);
+    board.setCompany(bottomPosition, CompanyDefinition.create('A', "A"));
+
     Map<Position, Tool> toolsAround = board.getToolsAround(position);
 
-    assertSame(toolsAround.get(leftPosition), leftTool);
-    assertSame(toolsAround.get(rightPosition), rightTool);
-    assertSame(toolsAround.get(topPosition), topTool);
-    assertSame(toolsAround.get(bottomPosition), bottomTool);
+    assertThat(toolsAround.get(leftPosition).getToolType()).isEqualTo(ToolType.STAR);
+    assertThat(toolsAround.get(rightPosition).getToolType()).isEqualTo(ToolType.HIT);
+    assertThat(toolsAround.get(topPosition).getToolType()).isEqualTo(ToolType.GOLD_STAR);
+    assertThat(toolsAround.get(bottomPosition).getToolType()).isEqualTo(ToolType.COMPANY);
   }
 }

@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.GoldStarDisappearEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 
 class GoldStarDisappearAction extends ActionBase {
 
@@ -20,7 +19,7 @@ class GoldStarDisappearAction extends ActionBase {
 
   @Override
   public void doAction() {
-    board.getTool(position).setToolType(ToolType.EMPTY);
+    board.setEmpty(position);
     clientEventSubscriber.onGoldStarDisappear(new GoldStarDisappearEvent(position));
   }
 }

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +29,7 @@ class StarBoardAssignerTest {
   @Test
   void assignOStarToolRejected() throws Exception {
     Position position = Position.create(5, 5);
-    Tool starTool = Tool.newStarTool();
-    board.setTool(position, starTool);
+    board.setStar(position);
     boolean accepted = starBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
   }
@@ -92,7 +90,7 @@ class StarBoardAssignerTest {
   private void assertAssignNearThreeOrMoreStarsRejected(
       Position starPosition, Position[] otherStarsPosition) {
     for (Position otherStarPosition : otherStarsPosition) {
-      board.setTool(otherStarPosition, Tool.newStarTool());
+      board.setStar(otherStarPosition);
     }
     boolean accepted = starBoardAssigner.assignPosition(board, starPosition);
     assertFalse(accepted);

@@ -5,7 +5,6 @@ import static com.google.common.truth.Truth.assertThat;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +70,7 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_onGoldStarTool_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position, Tool.newGoldStarTool());
+    board.setGoldStar(position);
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -81,7 +80,7 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_goldStarUp_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(-1, 0), Tool.newGoldStarTool());
+    board.setGoldStar(position.move(-1, 0));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -91,7 +90,7 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_goldStarDown_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(+1, 0), Tool.newGoldStarTool());
+    board.setGoldStar(position.move(+1, 0));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -101,7 +100,7 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_goldStarLeft_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(0, -1), Tool.newGoldStarTool());
+    board.setGoldStar(position.move(0, -1));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -111,7 +110,7 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_goldStarRight_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(0, +1), Tool.newGoldStarTool());
+    board.setGoldStar(position.move(0, +1));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -121,9 +120,9 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_threeStarsUp_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(-1, 0), Tool.newStarTool());
-    board.setTool(position.move(0, +1), Tool.newStarTool());
-    board.setTool(position.move(0, -1), Tool.newStarTool());
+    board.setStar(position.move(-1, 0));
+    board.setStar(position.move(0, +1));
+    board.setStar(position.move(0, -1));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -133,9 +132,9 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_threeStarsDown_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(+1, 0), Tool.newStarTool());
-    board.setTool(position.move(0, +1), Tool.newStarTool());
-    board.setTool(position.move(0, -1), Tool.newStarTool());
+    board.setStar(position.move(+1, 0));
+    board.setStar(position.move(0, +1));
+    board.setStar(position.move(0, -1));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -145,9 +144,9 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_threeStarsLeft_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(0, -1), Tool.newStarTool());
-    board.setTool(position.move(+1, 0), Tool.newStarTool());
-    board.setTool(position.move(-1, 0), Tool.newStarTool());
+    board.setStar(position.move(0, -1));
+    board.setStar(position.move(+1, 0));
+    board.setStar(position.move(-1, 0));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -157,9 +156,9 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_threeStarsRight_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(0, +1), Tool.newStarTool());
-    board.setTool(position.move(+1, 0), Tool.newStarTool());
-    board.setTool(position.move(-1, 0), Tool.newStarTool());
+    board.setStar(position.move(0, +1));
+    board.setStar(position.move(+1, 0));
+    board.setStar(position.move(-1, 0));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 
@@ -169,10 +168,10 @@ class GoldStarBoardAssignerTest {
   @Test
   void assignPosition_fourStars_rejected() {
     Position position = Position.create(5, 5);
-    board.setTool(position.move(0, -1), Tool.newStarTool());
-    board.setTool(position.move(0, +1), Tool.newStarTool());
-    board.setTool(position.move(+1, 0), Tool.newStarTool());
-    board.setTool(position.move(-1, 0), Tool.newStarTool());
+    board.setStar(position.move(0, -1));
+    board.setStar(position.move(0, +1));
+    board.setStar(position.move(+1, 0));
+    board.setStar(position.move(-1, 0));
 
     boolean accepted = goldStarBoardAssigner.assignPosition(board, position);
 

@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import java.util.Optional;
 import name.falgout.jeffrey.testing.junit5.MockitoExtension;
@@ -33,7 +32,7 @@ class SingleMoveGeneratorTest {
   void generate_onStar_isEmpty() throws Exception {
     Position position = Position.create(5, 5);
     when(randomWrapper.nextPosition(board)).thenReturn(position);
-    board.setTool(position, Tool.newStarTool());
+    board.setStar(position);
 
     Optional<Position> candidate = singleMoveGenerator.generate(board, true);
 
@@ -52,7 +51,7 @@ class SingleMoveGeneratorTest {
 
   @Test
   void generate_noCompanyLeftAndNearStar_isEmpty() throws Exception {
-    board.setTool(Position.create(5, 5), Tool.newStarTool());
+    board.setStar(Position.create(5, 5));
     when(randomWrapper.nextPosition(board)).thenReturn(Position.create(5, 6));
 
     Optional<Position> candidate = singleMoveGenerator.generate(board, false);

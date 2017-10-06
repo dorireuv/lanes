@@ -1,23 +1,59 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
+import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import java.util.Map;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
+import javax.annotation.Nullable;
 
-public interface Board {
+public abstract class Board extends ImmutableBoard {
 
-  int getRows();
+  private int numOfStars;
 
-  int getCols();
+  public Board() {
+    numOfStars = 0;
+  }
 
-  int getNumOfStars();
+  @Override
+  public final int getNumOfStars() {
+    return numOfStars;
+  }
 
-  Tool getTool(Position position);
+  public void setEmpty(Position position) {
+    decNumOfStarsIfNeeded(position);
+    getTool(position).setToolType(ToolType.EMPTY);
+  }
 
-  Tool getTool(int row, int col);
+  public void setHit(Position position) {
+    decNumOfStarsIfNeeded(position);
+    getTool(position).setToolType(ToolType.HIT);
+  }
 
-  Tool getToolWithoutBoundProtection(Position position);
+  public void setStar(Position position) {
+    decNumOfStarsIfNeeded(position);
+    getTool(position).setToolType(ToolType.STAR);
+    incNumOfStars();
+  }
 
-  void setTool(Position position, Tool tool);
+  public void setGoldStar(Position position) {
+    decNumOfStarsIfNeeded(position);
+    getTool(position).setToolType(ToolType.GOLD_STAR);
+  }
 
-  Map<Position, Tool> getToolsAround(Position centerPosition);
+  public void setCompany(Position position, CompanyDefinition companyDefinition) {
+    decNumOfStarsIfNeeded(position);
+    getTool(position).setCompanyDefinition(companyDefinition);
+  }
+
+  private void decNumOfStarsIfNeeded(Position position) {
+    @Nullable Tool oldTool = getTool(position);
+    if (oldTool != null) {
+      if (oldTool.getToolType().equals(ToolType.STAR)) {
+        numOfStars--;
+      }
+    }
+  }
+
+  private void incNumOfStars() {
+    numOfStars++;
+  }
 }

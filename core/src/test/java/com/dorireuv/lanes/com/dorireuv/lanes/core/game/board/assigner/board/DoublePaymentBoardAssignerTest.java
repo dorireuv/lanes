@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +37,7 @@ class DoublePaymentBoardAssignerTest {
   @Test
   void assignOnNonEmptyToolRejected() throws Exception {
     Position position = Position.create(0, 0);
-    Tool nonEmptyTool = Tool.newStarTool();
-    board.setTool(position, nonEmptyTool);
+    board.setStar(position);
     boolean accepted = doublePaymentBoardAssigner.assignPosition(board, position);
     assertFalse(accepted);
   }

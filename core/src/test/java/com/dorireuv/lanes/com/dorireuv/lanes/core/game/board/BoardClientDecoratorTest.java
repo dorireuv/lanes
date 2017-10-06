@@ -6,7 +6,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
 import name.falgout.jeffrey.testing.junit5.MockitoExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +28,7 @@ class BoardClientDecoratorTest {
   @Test
   void setToolDispatchesEvent() throws Exception {
     Position position = Position.create(3, 5);
-    Tool tool = Tool.newStarTool();
-    boardClientDecorator.setTool(position, tool);
+    boardClientDecorator.setStar(position);
     verify(clientEventSubscriber, times(1)).onBoardChange(any());
     verifyNoMoreInteractions(clientEventSubscriber);
   }

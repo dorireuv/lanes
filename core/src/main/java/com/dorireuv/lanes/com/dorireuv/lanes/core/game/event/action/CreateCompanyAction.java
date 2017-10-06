@@ -30,7 +30,7 @@ class CreateCompanyAction extends ActionBase {
   }
 
   private void updateBoard() {
-    board.getTool(position).setCompanyDefinition(company.getCompanyDefinition());
+    board.setCompany(position, company.getCompanyDefinition());
     company.incSize();
     company.incValue(Config.getCompanyHitValue());
   }

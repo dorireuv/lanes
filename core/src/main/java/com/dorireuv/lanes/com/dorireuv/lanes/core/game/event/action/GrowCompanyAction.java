@@ -26,7 +26,7 @@ class GrowCompanyAction extends ActionBase {
   @Override
   public void doAction() {
     company.incSize();
-    board.getTool(position).setCompanyDefinition(company.getCompanyDefinition());
+    board.setCompany(position, company.getCompanyDefinition());
     clientEventSubscriber.onGrowCompany(
         new GrowCompanyEvent(company.getCompanyDefinition(), position));
   }
