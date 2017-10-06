@@ -5,11 +5,11 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 
-public class BonusPaymentChecker extends CheckerBase {
+final class BonusPaymentChecker extends CheckerBase {
 
   private final RandomWrapper randomWrapper;
 
-  public BonusPaymentChecker(ActionFactory actionFactory, RandomWrapper randomWrapper) {
+  BonusPaymentChecker(ActionFactory actionFactory, RandomWrapper randomWrapper) {
     super(actionFactory);
     this.randomWrapper = randomWrapper;
   }

@@ -8,13 +8,13 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactor
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import java.util.List;
 
-public class GalacticBombChecker extends CheckerBase {
+final class GalacticBombChecker extends CheckerBase {
 
   private final RandomWrapper randomWrapper;
   private final List<Company> companies;
   private final List<GalacticBombEventDefinition> galacticBombEventDefinitions;
 
-  public GalacticBombChecker(
+  GalacticBombChecker(
       ActionFactory actionFactory,
       RandomWrapper randomWrapper,
       List<Company> companies,

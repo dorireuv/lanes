@@ -8,7 +8,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 
-public class GoldStarDisappearChecker extends CheckerBase {
+final class GoldStarDisappearChecker extends CheckerBase {
 
   private final RandomWrapper randomWrapper;
   private final Board board;

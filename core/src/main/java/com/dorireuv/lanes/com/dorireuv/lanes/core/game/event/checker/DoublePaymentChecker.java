@@ -6,13 +6,13 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactor
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import java.util.List;
 
-public class DoublePaymentChecker extends CheckerBase {
+final class DoublePaymentChecker extends CheckerBase {
 
   private final Player currentPlayer;
   private final List<Player> sortedPlayers;
   private final Tool tool;
 
-  public DoublePaymentChecker(
+  DoublePaymentChecker(
       ActionFactory actionFactory, Player currentPlayer, List<Player> sortedPlayers, Tool tool) {
     super(actionFactory);
     this.currentPlayer = currentPlayer;
