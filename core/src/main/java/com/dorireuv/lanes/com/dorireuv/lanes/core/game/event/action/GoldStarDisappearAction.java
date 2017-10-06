@@ -5,7 +5,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.GoldStarDisappear
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 
-class GoldStarDisappearAction extends ActionBase {
+final class GoldStarDisappearAction extends ActionBase {
 
   private final Board board;
   private final Position position;

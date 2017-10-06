@@ -4,11 +4,11 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.DoublePaymentEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 
-class DoublePaymentAction extends ActionBase {
+final class DoublePaymentAction extends ActionBase {
 
   private final Player player;
 
-  public DoublePaymentAction(ClientEventSubscriber clientEventSubscriber, Player player) {
+  DoublePaymentAction(ClientEventSubscriber clientEventSubscriber, Player player) {
     super(clientEventSubscriber);
     this.player = player;
   }

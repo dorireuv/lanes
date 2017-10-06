@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-class MergeCompanyAction extends ActionBase {
+final class MergeCompanyAction extends ActionBase {
 
   private final List<Player> players;
   private final Board board;

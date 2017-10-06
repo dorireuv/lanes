@@ -4,11 +4,11 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.FreezeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 
-class FreezeAction extends ActionBase {
+final class FreezeAction extends ActionBase {
 
   private final TurnIterator turnIterator;
 
-  public FreezeAction(ClientEventSubscriber clientEventSubscriber, TurnIterator turnIterator) {
+  FreezeAction(ClientEventSubscriber clientEventSubscriber, TurnIterator turnIterator) {
     super(clientEventSubscriber);
     this.turnIterator = turnIterator;
   }

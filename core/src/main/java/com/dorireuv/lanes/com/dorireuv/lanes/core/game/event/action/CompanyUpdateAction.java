@@ -11,7 +11,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import java.util.List;
 import java.util.Map;
 
-class CompanyUpdateAction extends ActionBase {
+final class CompanyUpdateAction extends ActionBase {
 
   private final Board board;
   private final Position position;

@@ -6,13 +6,13 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 
-class TrapAction extends ActionBase {
+final class TrapAction extends ActionBase {
 
   private final TurnIterator turnIterator;
   private final Bank bank;
   private final Player player;
 
-  public TrapAction(
+  TrapAction(
       ClientEventSubscriber clientEventSubscriber,
       TurnIterator turnIterator,
       Bank bank,

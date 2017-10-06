@@ -9,7 +9,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 
-class CreateCompanyAction extends ActionBase {
+final class CreateCompanyAction extends ActionBase {
 
   private final Player player;
   private final Board board;

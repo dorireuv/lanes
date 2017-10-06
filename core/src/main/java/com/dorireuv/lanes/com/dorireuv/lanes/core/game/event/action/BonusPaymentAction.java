@@ -6,12 +6,12 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 
-class BonusPaymentAction extends ActionBase {
+final class BonusPaymentAction extends ActionBase {
 
   private final Bank bank;
   private final Player player;
 
-  public BonusPaymentAction(ClientEventSubscriber clientEventSubscriber, Bank bank, Player player) {
+  BonusPaymentAction(ClientEventSubscriber clientEventSubscriber, Bank bank, Player player) {
     super(clientEventSubscriber);
     this.bank = bank;
     this.player = player;

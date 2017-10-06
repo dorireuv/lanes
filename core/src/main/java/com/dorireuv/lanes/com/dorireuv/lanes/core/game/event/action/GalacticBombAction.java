@@ -5,12 +5,12 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.GalacticBombEvent
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.event.GalacticBombEventDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 
-class GalacticBombAction extends ActionBase {
+final class GalacticBombAction extends ActionBase {
 
   private final Company company;
   private final GalacticBombEventDefinition galacticBombEventDefinition;
 
-  public GalacticBombAction(
+  GalacticBombAction(
       ClientEventSubscriber clientEventSubscriber,
       Company company,
       GalacticBombEventDefinition galacticBombEventDefinition) {

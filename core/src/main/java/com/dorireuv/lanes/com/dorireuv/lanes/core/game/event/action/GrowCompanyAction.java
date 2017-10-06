@@ -6,7 +6,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 
-class GrowCompanyAction extends ActionBase {
+final class GrowCompanyAction extends ActionBase {
 
   private final Board board;
   private final Company company;

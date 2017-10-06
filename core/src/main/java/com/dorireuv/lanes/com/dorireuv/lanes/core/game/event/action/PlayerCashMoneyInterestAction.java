@@ -4,12 +4,12 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import java.util.Collection;
 
-class PlayerCashMoneyInterestAction implements Action {
+final class PlayerCashMoneyInterestAction implements Action {
 
   private final Player player;
   private final Collection<Company> companies;
 
-  public PlayerCashMoneyInterestAction(Player player, Collection<Company> companies) {
+  PlayerCashMoneyInterestAction(Player player, Collection<Company> companies) {
     this.player = player;
     this.companies = companies;
   }
