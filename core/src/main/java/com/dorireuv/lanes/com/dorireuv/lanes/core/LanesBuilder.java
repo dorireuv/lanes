@@ -11,8 +11,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.BankClientDecorator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardBuilder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardClientDecorator;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.CheckerActionExecutor;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.MovesGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.SingleMoveGenerator;
@@ -42,8 +42,8 @@ public class LanesBuilder {
     Bank bank = new BankClientDecorator(new SimpleBank(), clientEventSubscriberGroup);
     Board board =
         new BoardClientDecorator(
-            new BoardBuilder(new SimpleRandomWrapper(randomSeed))
-                .buildDefault(numOfStars, players.size()),
+            new BoardGenerator(new SimpleRandomWrapper(randomSeed))
+                .generate(numOfStars, players.size()),
             clientEventSubscriberGroup);
     Game game = new GameBuilder().buildNewDefaultGame(players, board, bank);
     MovesGenerator movesGenerator =

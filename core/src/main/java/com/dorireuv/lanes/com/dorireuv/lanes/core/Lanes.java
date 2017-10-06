@@ -7,8 +7,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.Game;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardBuilder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardClientDecorator;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardGenerator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.CheckerActionExecutor;
@@ -101,8 +101,8 @@ public class Lanes {
     getGame()
         .setBoard(
             new BoardClientDecorator(
-                new BoardBuilder(randomWrapper)
-                    .buildDefault(getBoard().getNumOfStars(), getGame().getPlayers().size()),
+                new BoardGenerator(randomWrapper)
+                    .generate(getBoard().getNumOfStars(), getGame().getPlayers().size()),
                 clientEventSubscriberGroup));
   }
 

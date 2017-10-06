@@ -13,7 +13,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.Star
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.board.TrapBoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 
-public class BoardBuilder {
+public class BoardGenerator {
 
   private final RandomWrapper randomWrapper;
   private Board board;
@@ -24,11 +24,11 @@ public class BoardBuilder {
   private int numOfFreezes;
   private int numOfDoublePayments;
 
-  public BoardBuilder(RandomWrapper randomWrapper) {
+  public BoardGenerator(RandomWrapper randomWrapper) {
     this.randomWrapper = randomWrapper;
   }
 
-  public Board buildDefault(int numOfStars, int numOfPlayers) {
+  public Board generate(int numOfStars, int numOfPlayers) {
     init(numOfStars, numOfPlayers);
 
     setNumOfGoldStars();

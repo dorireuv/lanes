@@ -3,12 +3,12 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
 import org.junit.jupiter.api.Test;
 
-class BoardBuilderTest {
+class BoardGeneratorTest {
   @Test
-  void build() throws Exception {
-    BoardBuilder boardBuilder = new BoardBuilder(new SimpleRandomWrapper(0));
+  void generate() throws Exception {
+    BoardGenerator boardGenerator = new BoardGenerator(new SimpleRandomWrapper(0));
     int numOfStars = 100;
     int numOfPlayers = 2;
-    boardBuilder.buildDefault(numOfStars, numOfPlayers);
+    boardGenerator.generate(numOfStars, numOfPlayers);
   }
 }
