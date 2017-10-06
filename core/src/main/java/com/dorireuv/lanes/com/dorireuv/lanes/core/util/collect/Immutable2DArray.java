@@ -53,7 +53,7 @@ public final class Immutable2DArray<T> {
     private final Table<Integer, Integer, T> data;
     private Supplier<T> defaultValue;
 
-    public Builder(int rows, int cols) {
+    private Builder(int rows, int cols) {
       checkArgument(rows > 0);
       checkArgument(cols > 0);
 
