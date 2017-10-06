@@ -18,7 +18,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import com.google.common.collect.ImmutableSet;
-import java.util.Arrays;
 
 public class Lanes {
 
@@ -188,8 +187,8 @@ public class Lanes {
   // ------------------------------------------------------------------------
   // private
   // ------------------------------------------------------------------------
-  private void validatePhase(Phase... phases) throws IllegalMoveException {
-    if (!Arrays.asList(phases).contains(getCurrentPhase())) {
+  private void validatePhase(Phase phase) throws IllegalMoveException {
+    if (!phase.equals(getCurrentPhase())) {
       throw new IllegalMoveException("Invalid phase: " + getCurrentPhase());
     }
   }
