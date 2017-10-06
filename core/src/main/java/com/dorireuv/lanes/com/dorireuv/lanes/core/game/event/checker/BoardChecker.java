@@ -7,7 +7,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.Tool;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.Action;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.action.ActionFactory;
@@ -40,7 +39,7 @@ public class BoardChecker extends CheckerBase {
 
   private boolean isAllEmpty() {
     for (Tool tool : getPositionToToolMap().values()) {
-      if (!tool.getToolType().equals(ToolType.EMPTY)) {
+      if (!tool.isEmpty()) {
         return false;
       }
     }

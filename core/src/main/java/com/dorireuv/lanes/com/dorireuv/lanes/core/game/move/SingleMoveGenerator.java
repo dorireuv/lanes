@@ -25,7 +25,7 @@ public class SingleMoveGenerator {
   Optional<Position> generate(Board board, boolean freeCompanyExist) {
     Position candidate = randomWrapper.nextPosition(board);
     Tool tool = board.getTool(candidate);
-    if (!tool.getToolType().equals(ToolType.EMPTY)) {
+    if (!tool.isEmpty()) {
       return Optional.empty();
     }
 

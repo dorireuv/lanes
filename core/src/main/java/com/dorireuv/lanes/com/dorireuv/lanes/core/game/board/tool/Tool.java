@@ -53,6 +53,14 @@ public class Tool {
     return toolType;
   }
 
+  public boolean isEmpty() {
+    return getToolType().isEmpty();
+  }
+
+  public boolean isStar() {
+    return getToolType().isStar();
+  }
+
   public void setToolType(ToolType toolType) {
     this.toolType = toolType;
   }

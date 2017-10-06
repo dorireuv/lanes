@@ -119,7 +119,7 @@ class MergeCompanyAction extends ActionBase {
     }
 
     Tool oldTool = board.getTool(position);
-    if (oldTool.getToolType().equals(ToolType.EMPTY)) {
+    if (oldTool.isEmpty()) {
       board.setCompany(position, mergedIntoCompanyDefinition);
       mergedIntoCompany.incSize();
     }
