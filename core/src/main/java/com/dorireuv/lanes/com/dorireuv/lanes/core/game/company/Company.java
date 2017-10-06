@@ -4,7 +4,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 
 public class Company {
 
-  private CompanyDefinition companyDefinition;
+  private final CompanyDefinition companyDefinition;
+
   private int size;
   private int value;
 
@@ -13,17 +14,14 @@ public class Company {
   }
 
   public Company(CompanyDefinition companyDefinition, int size, int value) {
-    this.setCompanyDefinition(companyDefinition);
+    this.companyDefinition = companyDefinition;
+
     this.setSize(size);
     this.setValue(value);
   }
 
   public CompanyDefinition getCompanyDefinition() {
     return companyDefinition;
-  }
-
-  private void setCompanyDefinition(CompanyDefinition companyDefinition) {
-    this.companyDefinition = companyDefinition;
   }
 
   public int getSize() {

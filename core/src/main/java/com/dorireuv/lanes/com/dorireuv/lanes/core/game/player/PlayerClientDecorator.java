@@ -4,9 +4,9 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.PlayerCashMoneyChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.PlayerNetValueChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 
-public class PlayerClientDecorator implements Player {
+public class PlayerClientDecorator extends Player {
 
   private final Player player;
   private final ClientEventSubscriber clientEventSubscriber;
@@ -39,18 +39,13 @@ public class PlayerClientDecorator implements Player {
       clientEventSubscriber.onPlayerCashMoneyChange(
           new PlayerCashMoneyChangeEvent(getIndex(), cashMoney));
       clientEventSubscriber.onPlayerNetValueChange(
-          new PlayerNetValueChangeEvent(getIndex(), new PlayerNetValueCalculator(player).calc()));
+          new PlayerNetValueChangeEvent(getIndex(), player.getNetValue()));
     }
   }
 
   @Override
-  public Map<Company, Integer> getHoldings() {
+  public ImmutableMap<Company, Integer> getHoldings() {
     return player.getHoldings();
-  }
-
-  @Override
-  public int getNumOfStocks(Company company) {
-    return player.getNumOfStocks(company);
   }
 
   @Override
@@ -59,7 +54,7 @@ public class PlayerClientDecorator implements Player {
   }
 
   @Override
-  public int getNetValue() {
-    return player.getNetValue();
+  public ImmutablePlayer immutableCopy() {
+    return player.immutableCopy();
   }
 }

@@ -1,10 +1,11 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.player;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
+import com.google.common.collect.ImmutableMap;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimplePlayer implements Player {
+public class SimplePlayer extends Player {
 
   private final int index;
   private final String name;
@@ -39,18 +40,8 @@ public class SimplePlayer implements Player {
   }
 
   @Override
-  public Map<Company, Integer> getHoldings() {
-    return holdings;
-  }
-
-  @Override
-  public int getNumOfStocks(Company company) {
-    Integer numOfStocks = holdings.get(company);
-    if (numOfStocks == null) {
-      return 0;
-    }
-
-    return numOfStocks;
+  public ImmutableMap<Company, Integer> getHoldings() {
+    return ImmutableMap.copyOf(holdings);
   }
 
   @Override
@@ -59,7 +50,12 @@ public class SimplePlayer implements Player {
   }
 
   @Override
-  public int getNetValue() {
-    return new PlayerNetValueCalculator(this).calc();
+  public ImmutablePlayer immutableCopy() {
+    return ImmutablePlayer.builder()
+        .setIndex(SimplePlayer.this.getIndex())
+        .setName(SimplePlayer.this.getName())
+        .setCashMoney(SimplePlayer.this.getCashMoney())
+        .setHoldings(SimplePlayer.this.getHoldings())
+        .build();
   }
 }

@@ -14,8 +14,8 @@ public class PlayerNetValueSorter {
     ArrayList<Player> sortedPlayers = new ArrayList<>(unsortedPlayers);
     sortedPlayers.sort(
         (p1, p2) -> {
-          int p1Value = new PlayerNetValueCalculator(p1).calc();
-          int p2Value = new PlayerNetValueCalculator(p2).calc();
+          int p1Value = p1.getNetValue();
+          int p2Value = p2.getNetValue();
           return p1Value - p2Value;
         });
     return sortedPlayers;

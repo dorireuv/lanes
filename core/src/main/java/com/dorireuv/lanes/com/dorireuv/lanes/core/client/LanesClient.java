@@ -1,5 +1,7 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.client;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import com.dorireuv.lanes.com.dorireuv.lanes.core.Lanes;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.Phase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
@@ -8,9 +10,8 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.ImmutablePlayer;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerNetValueCalculator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerStockValueCalculator;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
@@ -83,28 +84,17 @@ public final class LanesClient {
   // ------------------------------------------------------------------------
   // general player info
   // ------------------------------------------------------------------------
-  public String getPlayerName(int playerIndex) {
-    return lanes.getGame().getPlayers().get(playerIndex).getName();
-  }
-
   public int getCompanyTopHolder(CompanyDefinition companyDefinition) {
     return lanes.getGame().getCompanyTopHolder(getCompany(companyDefinition));
   }
 
-  public int getPlayerCashValue(int playerIndex) {
-    return lanes.getGame().getPlayers().get(playerIndex).getCashMoney();
-  }
-
-  public int getPlayerStockValue(int playerIndex) {
-    return new PlayerStockValueCalculator(lanes.getGame().getPlayers().get(playerIndex)).calc();
-  }
-
-  public int getPlayerNetValue(int playerIndex) {
-    return new PlayerNetValueCalculator(lanes.getGame().getPlayers().get(playerIndex)).calc();
-  }
-
-  public ImmutableList<Player> getPlayers() {
-    return ImmutableList.copyOf(lanes.getGame().getPlayers());
+  public ImmutableList<ImmutablePlayer> getPlayers() {
+    return lanes
+        .getGame()
+        .getPlayers()
+        .stream()
+        .map(Player::immutableCopy)
+        .collect(toImmutableList());
   }
 
   // ------------------------------------------------------------------------
