@@ -7,7 +7,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.Phase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.ImmutablePlayer;
@@ -119,8 +119,8 @@ public final class LanesClient {
     return lanes.getGame().getBank().getCashMoney();
   }
 
-  public Board getBoard() {
-    return lanes.getBoard();
+  public ImmutableBoard getBoard() {
+    return lanes.getBoard().immutableCopy();
   }
 
   // ------------------------------------------------------------------------

@@ -48,7 +48,9 @@ class CompanyUpdateActionTest {
     // ...
     final Position position = Position.create(5, 5);
     Board board =
-        SimpleBoard.builder().put(position, Tool.newCompanyTool(companyDefinition)).build();
+        SimpleBoard.newSimpleBoardBuilder()
+            .put(position, Tool.newCompanyTool(companyDefinition))
+            .build();
 
     int sizeDiff = 0;
     int valueDiff = 0;
@@ -78,7 +80,7 @@ class CompanyUpdateActionTest {
     // +++    AAA
     final Position position = Position.create(5, 5);
     Board board =
-        SimpleBoard.builder()
+        SimpleBoard.newSimpleBoardBuilder()
             .put(position, Tool.newCompanyTool(companyDefinition))
             .put(position.move(-1, -1), Tool.newHitTool())
             .put(position.move(-1, 0), Tool.newHitTool())
@@ -126,7 +128,7 @@ class CompanyUpdateActionTest {
     // .+.    .A.
     final Position position = Position.create(5, 5);
     Board board =
-        SimpleBoard.builder()
+        SimpleBoard.newSimpleBoardBuilder()
             .put(position, Tool.newCompanyTool(companyDefinition))
             .put(position.move(-1, -1), Tool.newEmptyTool())
             .put(position.move(-1, 0), Tool.newStarTool())

@@ -7,15 +7,19 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 @AutoValue
-abstract class ImmutableBoard {
+public abstract class ImmutableBoard {
 
   private static final Tool EMPTY_TOOL = Tool.newEmptyTool();
 
   public abstract Immutable2DArray<Tool> getBoard();
 
-  public abstract int getRows();
+  public final int getRows() {
+    return getBoard().rows();
+  }
 
-  public abstract int getCols();
+  public final int getCols() {
+    return getBoard().cols();
+  }
 
   public abstract int getNumOfStars();
 
@@ -62,5 +66,19 @@ abstract class ImmutableBoard {
         && position.getRow() < getRows()
         && position.getCol() >= 0
         && position.getCol() < getCols());
+  }
+
+  public static Builder builder() {
+    return new AutoValue_ImmutableBoard.Builder();
+  }
+
+  @AutoValue.Builder
+  public abstract static class Builder {
+
+    public abstract Builder setBoard(Immutable2DArray<Tool> newBoard);
+
+    public abstract Builder setNumOfStars(int newNumOfStars);
+
+    public abstract ImmutableBoard build();
   }
 }

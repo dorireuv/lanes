@@ -23,16 +23,6 @@ public class BoardClientDecorator extends Board {
   }
 
   @Override
-  public int getRows() {
-    return board.getRows();
-  }
-
-  @Override
-  public int getCols() {
-    return board.getCols();
-  }
-
-  @Override
   public Tool getToolWithoutBoundProtection(Position position) {
     return board.getToolWithoutBoundProtection(position);
   }

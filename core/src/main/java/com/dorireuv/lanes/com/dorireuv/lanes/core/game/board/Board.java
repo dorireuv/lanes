@@ -44,6 +44,10 @@ public abstract class Board extends ImmutableBoard {
     getTool(position).setCompanyDefinition(companyDefinition);
   }
 
+  public ImmutableBoard immutableCopy() {
+    return ImmutableBoard.builder().setBoard(getBoard()).setNumOfStars(numOfStars).build();
+  }
+
   private void decNumOfStarsIfNeeded(Position position) {
     @Nullable Tool oldTool = getTool(position);
     if (oldTool != null) {

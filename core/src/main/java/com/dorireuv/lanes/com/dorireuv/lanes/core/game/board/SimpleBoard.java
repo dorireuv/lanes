@@ -24,31 +24,21 @@ public class SimpleBoard extends Board {
     return board;
   }
 
-  @Override
-  public int getRows() {
-    return board.rows();
+  public static SimpleBoardBuilder newSimpleBoardBuilder() {
+    return new SimpleBoardBuilder();
   }
 
-  @Override
-  public int getCols() {
-    return board.cols();
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
-  public static class Builder {
+  public static class SimpleBoardBuilder {
 
     private final Immutable2DArray.Builder<Tool> board;
 
-    private Builder() {
+    private SimpleBoardBuilder() {
       board =
           Immutable2DArray.<Tool>builder(Config.getBoardRows(), Config.getBoardCols())
               .setDefaultValue(Tool::newEmptyTool);
     }
 
-    public Builder put(Position position, Tool tool) {
+    public SimpleBoardBuilder put(Position position, Tool tool) {
       board.put(position.getRow(), position.getCol(), tool);
       return this;
     }

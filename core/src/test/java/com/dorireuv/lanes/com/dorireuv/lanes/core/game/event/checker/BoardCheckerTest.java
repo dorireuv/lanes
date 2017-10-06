@@ -84,38 +84,50 @@ class BoardCheckerTest {
             // ...
             // ._.
             // ...
-            SimpleBoard.builder().build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder().build(), POSITION),
         Arguments.of(
             // _..
             // ...
             // ...
-            SimpleBoard.builder().build(), CORNER),
+            SimpleBoard.newSimpleBoardBuilder().build(), CORNER),
         Arguments.of(
             // _..
             // ...
             // ...
-            SimpleBoard.builder().build(), NEAR_CORNER),
+            SimpleBoard.newSimpleBoardBuilder().build(), NEAR_CORNER),
         Arguments.of(
 
             // +..
             // ._.
             // ...
-            SimpleBoard.builder().put(POSITION.move(-1, -1), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(-1, -1), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ..+
             // ._.
             // ...
-            SimpleBoard.builder().put(POSITION.move(-1, +1), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(-1, +1), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // ._.
             // ..+
-            SimpleBoard.builder().put(POSITION.move(+1, +1), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(+1, +1), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // ._.
             // +..
-            SimpleBoard.builder().put(POSITION.move(+1, -1), Tool.newHitTool()).build(), POSITION));
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(+1, -1), Tool.newHitTool())
+                .build(),
+            POSITION));
   }
 
   private static Stream<Arguments> createCompanyDataProvider() {
@@ -124,76 +136,110 @@ class BoardCheckerTest {
             // ...
             // ._+
             // ...
-            SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(0, +1), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // +_.
             // ...
-            SimpleBoard.builder().put(POSITION.move(0, -1), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(0, -1), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // .+.
             // ._.
             // ...
-            SimpleBoard.builder().put(POSITION.move(-1, 0), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(-1, 0), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // ._.
             // .+.
-            SimpleBoard.builder().put(POSITION.move(+1, 0), Tool.newHitTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(+1, 0), Tool.newHitTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // ._*
             // ...
-            SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newStarTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(0, +1), Tool.newStarTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // *_.
             // ...
-            SimpleBoard.builder().put(POSITION.move(0, -1), Tool.newStarTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(0, -1), Tool.newStarTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // .*.
             // ._.
             // ...
-            SimpleBoard.builder().put(POSITION.move(-1, 0), Tool.newStarTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(-1, 0), Tool.newStarTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // ._.
             // .*.
-            SimpleBoard.builder().put(POSITION.move(+1, 0), Tool.newStarTool()).build(), POSITION),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(+1, 0), Tool.newStarTool())
+                .build(),
+            POSITION),
         Arguments.of(
             // ...
             // ._&
             // ...
-            SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newGoldStarTool()).build(),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(0, +1), Tool.newGoldStarTool())
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // &_.
             // ...
-            SimpleBoard.builder().put(POSITION.move(0, -1), Tool.newGoldStarTool()).build(),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(0, -1), Tool.newGoldStarTool())
+                .build(),
             POSITION),
         Arguments.of(
             // .&.
             // ._.
             // ...
-            SimpleBoard.builder().put(POSITION.move(-1, 0), Tool.newGoldStarTool()).build(),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(-1, 0), Tool.newGoldStarTool())
+                .build(),
             POSITION),
         Arguments.of(
             // ...
             // ._.
             // .&.
-            SimpleBoard.builder().put(POSITION.move(+1, 0), Tool.newGoldStarTool()).build(),
+            SimpleBoard.newSimpleBoardBuilder()
+                .put(POSITION.move(+1, 0), Tool.newGoldStarTool())
+                .build(),
             POSITION),
         Arguments.of(
             // _..
             // *..
             // ...
-            SimpleBoard.builder().put(CORNER.move(+1, 0), Tool.newStarTool()).build(), CORNER),
+            SimpleBoard.newSimpleBoardBuilder().put(CORNER.move(+1, 0), Tool.newStarTool()).build(),
+            CORNER),
         Arguments.of(
             // _*.
             // ...
             // ...
-            SimpleBoard.builder().put(CORNER.move(0, +1), Tool.newStarTool()).build(), CORNER));
+            SimpleBoard.newSimpleBoardBuilder().put(CORNER.move(0, +1), Tool.newStarTool()).build(),
+            CORNER));
   }
 
   private static Stream<Arguments> growCompanyDataProvider() {
@@ -202,7 +248,7 @@ class BoardCheckerTest {
             // ...
             // ._A
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
             POSITION),
@@ -210,7 +256,7 @@ class BoardCheckerTest {
             // ...
             // A_.
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
             POSITION),
@@ -218,7 +264,7 @@ class BoardCheckerTest {
             // .A.
             // ._.
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
             POSITION),
@@ -226,7 +272,7 @@ class BoardCheckerTest {
             // ...
             // ._.
             // .A.
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
             POSITION),
@@ -234,7 +280,7 @@ class BoardCheckerTest {
             // .A.
             // ._A
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
             POSITION),
@@ -242,7 +288,7 @@ class BoardCheckerTest {
             // .A.
             // A_.
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
@@ -251,7 +297,7 @@ class BoardCheckerTest {
             // ...
             // ._A
             // .A.
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
@@ -260,7 +306,7 @@ class BoardCheckerTest {
             // ...
             // A_.
             // .A.
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
@@ -269,7 +315,7 @@ class BoardCheckerTest {
             // ...
             // A_A
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
@@ -278,7 +324,7 @@ class BoardCheckerTest {
             // .A.
             // ._.
             // .A.
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
@@ -287,7 +333,7 @@ class BoardCheckerTest {
             // _*.
             // A..
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(CORNER.move(0, +1), Tool.newStarTool())
                 .put(CORNER.move(+1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .build(),
@@ -317,7 +363,8 @@ class BoardCheckerTest {
 
   @Test
   void createCompanyUsesFirstNonEmptyCompany() {
-    Board board = SimpleBoard.builder().put(POSITION.move(0, +1), Tool.newStarTool()).build();
+    Board board =
+        SimpleBoard.newSimpleBoardBuilder().put(POSITION.move(0, +1), Tool.newStarTool()).build();
     Map<CompanyDefinition, Company> companies = buildCompanies(ImmutableList.of());
     companies.get(COMPANY_DEFINITION_A).setSize(1);
     BoardChecker boardChecker = new BoardChecker(actionFactory, board, POSITION, companies);
@@ -345,7 +392,7 @@ class BoardCheckerTest {
             // ...
             // A.B
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B))
                 .build(),
@@ -357,7 +404,7 @@ class BoardCheckerTest {
             // .C.
             // A.B
             // ...
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B))
                 .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_C))
@@ -370,7 +417,7 @@ class BoardCheckerTest {
             // .C.
             // A.B
             // .D.
-            SimpleBoard.builder()
+            SimpleBoard.newSimpleBoardBuilder()
                 .put(POSITION.move(0, -1), Tool.newCompanyTool(COMPANY_DEFINITION_A))
                 .put(POSITION.move(0, +1), Tool.newCompanyTool(COMPANY_DEFINITION_B))
                 .put(POSITION.move(-1, 0), Tool.newCompanyTool(COMPANY_DEFINITION_C))
