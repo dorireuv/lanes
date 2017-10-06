@@ -16,7 +16,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.CompanyTopHolderChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.Game;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.GameBuilder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
@@ -91,7 +90,7 @@ class LanesTest {
   }
 
   @Test
-  void doMoveThrowsExceptionBeforePlayerEndedTurn() {
+  void doMoveThrowsExceptionBeforePlayerEndedTurn() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -99,14 +98,14 @@ class LanesTest {
   }
 
   @Test
-  void endTurnThrowsExceptionBeforePlayerDoMove() {
+  void endTurnThrowsExceptionBeforePlayerDoMove() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     assertThrows(IllegalMoveException.class, () -> lanes.endTurn());
   }
 
   @Test
-  void order() {
+  void order() throws Exception {
     InOrder inOrder = inOrder(checkerActionExecutor);
     lanes.acceptBoard();
     lanes.startGame();
@@ -140,7 +139,7 @@ class LanesTest {
   }
 
   @Test
-  void buy() {
+  void buy() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -163,7 +162,7 @@ class LanesTest {
   }
 
   @Test
-  void buyDoesNotDispatchCompanyTopHolderChangeEvent() {
+  void buyDoesNotDispatchCompanyTopHolderChangeEvent() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -178,7 +177,7 @@ class LanesTest {
   }
 
   @Test
-  void buyThrowsExceptionWhenNotEnoughMoney() {
+  void buyThrowsExceptionWhenNotEnoughMoney() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -193,7 +192,7 @@ class LanesTest {
   }
 
   @Test
-  void sell() {
+  void sell() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -218,7 +217,7 @@ class LanesTest {
   }
 
   @Test
-  void sellDoesNotDispatchCompanyTopHolderChangeEvent() {
+  void sellDoesNotDispatchCompanyTopHolderChangeEvent() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));
@@ -235,7 +234,7 @@ class LanesTest {
   }
 
   @Test
-  void sellThrowsExceptionWhenNotEnoughStocks() {
+  void sellThrowsExceptionWhenNotEnoughStocks() throws Exception {
     lanes.acceptBoard();
     lanes.startGame();
     lanes.doMove(lanes.getMoves().asList().get(0));

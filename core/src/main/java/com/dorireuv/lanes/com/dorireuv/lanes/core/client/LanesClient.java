@@ -2,11 +2,11 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.client;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
+import com.dorireuv.lanes.com.dorireuv.lanes.core.IllegalMoveException;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.Lanes;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.Phase;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
@@ -50,7 +50,7 @@ public final class LanesClient {
     return lanes.getMoves();
   }
 
-  public void doMove(Position position) {
+  public void doMove(Position position) throws IllegalMoveException {
     lanes.doMove(position);
   }
 

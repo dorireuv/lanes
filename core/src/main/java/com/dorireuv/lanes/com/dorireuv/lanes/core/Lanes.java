@@ -4,7 +4,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscr
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.CompanyTopHolderChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.exception.IllegalMoveException;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.Game;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardClientDecorator;
@@ -99,23 +98,23 @@ public class Lanes {
   // ------------------------------------------------------------------------
   // actions
   // ------------------------------------------------------------------------
-  public void nextBoard() {
+  public void nextBoard() throws IllegalMoveException {
     validatePhase(Phase.GAME_NOT_STARTED);
     getGame()
         .setBoard(new BoardClientDecorator(boardGenerator.generate(), clientEventSubscriberGroup));
   }
 
-  public void acceptBoard() {
+  public void acceptBoard() throws IllegalMoveException {
     validatePhase(Phase.GAME_NOT_STARTED);
     currentPhase = Phase.BOARD_CHOSEN;
   }
 
-  public void startGame() {
+  public void startGame() throws IllegalMoveException {
     validatePhase(Phase.BOARD_CHOSEN);
     startTurn();
   }
 
-  public ImmutableSet<Position> getMoves() {
+  public ImmutableSet<Position> getMoves() throws IllegalMoveException {
     validatePhase(Phase.TURN_MOVE);
     return moves;
   }
@@ -127,7 +126,7 @@ public class Lanes {
     startTrade();
   }
 
-  private void startTrade() {
+  private void startTrade() throws IllegalMoveException {
     currentPhase = Phase.TURN_TRADE;
     if (turnIterator.shouldEndTurn()) {
       endTurn();
