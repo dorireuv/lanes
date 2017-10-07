@@ -5,7 +5,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ImmutableTool;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 
-public class GoldStarBoardAssigner implements BoardAssigner {
+public final class GoldStarBoardAssigner implements BoardAssigner {
 
   @Override
   public boolean assignPosition(ImmutableBoard board, Position position) {

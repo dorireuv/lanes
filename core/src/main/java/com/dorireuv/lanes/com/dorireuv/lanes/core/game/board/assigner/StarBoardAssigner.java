@@ -4,45 +4,45 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.ImmutableBoard;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.tool.ToolType;
 
-public class StarBoardAssigner implements BoardAssigner {
+public final class StarBoardAssigner implements BoardAssigner {
 
   @Override
   public boolean assignPosition(ImmutableBoard board, Position position) {
-    if (doesToolExist(board, ToolType.STAR, position)) {
+    if (isStarTool(board, position)) {
       return false;
     }
 
-    if (doesToolExist(board, ToolType.STAR, position.move(-1, 0))
-        && doesToolExist(board, ToolType.STAR, position.move(+1, 0))
-        && doesToolExist(board, ToolType.STAR, position.move(0, +1))
-        && doesToolExist(board, ToolType.STAR, position.move(0, -1))) {
+    if (isStarTool(board, position.move(-1, 0))
+        && isStarTool(board, position.move(+1, 0))
+        && isStarTool(board, position.move(0, +1))
+        && isStarTool(board, position.move(0, -1))) {
       return false;
     }
 
-    if (doesToolExist(board, ToolType.STAR, position.move(-1, -1))
-        && doesToolExist(board, ToolType.STAR, position.move(-1, 0))
-        && doesToolExist(board, ToolType.STAR, position.move(-1, +1))) {
+    if (isStarTool(board, position.move(-1, -1))
+        && isStarTool(board, position.move(-1, 0))
+        && isStarTool(board, position.move(-1, +1))) {
       return false;
     }
 
-    if (doesToolExist(board, ToolType.STAR, position.move(+1, -1))
-        && doesToolExist(board, ToolType.STAR, position.move(+1, 0))
-        && doesToolExist(board, ToolType.STAR, position.move(+1, +1))) {
+    if (isStarTool(board, position.move(+1, -1))
+        && isStarTool(board, position.move(+1, 0))
+        && isStarTool(board, position.move(+1, +1))) {
       return false;
     }
 
-    if (doesToolExist(board, ToolType.STAR, position.move(-1, -1))
-        && doesToolExist(board, ToolType.STAR, position.move(0, -1))
-        && doesToolExist(board, ToolType.STAR, position.move(+1, -1))) {
+    if (isStarTool(board, position.move(-1, -1))
+        && isStarTool(board, position.move(0, -1))
+        && isStarTool(board, position.move(+1, -1))) {
       return false;
     }
 
-    return !doesToolExist(board, ToolType.STAR, position.move(-1, +1))
-        || !doesToolExist(board, ToolType.STAR, position.move(0, +1))
-        || !doesToolExist(board, ToolType.STAR, position.move(+1, +1));
+    return !isStarTool(board, position.move(-1, +1))
+        || !isStarTool(board, position.move(0, +1))
+        || !isStarTool(board, position.move(+1, +1));
   }
 
-  private boolean doesToolExist(ImmutableBoard board, ToolType toolType, Position position) {
-    return board.getToolWithoutBoundProtection(position).getToolType().equals(toolType);
+  private static boolean isStarTool(ImmutableBoard board, Position position) {
+    return board.getToolWithoutBoundProtection(position).getToolType().equals(ToolType.STAR);
   }
 }
