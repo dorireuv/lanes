@@ -14,7 +14,6 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.ImmutablePlayer;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import java.util.List;
 
 public final class LanesClient {
 
@@ -67,27 +66,8 @@ public final class LanesClient {
   }
 
   // ------------------------------------------------------------------------
-  // current player info
+  // players
   // ------------------------------------------------------------------------
-  public int getCurrentPlayerHoldingsInCompany(CompanyDefinition companyDefinition) {
-    return getCurrentPlayer().getNumOfStocks(getCompany(companyDefinition));
-  }
-
-  public int getCurrentPlayerCashMoney() {
-    return getCurrentPlayer().getCashMoney();
-  }
-
-  public String getCurrentPlayerName() {
-    return getCurrentPlayer().getName();
-  }
-
-  // ------------------------------------------------------------------------
-  // general player info
-  // ------------------------------------------------------------------------
-  public int getCompanyTopHolder(CompanyDefinition companyDefinition) {
-    return lanes.getGame().getCompanyTopHolder(getCompany(companyDefinition));
-  }
-
   public ImmutableList<ImmutablePlayer> getPlayers() {
     return lanes
         .getGame()
@@ -97,15 +77,23 @@ public final class LanesClient {
         .collect(toImmutableList());
   }
 
+  public ImmutablePlayer getCurrentPlayer() {
+    return getPlayers().get(getCurrentPlayerIndex());
+  }
+
+  public int getCompanyTopHolder(CompanyDefinition companyDefinition) {
+    return lanes.getGame().getCompanyTopHolder(getCompany(companyDefinition));
+  }
+
   // ------------------------------------------------------------------------
   // company info
   // ------------------------------------------------------------------------
-  public List<CompanyDefinition> getCompanyDefinitions() {
+  public ImmutableList<CompanyDefinition> getCompanyDefinitions() {
     return lanes.getGame().getCompanyDefinitions();
   }
 
   public int getCompanyValue(CompanyDefinition companyDefinition) {
-    return lanes.getGame().getCompany(companyDefinition).getValue();
+    return getCompany(companyDefinition).getValue();
   }
 
   // ------------------------------------------------------------------------
@@ -115,10 +103,6 @@ public final class LanesClient {
     return lanes.getCurrentPhase();
   }
 
-  public int getBankCashMoney() {
-    return lanes.getGame().getBank().getCashMoney();
-  }
-
   public ImmutableBoard getBoard() {
     return lanes.getBoard().immutableCopy();
   }
@@ -126,16 +110,8 @@ public final class LanesClient {
   // ------------------------------------------------------------------------
   // turn info
   // ------------------------------------------------------------------------
-  public int getNumOfPlayers() {
-    return lanes.getGame().getPlayers().size();
-  }
-
-  public int getCurrentPlayerIndex() {
+  private int getCurrentPlayerIndex() {
     return lanes.getTurnIterator().getCurrentPlayerIndex();
-  }
-
-  public int getFirstPlayerIndex() {
-    return lanes.getTurnIterator().getFirstPlayerIndex();
   }
 
   public int getCurrentTurn() {
@@ -153,10 +129,6 @@ public final class LanesClient {
   // ------------------------------------------------------------------------
   // private
   // ------------------------------------------------------------------------
-  private Player getCurrentPlayer() {
-    return lanes.getGame().getPlayers().get(getCurrentPlayerIndex());
-  }
-
   private Company getCompany(CompanyDefinition companyDefinition) {
     return lanes.getGame().getCompany(companyDefinition);
   }

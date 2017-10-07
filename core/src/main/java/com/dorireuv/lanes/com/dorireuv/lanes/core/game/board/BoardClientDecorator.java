@@ -64,6 +64,7 @@ public class BoardClientDecorator extends Board {
   }
 
   private void onBoardChange(Position position) {
-    clientEventSubscriber.onBoardChange(new BoardChangeEvent(position, getTool(position)));
+    clientEventSubscriber.onBoardChange(
+        new BoardChangeEvent(position, getTool(position).immutableCopy()));
   }
 }

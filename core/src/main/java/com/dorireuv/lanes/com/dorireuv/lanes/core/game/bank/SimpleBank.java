@@ -1,13 +1,11 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank;
 
-import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
-
 public class SimpleBank implements Bank {
 
   private int cashMoney;
 
   public SimpleBank() {
-    this(Config.getBankGameStartCashMoney());
+    this(0);
   }
 
   public SimpleBank(int cashMoney) {

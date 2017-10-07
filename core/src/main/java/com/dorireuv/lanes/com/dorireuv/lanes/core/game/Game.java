@@ -7,6 +7,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.CompanyTopHolderFinder;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
+import com.google.common.collect.ImmutableList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class Game {
 
   private final List<Player> players;
-  private final List<CompanyDefinition> companyDefinitions;
+  private final ImmutableList<CompanyDefinition> companyDefinitions;
   private final List<GalacticBombEventDefinition> galacticBombEventDefinitions;
   private Board board;
   private final Bank bank;
@@ -27,7 +28,7 @@ public class Game {
       Board board,
       Bank bank) {
     this.players = players;
-    this.companyDefinitions = companyDefinitions;
+    this.companyDefinitions = ImmutableList.copyOf(companyDefinitions);
     this.galacticBombEventDefinitions = galacticBombEventDefinitions;
     this.board = board;
     this.bank = bank;
@@ -49,7 +50,7 @@ public class Game {
     return companies;
   }
 
-  public List<CompanyDefinition> getCompanyDefinitions() {
+  public ImmutableList<CompanyDefinition> getCompanyDefinitions() {
     return companyDefinitions;
   }
 

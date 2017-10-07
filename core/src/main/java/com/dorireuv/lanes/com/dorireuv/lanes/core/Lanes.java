@@ -110,6 +110,7 @@ public class Lanes {
 
   public void startGame() throws IllegalMoveException {
     validatePhase(Phase.BOARD_CHOSEN);
+    game.getBank().addCashMoney(Config.getBankGameStartCashMoney());
     startTurn();
   }
 
