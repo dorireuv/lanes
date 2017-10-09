@@ -12,6 +12,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Position;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.ImmutablePlayer;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.Turn;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
@@ -78,7 +79,7 @@ public final class LanesClient {
   }
 
   public ImmutablePlayer getCurrentPlayer() {
-    return getPlayers().get(getCurrentPlayerIndex());
+    return getPlayers().get(lanes.getTurnIterator().peek().getPlayerIndex());
   }
 
   public int getCompanyTopHolder(CompanyDefinition companyDefinition) {
@@ -110,12 +111,8 @@ public final class LanesClient {
   // ------------------------------------------------------------------------
   // turn info
   // ------------------------------------------------------------------------
-  private int getCurrentPlayerIndex() {
-    return lanes.getTurnIterator().getCurrentPlayerIndex();
-  }
-
-  public int getCurrentTurn() {
-    return lanes.getTurnIterator().getCurrentTurn();
+  public Turn getCurrentTurn() {
+    return lanes.getTurnIterator().peek();
   }
 
   public void setNumOfTurns(int numOfTurns) {

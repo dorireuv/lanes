@@ -91,7 +91,7 @@ public class Lanes {
   }
 
   public Player getCurrentPlayer() {
-    return game.getPlayers().get(turnIterator.getCurrentPlayerIndex());
+    return game.getPlayers().get(turnIterator.peek().getPlayerIndex());
   }
 
   // ------------------------------------------------------------------------

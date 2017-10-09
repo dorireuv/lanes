@@ -1,59 +1,100 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.turn;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator.TurnIteratorBuilder;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 
 final class TurnIteratorTest {
 
-  private TurnIterator turnIterator;
-
-  @BeforeEach
-  void setUp() {
-    int firstPlayerIndex = 1;
-    int numOfPlayers = 3;
-    int numOfTurns = 100;
-    turnIterator = new TurnIterator(firstPlayerIndex, numOfPlayers, numOfTurns);
+  @Test
+  void build_numOfPlayersLessThan2_throwsIllegalArgumentException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> newValidTurnIteratorBuilder().numOfPlayers(1).build());
   }
 
   @Test
-  void getCurrentTurnOnBeginningReturnsOne() {
-    assertEquals(turnIterator.getCurrentTurn(), 1);
+  void build_firstPlayerIndexIsLessThan0_throwsIllegalArgumentException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> newValidTurnIteratorBuilder().firstPlayerIndex(-1).build());
   }
 
   @Test
-  void hasNextWhenNoTurnsLeftReturnsFalse() {
-    assertEquals(turnIterator.getNumOfTurns(), 100);
-    turnIterator.setNumOfTurns(1);
-    assertEquals(turnIterator.getNumOfTurns(), 1);
-    assertFalse(turnIterator.hasNext());
+  void build_firstPlayerIndexIsEqualToOrGreaterThanNumOfPlayers_throwsIllegalArgumentException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> newValidTurnIteratorBuilder().numOfPlayers(2).firstPlayerIndex(2).build());
   }
 
   @Test
-  void getCurrentPlayerIndexOnBeginningReturnsFirstPlayerIndex() {
-    assertEquals(turnIterator.getCurrentPlayerIndex(), turnIterator.getFirstPlayerIndex());
+  void build_numOfTurnsIsNegative_throwsIllegalArgumentException() {
+    assertThrows(
+        IllegalArgumentException.class, () -> newValidTurnIteratorBuilder().numOfTurns(-1).build());
   }
 
   @Test
-  void next() {
+  void build_numOfTurnsModuloNumOfPlayersIsNotZero_throwsIllegalArgumentException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> newValidTurnIteratorBuilder().numOfPlayers(3).numOfTurns(7).build());
+  }
+
+  @Test
+  void peek_firstTurn_returnsFirstTurn() {
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder().numOfPlayers(3).firstPlayerIndex(2).numOfTurns(99).build();
+
+    Turn current = turnIterator.peek();
+
+    assertThat(current).isEqualTo(Turn.builder().setPlayerIndex(2).setNumber(1).build());
+  }
+
+  @Test
+  void peek_secondTurn_returnsSecondTurn() {
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder().numOfPlayers(3).firstPlayerIndex(2).numOfTurns(99).build();
+
     turnIterator.next();
-    assertEquals(turnIterator.getCurrentTurn(), 2);
-    assertEquals(turnIterator.getCurrentPlayerIndex(), 2);
+    Turn current = turnIterator.peek();
 
-    turnIterator.next();
-    assertEquals(turnIterator.getCurrentTurn(), 3);
-    assertEquals(turnIterator.getCurrentPlayerIndex(), 0);
+    assertThat(current).isEqualTo(Turn.builder().setPlayerIndex(0).setNumber(2).build());
   }
 
   @Test
-  void setShouldEndTurnIsFalseAfterNext() {
-    assertFalse(turnIterator.shouldEndTurn());
-    turnIterator.setShouldEndTurn();
-    assertTrue(turnIterator.shouldEndTurn());
+  void next_lastTurn_throwsNoSuchElementException() {
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder().numOfPlayers(2).firstPlayerIndex(1).numOfTurns(2).build();
     turnIterator.next();
-    assertFalse(turnIterator.shouldEndTurn());
+
+    assertThrows(NoSuchElementException.class, turnIterator::next);
+  }
+
+  @Test
+  void hasNext_notLastTurn_returnsTrue() {
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder().numOfPlayers(2).firstPlayerIndex(1).numOfTurns(2).build();
+
+    boolean hasNext = turnIterator.hasNext();
+
+    assertThat(hasNext).isTrue();
+  }
+
+  @Test
+  void hasNext_lastTurn_returnsFalse() {
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder().numOfPlayers(2).firstPlayerIndex(1).numOfTurns(2).build();
+
+    turnIterator.next();
+    boolean hasNext = turnIterator.hasNext();
+
+    assertThat(hasNext).isFalse();
+  }
+
+  private static TurnIteratorBuilder newValidTurnIteratorBuilder() {
+    return TurnIterator.newBuilder().numOfPlayers(2).firstPlayerIndex(1).numOfTurns(4);
   }
 }

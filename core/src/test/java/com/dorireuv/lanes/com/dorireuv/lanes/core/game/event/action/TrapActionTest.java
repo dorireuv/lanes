@@ -16,7 +16,8 @@ import org.mockito.Mock;
 final class TrapActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
-  @Mock private TurnIterator turnIterator;
+  private final TurnIterator turnIterator =
+      TurnIterator.newBuilder().numOfPlayers(2).firstPlayerIndex(0).numOfTurns(2).build();
 
   @Test
   void doAction() {

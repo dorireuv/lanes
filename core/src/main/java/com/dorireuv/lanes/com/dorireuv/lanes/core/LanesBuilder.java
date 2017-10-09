@@ -35,7 +35,12 @@ public class LanesBuilder {
 
     RandomWrapper randomWrapper = new SimpleRandomWrapper(randomSeed);
     int firstPlayerIndex = randomWrapper.nextInt(numOfPlayers);
-    TurnIterator turnIterator = new TurnIterator(firstPlayerIndex, numOfPlayers, numOfTurns);
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder()
+            .numOfPlayers(numOfPlayers)
+            .firstPlayerIndex(firstPlayerIndex)
+            .numOfTurns(numOfTurns)
+            .build();
     ClientEventSubscriberGroup clientEventSubscriberGroup =
         ClientEventSubscriberFactory.getClientEventSubscriberGroup();
     List<Player> players = createPlayers(playersName, clientEventSubscriberGroup);

@@ -10,7 +10,6 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriberGroup;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.CompanyTopHolderChangeEvent;
@@ -72,8 +71,12 @@ final class LanesTest {
     int firstPlayerIndex = 0;
     int numOfPlayers = players.size();
     int numOfTurns = 100;
-    TurnIterator turnIterator = spy(new TurnIterator(firstPlayerIndex, numOfPlayers, numOfTurns));
-    when(turnIterator.shouldEndTurn()).thenAnswer(invocationOnMock -> false);
+    TurnIterator turnIterator =
+        TurnIterator.newBuilder()
+            .numOfPlayers(numOfPlayers)
+            .firstPlayerIndex(firstPlayerIndex)
+            .numOfTurns(numOfTurns)
+            .build();
 
     checkerActionExecutor = spy(new CheckerActionExecutor());
 
