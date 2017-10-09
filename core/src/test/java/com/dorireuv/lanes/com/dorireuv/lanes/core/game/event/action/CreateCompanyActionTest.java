@@ -18,7 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class CreateCompanyActionTest {
+final class CreateCompanyActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
 

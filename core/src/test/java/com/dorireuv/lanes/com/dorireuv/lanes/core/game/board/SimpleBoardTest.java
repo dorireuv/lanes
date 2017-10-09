@@ -9,7 +9,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class SimpleBoardTest {
+final class SimpleBoardTest {
 
   private Board board;
 

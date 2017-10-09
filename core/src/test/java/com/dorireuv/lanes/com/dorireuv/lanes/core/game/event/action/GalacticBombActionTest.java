@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class GalacticBombActionTest {
+final class GalacticBombActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
 

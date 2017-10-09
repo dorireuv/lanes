@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class BoardClientDecoratorTest {
+final class BoardClientDecoratorTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
 

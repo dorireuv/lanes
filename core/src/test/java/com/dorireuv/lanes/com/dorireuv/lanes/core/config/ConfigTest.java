@@ -2,7 +2,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.config;
 
 import org.junit.jupiter.api.Test;
 
-class ConfigTest {
+final class ConfigTest {
 
   @Test
   void create() {

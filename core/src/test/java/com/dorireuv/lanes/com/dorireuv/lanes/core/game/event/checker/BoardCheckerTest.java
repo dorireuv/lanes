@@ -36,7 +36,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class BoardCheckerTest {
+final class BoardCheckerTest {
 
   @Mock private ActionFactory actionFactory;
   @Mock private Action action;

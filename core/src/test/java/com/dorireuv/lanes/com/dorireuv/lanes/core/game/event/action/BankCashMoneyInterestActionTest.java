@@ -4,7 +4,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class BankCashMoneyInterestActionTest {
+final class BankCashMoneyInterestActionTest {
   @Test
   void check() throws Exception {
     SimpleBank bank = new SimpleBank(2000);

@@ -43,7 +43,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class LanesTest {
+final class LanesTest {
 
   @Mock private ClientEventSubscriberGroup clientEventSubscriberGroup;
 

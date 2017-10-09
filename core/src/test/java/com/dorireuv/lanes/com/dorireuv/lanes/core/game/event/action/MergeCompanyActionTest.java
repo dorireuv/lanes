@@ -25,7 +25,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class MergeCompanyActionTest {
+final class MergeCompanyActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
 

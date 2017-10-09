@@ -14,7 +14,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class GameTest {
+final class GameTest {
 
   private Game game;
   private Player player1;

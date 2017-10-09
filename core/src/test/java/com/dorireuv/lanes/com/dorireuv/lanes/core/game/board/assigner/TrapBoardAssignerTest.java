@@ -9,7 +9,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TrapBoardAssignerTest {
+final class TrapBoardAssignerTest {
   private Board board;
   private TrapBoardAssigner trapBoardAssigner;
 

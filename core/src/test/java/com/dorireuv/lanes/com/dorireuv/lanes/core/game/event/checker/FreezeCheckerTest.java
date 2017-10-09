@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class FreezeCheckerTest {
+final class FreezeCheckerTest {
 
   @Mock private ActionFactory actionFactory;
   @Mock private Tool tool;

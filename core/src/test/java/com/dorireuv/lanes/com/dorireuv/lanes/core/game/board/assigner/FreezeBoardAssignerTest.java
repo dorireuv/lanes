@@ -9,7 +9,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class FreezeBoardAssignerTest {
+final class FreezeBoardAssignerTest {
   private Board board;
   private FreezeBoardAssigner freezeBoardAssigner;
 

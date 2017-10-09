@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-class PositionTest {
+final class PositionTest {
 
   @Test
   void move() throws Exception {

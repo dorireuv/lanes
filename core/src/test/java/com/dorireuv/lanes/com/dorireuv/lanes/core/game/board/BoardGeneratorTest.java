@@ -3,7 +3,7 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
 import org.junit.jupiter.api.Test;
 
-class BoardGeneratorTest {
+final class BoardGeneratorTest {
   @Test
   void generate() throws Exception {
     int numOfStars = 100;

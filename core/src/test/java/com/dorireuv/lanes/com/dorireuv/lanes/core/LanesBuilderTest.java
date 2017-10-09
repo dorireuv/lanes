@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-class LanesBuilderTest {
+final class LanesBuilderTest {
 
   @Test
   void buildDefault() throws Exception {

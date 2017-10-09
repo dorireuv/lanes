@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class CompanySorterTest {
+final class CompanySorterTest {
 
   private static final CompanyDefinition COMPANY_DEFINITION_1 = CompanyDefinition.create('A', "A");
   private static final CompanyDefinition COMPANY_DEFINITION_2 = CompanyDefinition.create('B', "B");

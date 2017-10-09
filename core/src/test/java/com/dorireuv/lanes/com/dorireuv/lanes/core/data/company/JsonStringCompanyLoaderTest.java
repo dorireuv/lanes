@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableList;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 
-class JsonStringCompanyLoaderTest {
+final class JsonStringCompanyLoaderTest {
 
   @Test
   void loadPredefined_always_isNotEmpty() {

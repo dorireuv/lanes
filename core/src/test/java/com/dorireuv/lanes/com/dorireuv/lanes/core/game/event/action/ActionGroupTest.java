@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class ActionGroupTest {
+final class ActionGroupTest {
 
   @Mock private Action action1;
   @Mock private Action action2;

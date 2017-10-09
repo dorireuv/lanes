@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class MovesGeneratorTest {
+final class MovesGeneratorTest {
 
   private final SimpleBoard board = new SimpleBoard();
 

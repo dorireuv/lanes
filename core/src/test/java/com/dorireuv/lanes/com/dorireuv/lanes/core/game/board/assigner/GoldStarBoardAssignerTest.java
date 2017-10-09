@@ -8,7 +8,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.SimpleBoard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class GoldStarBoardAssignerTest {
+final class GoldStarBoardAssignerTest {
   private Board board;
   private GoldStarBoardAssigner goldStarBoardAssigner;
 

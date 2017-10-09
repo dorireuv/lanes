@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class DoublePaymentActionTest {
+final class DoublePaymentActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
 

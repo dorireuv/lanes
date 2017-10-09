@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class PlayerNetValueSorterTest {
+final class PlayerNetValueSorterTest {
   @Test
   void sort() throws Exception {
     Player player1 = new SimplePlayer(0, "P1", 2000);

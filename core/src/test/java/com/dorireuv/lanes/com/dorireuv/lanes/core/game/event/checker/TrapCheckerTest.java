@@ -14,7 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class TrapCheckerTest {
+final class TrapCheckerTest {
 
   @Mock private ActionFactory actionFactory;
   @Mock private RandomWrapper randomWrapper;

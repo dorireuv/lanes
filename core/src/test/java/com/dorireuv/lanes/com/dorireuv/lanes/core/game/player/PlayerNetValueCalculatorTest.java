@@ -6,7 +6,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.company.Company;
 import org.junit.jupiter.api.Test;
 
-class PlayerNetValueCalculatorTest {
+final class PlayerNetValueCalculatorTest {
   @Test
   void calc() throws Exception {
     Player player = new SimplePlayer(0, "P1", 0);

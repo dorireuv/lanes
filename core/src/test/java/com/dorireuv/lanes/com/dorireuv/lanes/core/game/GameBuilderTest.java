@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class GameBuilderTest {
+final class GameBuilderTest {
 
   @Test
   void buildNewDefaultGame() throws Exception {

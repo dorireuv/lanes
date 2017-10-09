@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class TrapActionTest {
+final class TrapActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
   @Mock private TurnIterator turnIterator;

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class FreezeActionTest {
+final class FreezeActionTest {
 
   @Mock private ClientEventSubscriber clientEventSubscriber;
   @Mock private TurnIterator turnIterator;

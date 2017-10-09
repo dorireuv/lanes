@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class SingleMoveGeneratorTest {
+final class SingleMoveGeneratorTest {
 
   @Mock private RandomWrapper randomWrapper;
 
