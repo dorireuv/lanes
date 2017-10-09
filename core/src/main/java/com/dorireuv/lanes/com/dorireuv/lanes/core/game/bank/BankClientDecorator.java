@@ -2,12 +2,14 @@ package com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.BankCashMoneyChangeEvent;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
+import javax.inject.Inject;
 
 public class BankClientDecorator implements Bank {
 
   private final Bank bank;
   private final ClientEventSubscriber clientEventSubscriber;
 
+  @Inject
   public BankClientDecorator(Bank bank, ClientEventSubscriber clientEventSubscriber) {
     this.bank = bank;
     this.clientEventSubscriber = clientEventSubscriber;

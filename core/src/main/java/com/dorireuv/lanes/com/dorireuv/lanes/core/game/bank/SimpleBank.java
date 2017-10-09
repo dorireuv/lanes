@@ -1,9 +1,12 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank;
 
+import javax.inject.Inject;
+
 public class SimpleBank implements Bank {
 
   private int cashMoney;
 
+  @Inject
   public SimpleBank() {
     this(0);
   }

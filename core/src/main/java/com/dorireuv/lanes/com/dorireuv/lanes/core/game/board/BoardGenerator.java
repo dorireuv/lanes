@@ -1,5 +1,7 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game.board;
 
+import com.dorireuv.lanes.com.dorireuv.lanes.core.Qualifiers.NumOfPlayers;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.Qualifiers.NumOfStars;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.BoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.DoublePaymentBoardAssigner;
@@ -9,6 +11,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.StarBoardA
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.assigner.TrapBoardAssigner;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import java.util.function.Consumer;
+import javax.inject.Inject;
 
 public class BoardGenerator {
 
@@ -16,7 +19,9 @@ public class BoardGenerator {
   private final int numOfPlayers;
   private final int numOfStars;
 
-  public BoardGenerator(RandomWrapper randomWrapper, int numOfPlayers, int numOfStars) {
+  @Inject
+  public BoardGenerator(
+      RandomWrapper randomWrapper, @NumOfPlayers int numOfPlayers, @NumOfStars int numOfStars) {
     this.randomWrapper = randomWrapper;
     this.numOfPlayers = numOfPlayers;
     this.numOfStars = numOfStars;

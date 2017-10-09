@@ -18,6 +18,7 @@ import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
 import com.google.common.collect.ImmutableSet;
+import javax.inject.Inject;
 
 public class Lanes {
 
@@ -35,6 +36,7 @@ public class Lanes {
   private Position currentMove;
   private Phase currentPhase;
 
+  @Inject
   Lanes(
       Game game,
       RandomWrapper randomWrapper,

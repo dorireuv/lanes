@@ -13,9 +13,11 @@ import java.util.List;
 public class GameBuilder {
 
   public Game buildNewDefaultGame(List<Player> players, Board board, Bank bank) {
+    // TODO(dorireuv): remove this class.
     ImmutableList<CompanyDefinition> companies = JsonStringCompanyLoader.loadPredefined();
     ImmutableList<GalacticBombEventDefinition> galacticBombEventDefinitions =
         JsonStringEventLoader.loadPredefined();
-    return new Game(players, companies, galacticBombEventDefinitions, board, bank);
+    return new Game(
+        ImmutableList.copyOf(players), companies, galacticBombEventDefinitions, board, bank);
   }
 }

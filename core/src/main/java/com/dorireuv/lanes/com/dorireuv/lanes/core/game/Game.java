@@ -1,5 +1,8 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core.game;
 
+import com.dorireuv.lanes.com.dorireuv.lanes.core.Qualifiers.CompanyDefinitions;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.Qualifiers.GalacticBombEventDefinitions;
+import com.dorireuv.lanes.com.dorireuv.lanes.core.Qualifiers.Players;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.company.CompanyDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.data.event.GalacticBombEventDefinition;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
@@ -11,6 +14,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.inject.Inject;
 
 public class Game {
 
@@ -21,14 +25,16 @@ public class Game {
   private final Bank bank;
   private final Map<CompanyDefinition, Company> companies;
 
+  @Inject
   public Game(
-      List<Player> players,
-      List<CompanyDefinition> companyDefinitions,
-      List<GalacticBombEventDefinition> galacticBombEventDefinitions,
+      @Players ImmutableList<Player> players,
+      @CompanyDefinitions ImmutableList<CompanyDefinition> companyDefinitions,
+      @GalacticBombEventDefinitions
+          ImmutableList<GalacticBombEventDefinition> galacticBombEventDefinitions,
       Board board,
       Bank bank) {
     this.players = players;
-    this.companyDefinitions = ImmutableList.copyOf(companyDefinitions);
+    this.companyDefinitions = companyDefinitions;
     this.galacticBombEventDefinitions = galacticBombEventDefinitions;
     this.board = board;
     this.bank = bank;

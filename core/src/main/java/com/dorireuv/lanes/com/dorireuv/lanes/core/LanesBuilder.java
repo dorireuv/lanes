@@ -1,28 +1,8 @@
 package com.dorireuv.lanes.com.dorireuv.lanes.core;
 
 import com.dorireuv.lanes.com.dorireuv.lanes.core.client.LanesClient;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriber;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriberFactory;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.client.event.ClientEventSubscriberGroup;
 import com.dorireuv.lanes.com.dorireuv.lanes.core.config.Config;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.Game;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.GameBuilder;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.Bank;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.BankClientDecorator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.bank.SimpleBank;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.Board;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardClientDecorator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.board.BoardGenerator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.event.CheckerActionExecutor;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.MovesGenerator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.move.SingleMoveGenerator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.Player;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.PlayerClientDecorator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.game.player.SimplePlayer;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.turn.TurnIterator;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.RandomWrapper;
-import com.dorireuv.lanes.com.dorireuv.lanes.core.util.random.SimpleRandomWrapper;
-import java.util.LinkedList;
+import com.google.common.collect.ImmutableList;
 import java.util.List;
 
 public class LanesBuilder {
@@ -33,34 +13,15 @@ public class LanesBuilder {
     int numOfPlayers = playersName.size();
     validateNumOfPlayers(numOfPlayers);
 
-    RandomWrapper randomWrapper = new SimpleRandomWrapper(randomSeed);
-    int firstPlayerIndex = randomWrapper.nextInt(numOfPlayers);
-    TurnIterator turnIterator =
-        TurnIterator.newBuilder()
-            .numOfPlayers(numOfPlayers)
-            .firstPlayerIndex(firstPlayerIndex)
-            .numOfTurns(numOfTurns)
-            .build();
-    ClientEventSubscriberGroup clientEventSubscriberGroup =
-        ClientEventSubscriberFactory.getClientEventSubscriberGroup();
-    List<Player> players = createPlayers(playersName, clientEventSubscriberGroup);
-    Bank bank = new BankClientDecorator(new SimpleBank(), clientEventSubscriberGroup);
-    BoardGenerator boardGenerator =
-        new BoardGenerator(new SimpleRandomWrapper(randomSeed), players.size(), numOfStars);
-    Board board = new BoardClientDecorator(boardGenerator.generate(), clientEventSubscriberGroup);
-    Game game = new GameBuilder().buildNewDefaultGame(players, board, bank);
-    MovesGenerator movesGenerator =
-        new MovesGenerator(new SingleMoveGenerator(randomWrapper), Config.getNumOfMoveOptions());
-    CheckerActionExecutor checkerActionExecutor = new CheckerActionExecutor();
     Lanes lanes =
-        new Lanes(
-            game,
-            randomWrapper,
-            boardGenerator,
-            movesGenerator,
-            clientEventSubscriberGroup,
-            turnIterator,
-            checkerActionExecutor);
+        DaggerLanesComponent.builder()
+            .randomSeed(randomSeed)
+            .numOfPlayers(numOfPlayers)
+            .numOfStars(numOfStars)
+            .numOfTurns(numOfTurns)
+            .playerNames(ImmutableList.copyOf(playersName))
+            .build()
+            .lanes();
     return new LanesClient(lanes);
   }
 
@@ -74,21 +35,5 @@ public class LanesBuilder {
       throw new IllegalArgumentException(
           String.format("invalid number of players %d > %d", numOfPlayers, maxNumOfPlayers));
     }
-  }
-
-  private List<Player> createPlayers(
-      List<String> playersName, ClientEventSubscriber clientEventSubscriber) {
-    List<Player> players = new LinkedList<>();
-    int index = 0;
-    for (String playerName : playersName) {
-      Player player =
-          new PlayerClientDecorator(
-              new SimplePlayer(index, playerName, Config.getPlayerGameStartCashMoney()),
-              clientEventSubscriber);
-      players.add(player);
-      index++;
-    }
-
-    return players;
   }
 }
